@@ -21,4 +21,11 @@ def post_watch():
     return watch.to_dict()
 
 # delete route 
+@watch_routes.route('/delete/<int:watchlist_id>', methods=['DELETE'])
+@login_required
+def delete_watch(watchlist_id):
+    watch= Watch.query.get(watchlist_id)
+    db.session.delete(watch)
+    db.session.commit()
+    return watch.to_dict()
 
