@@ -24,7 +24,6 @@ def share():
             number_of_shares=form.data['number_of_shares'],
         )
 
-
     # shares = Share.query.filter(Share.user_id == id)
     # return {'shares': [shares.to_dict() for share in shares ]}
 
