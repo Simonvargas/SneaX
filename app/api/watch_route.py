@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_login import login_required
 from app.models import Watch, db
+# from app.forms import WatchForm
 
 watch_routes = Blueprint('watchs', __name__)
 
@@ -15,6 +16,8 @@ def watchs():
 @watch_routes.route('/add', methods=['POST'])
 @login_required
 def post_watch():
+    # form = WatchForm()
+    # if form.validate_on_submit():
     watch = Watch()
     db.session.add(watch)
     db.session.commit()
