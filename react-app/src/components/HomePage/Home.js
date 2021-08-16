@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-
-import { allSneax } from '../store/sneax';
-import { getShares } from '../store/shares';
+import { allSneax } from '../../store/sneax';
+import { getShares } from '../../store/shares';
 
 import './Home.css'
 
@@ -21,7 +20,8 @@ function Home() {
   const [ sellId, setSellId ] = useState('')
   const [ sellQty, setSellQty ] = useState('')
   const [ numberShares, setNumber ] = useState('')
-
+  const sessionUser = useSelector(state => state.session.user)
+  console.log('hello', sessionUser)
   useEffect(() => {
     dispatch(allSneax())
     dispatch(getShares())
@@ -46,7 +46,7 @@ function Home() {
   if (showEdit) {
     content = (
         <>
-          <form>
+          <form> 
             <label> number of shares
               <input
                 type='number'
@@ -93,6 +93,7 @@ function Home() {
 
   return (
     <>
+    
     {shares?.map(share => (
               <ul>
                 <li>
@@ -113,6 +114,7 @@ function Home() {
               </ul>
     ))}
     <h2>total account value: </h2>
+    
     {sneax?.map(sneak => (
           <>
 
