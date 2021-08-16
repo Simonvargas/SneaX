@@ -1,6 +1,6 @@
 /* TODO Add site wide styles */
 html, body {
-    margin:0px;
+    margin:0px !important;;
     height: 100%;
     width: 100%;
   }
@@ -8,3 +8,5 @@ html, body {
 div {
      padding:0 
 }
+
+
