@@ -27,9 +27,9 @@ function User() {
   }
 
   return (
-      <>
-   {sessionUser ? <Home /> : <SplashPage />}
-   </>
+    <>
+      {/* {sessionUser ? <Home /> : <SplashPage />} */}
+    </>
   );
 }
 export default User;

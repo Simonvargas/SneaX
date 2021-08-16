@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import {useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/LoginPage/LoginForm';
@@ -12,6 +13,7 @@ import { authenticate } from './store/session';
 import RealHome from './components/HomePage/RealHome'
 
 function App() {
+  const sessionUser = useSelector(state => state.session.user)
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -26,13 +28,20 @@ function App() {
     return null;
   }
 
+  // let sessionLinks;
+  // if (!user) {
+  //   sessionLinks = (
+  //     <LoginForm/>
+  //   )
+  // }
+
   return (
     <BrowserRouter>
+    <Route path='/login' exact={true}>
+          <LoginForm />
+    </Route>
     <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
