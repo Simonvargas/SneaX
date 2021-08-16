@@ -11,7 +11,9 @@ import User from './components/User';
 import Home from './components/HomePage/Home';
 import { authenticate } from './store/session';
 import RealHome from './components/HomePage/RealHome'
-import SplashPage  from './components/SplashPage';
+import SplashPage from './components/HomePage/SplashPage'
+
+
 function App() {
   const sessionUser = useSelector(state => state.session.user)
   const [loaded, setLoaded] = useState(false);
@@ -28,24 +30,14 @@ function App() {
     return null;
   }
 
-  // let sessionLinks;
-  // if (!sessionUser) {
-  //   sessionLinks = (
-  //     <SplashPage/>
-  //   )
-  // } else {
-  //   sessionLinks = (
-  //     <RealHome/>
-  //   )
-  // }
 
   return (
     <BrowserRouter>
-    <Route path='/login' exact={true}>
-          <LoginForm />
-    </Route>
       <Switch>
-        <Route path='/sign-up' exact={true}>
+        <Route path='/login' exact={true}>
+          <LoginForm />
+        </Route>
+        <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
@@ -54,8 +46,11 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        {/* <Route path='/' exact={true} >
           <Home />
+        </Route> */}
+        <Route path='/' exact={true} >
+          <SplashPage />
         </Route>
         <Route path='/real'>
           <RealHome />

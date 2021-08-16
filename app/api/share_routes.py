@@ -5,7 +5,7 @@ from app.models import Share
 share_routes = Blueprint('shares', __name__)
 
 @share_routes.route('/')
-@login_required
+# @login_required
 def shares():
     shares = Share.query.filter(Share.user_id == current_user.id)
     return {'shares': [ share.to_dict() for share in shares ]}
