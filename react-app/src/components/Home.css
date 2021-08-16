@@ -1,0 +1,9 @@
+.sell_form_container {
+    position: sticky;
+    bottom: 100px;
+    margin: 0 auto;
+    width: 400px;
+    border: 1px solid black;
+}
+
+.sell_form_mod {}
