@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_login import login_required, current_user
-from app.models import Watchlist, db
+from app.models import Watchlist, db, Watch
 from app.forms import WatchlistForm
 
 
@@ -12,7 +12,8 @@ watchlist_routes = Blueprint('watchlists', __name__)
 @login_required
 def get_watchlist():
     watchlists = Watchlist.query.filter(Watchlist.user_id == current_user.id).all()
-    return {'watchlist' : [watchlist.to_dict() for watchlist in watchlists]}
+    watchs = Watch.query.all()
+    return {'watchlist' : [watchlist.to_dict() for watchlist in watchlists], 'watch':[watch.to_dict() for watch in watchs]}
 
 
 @watchlist_routes.route('/add', methods=['POST'])

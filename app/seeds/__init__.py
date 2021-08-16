@@ -16,8 +16,8 @@ def seed():
     seed_users()
     seed_sneaxs()
     seed_shares()
-    seed_watchs()
     seed_watchlists()
+    seed_watchs()
 
 
     # Add other seed functions here
@@ -29,7 +29,7 @@ def undo():
     undo_users()
     undo_sneaxs()
     undo_shares()
-    undo_watchs()
     undo_watchlists()
+    undo_watchs()
 
     # Add other undo functions here

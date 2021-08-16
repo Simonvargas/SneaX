@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask_login import login_required
-from app.models import Watch, db
+from app.models import Watch, db, Sneax
 # from app.forms import WatchForm
 
 watch_routes = Blueprint('watchs', __name__)
@@ -9,7 +9,8 @@ watch_routes = Blueprint('watchs', __name__)
 @login_required
 def watchs():
     watchs = Watch.query.all()
-    return{'watchs': [watch.to_dict() for watch in watchs]}
+    sneaxs = Sneax.query.all()
+    return{'watchs': [watch.to_dict() for watch in watchs], 'sneaxs': [sneax.to_dict() for sneax in sneaxs]}
     
 
 # post route 
