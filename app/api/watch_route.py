@@ -10,6 +10,8 @@ watch_routes = Blueprint('watchs', __name__)
 def watchs():
     watchs = Watch.query.all()
     sneaxs = Sneax.query.all()
+    watch_dict = [watch.to_dict() for watch in watchs]
+    # nest sneaxs in watchs 
     return{'watchs': [watch.to_dict() for watch in watchs], 'sneaxs': [sneax.to_dict() for sneax in sneaxs]}
     
 
