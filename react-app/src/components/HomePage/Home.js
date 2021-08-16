@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
+import NavBar from '../Navigation/NavBar';
 
 import './Home.css'
 
@@ -93,7 +94,7 @@ function Home() {
 
   return (
     <>
-    
+    <NavBar />
     {shares?.map(share => (
               <ul>
                 <li>

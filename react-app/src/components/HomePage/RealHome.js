@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Home from './Home';
 import SplashPage from './SplashPage'
-
+import NavBar from '../Navigation/NavBar';
 
 function User() {
   const [user, setUser] = useState({});
@@ -28,6 +28,7 @@ function User() {
 
   return (
       <>
+    <NavBar />
    {sessionUser ? <Home /> : <SplashPage />}
    </>
   );

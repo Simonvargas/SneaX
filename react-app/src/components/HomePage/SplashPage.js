@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import NavBar from '../Navigation/NavBar';
 
 function User() {
   const [user, setUser] = useState({});
@@ -23,6 +24,7 @@ function User() {
 
   return (
     <div>
+        <NavBar />
        <p>hello</p>
     </div>
   );
