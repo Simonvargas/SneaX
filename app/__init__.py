@@ -10,6 +10,8 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.sneax_routes import sneax_routes
 from .api.share_routes import share_routes
+from .api.watch_route import watch_routes
+
 
 from .seeds import seed_commands
 
@@ -35,6 +37,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(sneax_routes, url_prefix='/api/sneax')
 app.register_blueprint(share_routes, url_prefix='/api/shares')
+app.register_blueprint(watch_routes, url_prefix='/api/watch')
 db.init_app(app)
 Migrate(app, db)
 
