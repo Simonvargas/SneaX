@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { allSneax } from '../../store/sneax';
-import { getShares } from '../../store/shares';
 import NavBar from '../Navigation/NavBar';
+
+import { allSneax } from '../../store/sneax';
+import * as sessionSlice from '../../store/shares';
+//  { getShares, purchase, updateShare, deleteShare }
 
 import './Home.css'
 
@@ -17,20 +19,31 @@ function Home() {
   const { userId }  = useParams();
 
   const [ showEdit, setShowEdit ] = useState(false)
-  const [ showSell, setShowSell ] = useState(false)
+  const [ showTrade, setShowTrade ] = useState(false)
   const [ sellId, setSellId ] = useState('')
   const [ sellQty, setSellQty ] = useState('')
-  const [ numberShares, setNumber ] = useState('')
-  const sessionUser = useSelector(state => state.session.user)
-  console.log('hello', sessionUser)
+
+  const [ totalPosition, setTotalPosition ] = useState('')
+  const [ shareQty, setShareQty ] = useState('')
+  const [ purchaseShares, setPurchaseShares ] = useState('')
+  const [ sharePrice, setSharePrice ] = useState('')
+  const [ shareId, setShareId ] = useState('')
+
+  const [ openBuy, setOpenBuy ] = useState(false)
+  const [ openSell, setOpenSell ] = useState(false)
+
+  const history = useHistory()
+
+  // const updateNumber
+
   useEffect(() => {
     dispatch(allSneax())
-    dispatch(getShares())
+    dispatch(sessionSlice.getShares())
     if (!userId) {
       return;
     }
     (async () => {
-      const response = await fetch(`/api/users/${userId}`);
+      const response = await fetch(`/api/users/${shareId}`);
       const user = await response.json();
       setUser(user);
 
@@ -42,12 +55,38 @@ function Home() {
   }
 
   let content = null
+  let shareContent = null
+  let posted;
+
+  const tradeSubmit = async (e) => {
+    e.preventDefault();
+    posted = await dispatch(sessionSlice.updateShare(sharePrice, purchaseShares, sellId))
+
+    if (posted) {
+        let answer = window.confirm("Are you sure you want to make this change?")
+        if (answer) {
+          history.push('/')
+          history.go(0)
+          // window.alert('change complete')
+        } else {
+          window.alert('change canceled')
+        }
+
+    }
+  }
+
+  const handleSell = async (e) => {
+    e.preventDefault()
+    console.log('THIS IS THE SELL ID DDNJOAFDNALNFLA', shareId)
+    posted = await dispatch(sessionSlice.deleteShare(shareId))
+    console.alert("remove went through")
+  }
 
 
   if (showEdit) {
     content = (
         <>
-          <form> 
+          <form>
             <label> number of shares
               <input
                 type='number'
@@ -55,7 +94,7 @@ function Home() {
                 onChange={null}
               />
             </label>
-            <button>Purchase</button>
+            <button type='button'>Purchase</button>
           </form>
         </>
     )
@@ -65,10 +104,12 @@ function Home() {
     )
   }
 
-  if (showSell) {
-    content = (
-        <div className='sell_form_container'>
-            <form className='sell_form_mod'>
+  if (openBuy) {
+    shareContent = (
+      <>
+            <form
+              onSubmit={(e) => tradeSubmit(e)}
+              className='sell_form_mod'>
               <label> number of shares
                 <input
                   type='number'
@@ -76,16 +117,67 @@ function Home() {
                   onChange={null}
                 />
               </label>
-              <label> number of shares
+              <label> Sneax Id
                 <input
                   type='number'
-                  value={null}
+                  value={sellId}
                   onChange={null}
                 />
               </label>
-              <button>Buy</button> {/*toggle button fuction as according to available position*/}
-              <button>Sell</button>
+              <label> total position
+                <input
+                  type='number'
+                  value={totalPosition}
+                  onChange={null}
+                />
+              </label>
+              <label> number of shares
+                <input
+                  type='number'
+                  value={shareQty}
+                  onChange={null}
+                />
+              </label>
+              <label> number
+                <input
+                  type='number'
+                  value={purchaseShares}
+                  onChange={(e) => setPurchaseShares(e.target.value)}
+                />
+              </label>
+              <button type='submit'>Purchase</button>
             </form>
+    </>
+    )
+  } else if (openSell) {
+    shareContent = (
+          <>
+      <form onSubmit={handleSell}>
+
+      </form>
+      <button onClick={(e) => handleSell(e)}>Sell</button>
+    </>
+    )
+  }
+
+
+  function handleCancel() {
+    if (openBuy || openSell) {
+      setOpenBuy(false)
+      setOpenSell(false)
+    } else {
+      setShowTrade(false)
+    }
+  }
+
+  if (showTrade) {
+    content = (
+        <div className='sell_form_container'>
+
+              <button onClick={() => (setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> {/*toggle button fuction as according to available position*/}
+              <button onClick={() => (setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
+              <button onClick={() => handleCancel()}>Cancel</button>
+              {shareContent}
         </div>
     )
   }
@@ -94,8 +186,10 @@ function Home() {
 
   return (
     <>
-    <NavBar />
-    {/* {shares?.map(share => (
+    <NavBar/>
+    {shares?.map(share => {
+            if (Number(share.sneax_id)) {
+              return (
               <ul>
                 <li>
                   <strong>sneax id: {share.sneax_id}</strong>
@@ -110,12 +204,11 @@ function Home() {
                   <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
                 </li>
                 <button
-                  onClick={() => (setShowSell(!showSell), setSellId(share.sneax_id), setSellQty(share.number_of_shares))}
+                  onClick={() => (setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
                 >trade</button>
               </ul>
-    ))}
+    )}})}
     <h2>total account value: </h2>
-    
     {sneax?.map(sneak => (
           <>
 
@@ -149,7 +242,7 @@ function Home() {
             </button>
           </>
     ))}
-      {content} */}
+      {content}
     </>
   );
 }

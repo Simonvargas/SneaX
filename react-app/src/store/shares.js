@@ -29,34 +29,43 @@ export const getShares = () => async dispatch => {
     dispatch(load(shares))
 }
 
-export const purchase = (payload, id) => async dispatch => {
+export const purchase = (price_per_share, purchaseShares, id) => async dispatch => {
     const res = await fetch(`/api/shares/${id}`, {
         method: "POST",
-        header: {"Content-Type": 'application/json'},
-        body: JSON.stringify(payload),
+        headers: {"Content-Type": 'application/json'},
+        body: JSON.stringify({
+            price_per_share,
+            number_of_shares: purchaseShares,
+        }),
     })
+    const data = await res.json();
 
     if (res.ok) {
-        const data = await res.json();
         dispatch(set(data))
         if (data.errors) {
             return data.errors
         }
     }
+    return true
 }
 
-export const updateShare = (payload, id) => async dispatch => {
-    const res = await fetch(`/api/shares${id}`, {
-        method: "PUT",
-        body: JSON.stringify(payload)
+export const updateShare = (price_per_share, purchaseShares, id) => async dispatch => {
+    const res = await fetch(`/api/shares/users/${id}`, {
+        method: "POST",
+        headers: {"Content-Type": 'application/json'},
+        body: JSON.stringify({
+            price_per_share,
+            number_of_shares: purchaseShares,
+        }),
     })
 
     const data = res.json()
     if (res.ok) dispatch(update(data))
+    return true
 }
 
 export const deleteShare = (id) => async dispatch => {
-    const res = await fetch(`/api/shares/${id}`, {
+    const res = await fetch(`/api/shares/remove/${id}`, {
         method: "DELETE",
     })
     dispatch(remove())
@@ -71,18 +80,22 @@ const sharesReducer = (state = initialState, action) => {
             const all = {
                 ...state
             }
-            console.log('this is action tyooyooyo', action)
+            // console.log('this is action',action)
             action.shares.shares.forEach((share) => {
                 all[share.id] = share;
             });
+            action.shares.sneax.forEach((sneak) => {
+                all[sneak.id + '-data'] = sneak
+            })
             return all;
 
         case SET_SHARES:
-            const make = {
-                ...state,
-                [action.shares.id]: action.shares
-            };
-            return make;
+            // const make = {
+            //     ...state,
+            //     [action.shares.id]: action.shares
+            // };
+            // return make;
+            return { shares : action.shares }
 
         case REMOVE_SHARE:
             const destroy = {...state};
