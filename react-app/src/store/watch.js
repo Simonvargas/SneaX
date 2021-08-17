@@ -37,7 +37,7 @@ const removeWatch = (watch) => {
 
 // Thunks 
 export const addOneWatch = (payload) => async(dispatch) => {
-    const res = await fetch('/api/watch/', {
+    const res = await fetch('/api/watch/add', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload),
@@ -67,7 +67,7 @@ export const getOneWatch = (id) => async(dispatch) => {
 
 
 export const removeOneWatch = (id) => async(dispatch) => {
-    const res = await fetch(`/api/watch/${id}`, {
+    const res = await fetch(`/api/watch/delete/${id}`, {
         method: 'DELETE',
         body: JSON.stringify({id}),
     });
