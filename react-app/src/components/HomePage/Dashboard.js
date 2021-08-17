@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
+import { getWatchs } from '../../store/watch';
+import { getList } from '../../store/watchlist';
 import NavBar from '../Navigation/NavBar';
 
 import './Home.css'
+
 
 function Dashboard() {
   const dispatch = useDispatch()
@@ -26,6 +29,8 @@ function Dashboard() {
   useEffect(() => {
     dispatch(allSneax())
     dispatch(getShares())
+    dispatch(getWatchs())
+    dispatch(getList())
     if (!userId) {
       return;
     }

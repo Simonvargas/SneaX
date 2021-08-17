@@ -90,10 +90,10 @@ const watchReducer = (state = initialState, action) => {
                 [action.watch.id]: action.watch
             }
         case LOAD_WATCHS:
-            return {
-                ...state,
-                ...Object.fromEntries(action.watch.map((oneWatch) => [oneWatch.id, oneWatch]))
-            }
+            const all = {...state};
+            action.watch.watchs.forEach((oneWatch) => {
+                all[oneWatch.id] = oneWatch;
+            });
         case REMOVE_WATCH:{
             const newState = {...state};
             delete newState[action.watch];
