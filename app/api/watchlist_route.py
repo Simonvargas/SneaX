@@ -29,9 +29,9 @@ def add_watchlist():
     return {'error' : 'Invalid request'}
 
 
-@watchlist_routes.route('/<int:user_id>/<int:watchlist_id>', methods=['DELETE'])
+@watchlist_routes.route('/delete/<int:watchlist_id>', methods=['DELETE'])
 @login_required
-def delete_watchlist(user_id, watchlist_id):
+def delete_watchlist(watchlist_id):
     watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id).all()
     if watchlist:
         db.session.delete(watchlist)
@@ -39,9 +39,9 @@ def delete_watchlist(user_id, watchlist_id):
         return watchlist.to_dict()
 
 
-@watchlist_routes.route('/<int:user_id>/<int:watchlist_id>', methods=['PUT'])
+@watchlist_routes.route('/edit/<int:watchlist_id>', methods=['PUT'])
 @login_required
-def update_watchlist(user_id, watchlist_id):
+def update_watchlist(watchlist_id):
     watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id).all()
     form = WatchlistForm()
     if form.validate_on_submit():

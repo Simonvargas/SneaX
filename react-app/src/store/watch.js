@@ -1,7 +1,8 @@
 // action verbs
-const ADD_WATCH ='watch/ADD_LIST';
-const LOAD_WATCH ='watch/LOAD_LIST';
-const REMOVE_WATCH ='watch/REMOVE_LIST';
+const ADD_WATCH ='watch/ADD_WATCH';
+const LOAD_WATCHS ='watch/LOAD_WATCHS';
+const GET_WATCH = 'watch/GET_WATCH';
+const REMOVE_WATCH ='watch/REMOVE_WATCH';
 
 // action creator
 const addWatch = (watch) => {
@@ -11,9 +12,16 @@ const addWatch = (watch) => {
     };
 }
 
-const loadWatch = (watch) => {
+const loadWatchs = (watch) => {
     return {
-        type: LOAD_WATCH,
+        type: LOAD_WATCHS,
+        watch
+    };
+}
+
+const getAWatch = (watch) => {
+    return {
+        type: GET_WATCH,
         watch
     };
 }
@@ -45,14 +53,14 @@ export const addOneWatch = (payload) => async(dispatch) => {
 export const getWatchs = () => async(dispatch) => {
     const res = await fetch('/api/watch/');
     const watchs = await res.json();
-    dispatch(loadWatch(watchs));
+    dispatch(loadWatchs(watchs));
 }
 
 export const getOneWatch = (id) => async(dispatch) => {
     const res = await fetch(`/api/watch/${id}`);
     if(res.ok){
         const watch = await res.json();
-        dispatch(loadWatch(watch));
+        dispatch(getAWatch(watch));
          return watch;
     }
 }
@@ -81,10 +89,10 @@ const watchReducer = (state = initialState, action) => {
                 ...state,
                 [action.watch.id]: action.watch
             }
-        case LOAD_WATCH:
+        case LOAD_WATCHS:
             return {
                 ...state,
-                ...Object.fromEntries(action.watch.map((item) => [item.id, item]))
+                ...Object.fromEntries(action.watch.map((oneWatch) => [oneWatch.id, oneWatch]))
             }
         case REMOVE_WATCH:{
             const newState = {...state};
