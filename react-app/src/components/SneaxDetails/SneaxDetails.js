@@ -82,7 +82,7 @@ function SneaxDetails() {
           <div className='shares-from'>
             <div>
               <label>Invest in
-              <input type='text' value='Sneax'></input>
+              <input type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
               </label>
             </div>
             <div>
