@@ -61,7 +61,7 @@ function User() {
       </div>
       <div className='icon-container'>
       <i class="fas fa-clock fa-3x"> Be one of the first</i>
-      <p>Request shares in new companies before their stock starts trading on public exchanges.</p>
+      <p>Request shares in new companies before their sneaxs starts trading on public exchanges.</p>
       </div>
       <div className='icon-container'>
       <i class="fas fa-balance-scale fa-3x"> Get a fair shot</i>
@@ -72,7 +72,7 @@ function User() {
     <div className='fourth-splash-container'>
         <div className='fourth-text-main'>
         <h2>Introducing Fractional Shares</h2>
-        <p>Invest in thousands of stocks with as little as $1.</p>
+        <p>Invest in thousands of sneaxs with as little as $1.</p>
         </div>
         <div className='fourth-content'>
         <div className='fourth-content'>

@@ -5,7 +5,7 @@ import Home from './Home';
 import SplashPage from './SplashPage'
 import NavBar from '../Navigation/NavBar';
 
-function User() {
+function RealHome() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const sessionUser = useSelector(state => state.session.user)
@@ -28,9 +28,9 @@ function User() {
 
   return (
       <>
-    <NavBar />
+    {/* <NavBar /> */}
    {sessionUser ? <Home /> : <SplashPage />}
    </>
   );
 }
-export default User;
+export default RealHome;
