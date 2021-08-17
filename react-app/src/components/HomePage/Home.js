@@ -20,10 +20,6 @@ function Home() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
 
-  console.log("==============================================", sneax)
-  console.log("==============================================", shares)
-  console.log("===========================================ase===", Object.values(shares))
-
   const [ showEdit, setShowEdit ] = useState(false)
   const [ showTrade, setShowTrade ] = useState(false)
   const [ sellId, setSellId ] = useState('')
@@ -35,7 +31,7 @@ function Home() {
   const [ sharePrice, setSharePrice ] = useState('')
   const [ shareId, setShareId ] = useState('')
   const [ marketPrice, setMarketPrice ] = useState('')
-  const [ SneakId, setSneakId ] = useState('')
+  const [ sneakId, setSneakId ] = useState('')
   const [ wallet, setWallet ] = useState(current[0].wallet)
 
   const [ openBuy, setOpenBuy ] = useState(false)
@@ -47,7 +43,7 @@ function Home() {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
-    // dispatch(shareAction.getSharesWithId(userId))
+
     if (!userId) {
       return;
     }
@@ -102,24 +98,26 @@ function Home() {
     history.go(0)
   }
 
-  function dispatchThis() {
-    // dispatch(sessionAction.loadCurrent(userId))
-    // dispatch(shareAction.getSharesWithId(SneakId))
-  }
-
   const handleBuy = async (e) => {
     e.preventDefault()
 
     if (current[0].wallet > totalPosition) {
-      posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
-      // if (false) {
-      //   //     set up a conditional for if the sneax id sheare already exists or make thus buy unavailable.
-      //   // // await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
-      // }
-      posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, SneakId))
-      setWallet(wallet - totalPosition)
-      alert("purchase went through")
-      history.go(0)
+      console.log("=========================================",sneakId)
+      console.log(shares[shares.length -1].includes(sneakId))
+      if (shares[shares.length -1].includes(sellId) ) {
+        console.log("=========================================",sharePrice)
+        console.log("=========================================",sellQty)
+        console.log("=========================================",purchaseShares)
+        // posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sellId))
+        // // // await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
+        return
+      }
+      if (false) {
+        // posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
+        alert("purchase went through")
+        alert("purchase went fucker")
+        history.go(0)
+      }
     } else {
       alert("you too broke")
     }
@@ -279,7 +277,7 @@ function Home() {
               </ul>
             </Link>
             <button type='button'
-            onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id), dispatchThis())}
+            onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
             >
               Buy
             </button>
