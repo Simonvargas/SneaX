@@ -77,7 +77,9 @@ const initialState = {}
 const sharesReducer = (state = initialState, action, id) => {
     switch (action.type) {
         case LOAD:
-            console.log('action--------------------------------------------------', action)
+            if (state) {
+                state = null
+            }
             const all = {
                 ...state
             }
@@ -85,24 +87,14 @@ const sharesReducer = (state = initialState, action, id) => {
             action.shares.shares.forEach((share) => {
                 all[share.id] = share;
             });
-            // action.shares.sneax.forEach((sneak) => {
-            //     all[sneak.id + '-data'] = sneak
-            // })
+
             return all;
 
         case SET_SHARES:
-            // const make = {
-            //     ...state,
-            //     [action.shares.id]: action.shares
-            // };
-            // return make;
             return { shares : action.shares }
 
         case REMOVE_SHARE:
-            console.log("-----------------------------------------------------------------",action)
             const data = {...state};
-            console.log("-----------------------------------------------------------------",data)
-            delete data[1]
             return data
 
         case UPDATE_SHARE: {
@@ -111,7 +103,6 @@ const sharesReducer = (state = initialState, action, id) => {
                 [action.share.id]: action.share
             }
         }
-
         default:
             return state;
     };

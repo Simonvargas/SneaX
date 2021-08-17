@@ -6,7 +6,7 @@ import NavBar from '../Navigation/NavBar';
 
 import { allSneax } from '../../store/sneax';
 import * as sessionSlice from '../../store/shares';
-//  { getShares, purchase, updateShare, deleteShare }
+
 
 import './Home.css'
 
@@ -77,9 +77,9 @@ function Home() {
 
   const handleSell = async (e) => {
     e.preventDefault()
-    console.log('THIS IS THE SELL ID DDNJOAFDNALNFLA', shareId)
     posted = await dispatch(sessionSlice.deleteShare(shareId))
     alert("remove went through")
+    history.go(0)
   }
 
 
