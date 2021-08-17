@@ -44,8 +44,30 @@ function User() {
     <div className='second-splash-container'>
         <div className='splash2-info'>
             <h1 className='splash2H1'>Break Free from Commission Fees</h1>
-            <p>Make unlimited commission-free trades in stocks, ETFs, and options with Robinhoot Financials, as well as buy and sell cryptocurrencies with Robinhoot Crypto. See our fee schedule to learn more about cost.</p>
+            <p>Make unlimited commission-free trades in Sneax, your favorite luxury sneaker brands, with Sneax Financials, as well as buy and sell Sneax cryptocurrencies with Sneax Crypto. See our fee schedule to learn more about cost.</p>
         </div>
+    </div>
+    <div className='third-splash-container'>
+    <div className='splash-info-container'>
+          <img className='shoe-pic2' src="https://i.imgur.com/6bDbImn.png"></img>
+      </div>
+      <div className='third-splash-text'>
+      <h2>Introducing new Luxury Brands</h2>
+      <span>Get in at the IPO price. Now, you can become one of the first public investors in upcoming IPOs.</span>
+      <div className='icon-container'>
+      <br></br>
+      <i class="fas fa-user-tie fa-3x"> It's your turn</i>
+      <p>No minimum account balances or special status requirements.</p>
+      </div>
+      <div className='icon-container'>
+      <i class="fas fa-clock fa-3x"> Be one of the first</i>
+      <p>Request shares in new companies before their stock starts trading on public exchanges.</p>
+      </div>
+      <div className='icon-container'>
+      <i class="fas fa-balance-scale fa-3x"> Get a fair shot</i>
+      <p>While IPO shares are limited, IPO Access gives you the same opportunity to invest, regardless of order size or account value.</p>
+      </div>
+      </div>
     </div>
     <footer className='footer'>
     <div className='footer-text'>
