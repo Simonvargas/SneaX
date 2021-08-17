@@ -97,7 +97,7 @@ const sharesReducer = (state = initialState, action, id) => {
                 }
                 if (action.shares.exists) {
                     action.shares.exists.forEach((share) => {
-                        all[share.id] = share;
+                        all['exists'] = share;
                     });
 
                 }

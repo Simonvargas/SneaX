@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request
 from flask_login import login_required
-from app.models import User
+from app.models import User, db
 from app.forms import UserForm
 
 user_routes = Blueprint('users', __name__)
@@ -23,9 +23,9 @@ def user(id):
 @user_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def update(id):
+    form = UserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     user = User.query.get(id)
-    form = UserForm()
-    share.wallet = form.data['wallet']
+    user.wallet = form.data['wallet']
     db.session.commit()
     return user.to_dict()

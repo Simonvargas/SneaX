@@ -32,7 +32,7 @@ function Home() {
   const [ shareId, setShareId ] = useState('')
   const [ marketPrice, setMarketPrice ] = useState('')
   const [ SneakId, setSneakId ] = useState('')
-  const [wallet, setWallet] = useState(current[0].wallet)
+  const [ wallet, setWallet ] = useState(current[0].wallet)
 
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
@@ -77,7 +77,8 @@ function Home() {
     let answer = window.confirm("Are you sure you want to make this change?")
     if (answer) {
       if (current[0].wallet > (purchaseShares * sharePrice)) {
-        posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
+        posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sellId))
+        await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
         window.alert("change complete")
         history.push('/')
         history.go(0)
@@ -91,22 +92,25 @@ function Home() {
   const handleSell = async (e) => {
     e.preventDefault()
     posted = await dispatch(shareAction.deleteShare(shareId))
+    await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
     alert("remove went through")
     history.go(0)
   }
 
   function dispatchThis() {
-    dispatch(shareAction.getSharesWithId(SneakId))
+    // dispatch(sessionAction.loadCurrent(userId))
+    // dispatch(shareAction.getSharesWithId(SneakId))
   }
 
   const handleBuy = async (e) => {
     e.preventDefault()
 
     if (current[0].wallet > totalPosition) {
-      if (shares) {
-        posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
-        await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
-      }
+      posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
+      // if (false) {
+            // set up a conditional for if the sneax id sheare already exists or make thus buy unavailable.
+      //   // await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
+      // }
       posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, SneakId))
       setWallet(wallet - totalPosition)
       alert("purchase went through")
@@ -184,7 +188,7 @@ function Home() {
   } else if (openSell) {
     shareContent = (
           <>
-      <form onSubmit={handleSell}>
+      <form >
 
       </form>
       <button onClick={(e) => handleSell(e)}>Sell</button>

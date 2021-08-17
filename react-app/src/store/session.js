@@ -120,11 +120,12 @@ export const loadCurrent = (id) => async dispatch => {
 }
 
 export const updateUser = (wallet, id) => async dispatch => {
+
     const res = await fetch(`/api/users/${id}`, {
         method: "POST",
         headers: {"Content-Type": 'application/json'},
         body: JSON.stringify({
-            wallet,
+            wallet
         }),
     })
 
