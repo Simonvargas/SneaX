@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import NavBar from '../Navigation/NavBar';
 
 import { allSneax } from '../../store/sneax';
+import * as sessionAction from '../../store/session';
 import * as sessionSlice from '../../store/shares';
 
 
@@ -15,7 +16,7 @@ function Home() {
 
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
-  // const current = useSelector((state) => Object.values(state.user))
+  const current = useSelector((state) => Object.values(state.session))
   const [user, setUser] = useState({});
   const { userId }  = useParams();
 
@@ -40,6 +41,7 @@ function Home() {
   useEffect(() => {
     dispatch(allSneax())
     dispatch(sessionSlice.getShares())
+    dispatch(sessionAction.loadCurrent(userId))
     if (!userId) {
       return;
     }
@@ -93,9 +95,13 @@ function Home() {
 
   const handleBuy = async (e) => {
     e.preventDefault()
-    posted = await dispatch(sessionSlice.purchase(marketPrice, purchaseShares, SneakId ))
-    alert("purchase went through")
-    history.go(0)
+    if (current[0].wallet > totalPosition) {
+      posted = await dispatch(sessionSlice.purchase(marketPrice, purchaseShares, SneakId ))
+      alert("purchase went through")
+      history.go(0)
+    } else {
+      alert("you too broke")
+    }
   }
 
   if (showEdit) {
@@ -107,7 +113,7 @@ function Home() {
               <input
                 type='number'
                 value={purchaseShares}
-                onChange={(e) => setPurchaseShares(e.target.value)}
+                onChange={(e) => (setPurchaseShares(e.target.value), setTotalPosition(e.target.value * marketPrice))}
               />
             </label>
             <button onClick={(e) => handleBuy(e)} type='button'>Purchase</button>
@@ -220,6 +226,7 @@ function Home() {
               </ul>
     )}})}
     <h2>total account value: </h2>
+    <h2>total buying power: {current[0].wallet}</h2>
     {sneax?.map(sneak => (
           <>
 

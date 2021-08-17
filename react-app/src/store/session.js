@@ -136,12 +136,13 @@ export const updateUser = (wallet, id) => async dispatch => {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD:
-            if (state) {
-                state = null
-            }
-            const all = {
-                ...state
-            }
+      if (state) {
+          state = null
+          const all = {
+              ...state
+          }
+          return all
+      }
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
