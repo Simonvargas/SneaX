@@ -94,15 +94,20 @@ function Home() {
     e.preventDefault();
     let answer = window.confirm("Are you sure you want to make this sell?")
     if (answer) {
-      console.log('========================',purchaseShares)
-      console.log('========================',sellQty)
-      posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), sellId))
-      await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
-      window.alert("change complete")
-      history.push('/')
-      history.go(0)
+      if (sellQty > purchaseShares) {
+        console.log('========================',purchaseShares)
+        console.log('========================',sellQty)
+        posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), sellId))
+        await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
+        window.alert("change complete")
+        history.push('/')
+        history.go(0)
+      } else {
+        window.alert("You do not hold enough shares")
+      }
     }
   }
+
 
   const handleSell = async (e) => {
     e.preventDefault()
