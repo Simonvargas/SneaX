@@ -101,7 +101,7 @@ function Home() {
 
   const handleBuy = async (e) => {
     e.preventDefault()
-    posted = await dispatch(sessionSlice.purchase(marketPrice, ))
+    posted = await dispatch(sessionSlice.purchase(marketPrice, purchaseShares, SneakId ))
     alert("purchase went through")
     history.go(0)
   }
