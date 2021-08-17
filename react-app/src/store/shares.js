@@ -89,11 +89,21 @@ const sharesReducer = (state = initialState, action, id) => {
                 const all = {
                     ...state
                 }
-                action.shares.shares.forEach((share) => {
-                    all[share.id] = share;
-                });
+                if (action.shares.shares) {
+                    action.shares.shares.forEach((share) => {
+                        all[share.id] = share;
+                    });
+
+                }
+                if (action.shares.exists) {
+                    action.shares.exists.forEach((share) => {
+                        all[share.id] = share;
+                    });
+
+                }
                 return all;
             }
+
 
         case SET_SHARES:
             return { shares : action.shares }

@@ -18,7 +18,7 @@ def shares():
 @login_required
 def exists(id):
     shares = Share.query.filter((Share.user_id == current_user.id), (Share.sneax_id == id) )
-    return {'existing': [ share.to_dict() for share in shares ]}
+    return {'exists': [ share.to_dict() for share in shares ]}
 
 
 @share_routes.route('/<int:id>', methods=['POST'])

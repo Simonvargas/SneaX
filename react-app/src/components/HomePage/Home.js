@@ -95,11 +95,15 @@ function Home() {
     history.go(0)
   }
 
+  function dispatchThis() {
+    dispatch(shareAction.getSharesWithId(SneakId))
+  }
+
   const handleBuy = async (e) => {
     e.preventDefault()
+
     if (current[0].wallet > totalPosition) {
-      console.log('----------------------------',dispatch(shareAction.getSharesWithId(SneakId)))
-      if (dispatch(shareAction.getSharesWithId(SneakId))) {
+      if (shares) {
         posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
         await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
       }
@@ -265,7 +269,7 @@ function Home() {
               </ul>
             </Link>
             <button type='button'
-            onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
+            onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id), dispatchThis())}
             >
               Buy
             </button>
