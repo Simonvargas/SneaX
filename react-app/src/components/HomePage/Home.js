@@ -90,6 +90,20 @@ function Home() {
     }
   }
 
+  const tradeSell = async (e) => {
+    e.preventDefault();
+    let answer = window.confirm("Are you sure you want to make this sell?")
+    if (answer) {
+      console.log('========================',purchaseShares)
+      console.log('========================',sellQty)
+      posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), sellId))
+      await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
+      window.alert("change complete")
+      history.push('/')
+      history.go(0)
+    }
+  }
+
   const handleSell = async (e) => {
     e.preventDefault()
     posted = await dispatch(shareAction.deleteShare(shareId))
@@ -102,18 +116,19 @@ function Home() {
     e.preventDefault()
 
     if (current[0].wallet > totalPosition) {
-      console.log("=========================================",sneakId)
-      console.log(shares[shares.length -1].includes(sneakId))
-      if (shares[shares.length -1].includes(sellId) ) {
-        console.log("=========================================",sharePrice)
-        console.log("=========================================",sellQty)
-        console.log("=========================================",purchaseShares)
-        // posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sellId))
-        // // // await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
-        return
+      if (shares[shares.length -1].includes(sneakId) ) {
+        window.alert('Sneax owner, please edit through dashboard')
+        window.alert('Purchase canceled')
+
+        // console.log("=========================================",sharePrice)
+        // console.log("=========================================",sellQty)
+        // console.log("=========================================",purchaseShares)
+        // posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sneakId))
+        // await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
+        // window.alert("change complete")
       }
-      if (false) {
-        // posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
+      else {
+        posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
         alert("purchase went through")
         alert("purchase went fucker")
         history.go(0)
@@ -191,10 +206,18 @@ function Home() {
   } else if (openSell) {
     shareContent = (
           <>
-      <form >
-
+      <form onSubmit={(e) => tradeSell(e)}>
+        <label> number
+          <input
+            type='number'
+            value={purchaseShares}
+            min='0'
+            onChange={(e) => setPurchaseShares(e.target.value)}
+          />
+        </label>
+        <button type='submit'>Sell</button>
       </form>
-      <button onClick={(e) => handleSell(e)}>Sell</button>
+      {/* <button onClick={(e) => handleSell(e)}>Sell</button> */} {/* this deletes */}
     </>
     )
   }
