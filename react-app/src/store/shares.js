@@ -1,11 +1,17 @@
 
 const LOAD = 'shares/LOAD'
+const LOAD_ONE = 'shares/LOAD_ONE'
 const SET_SHARES = 'shares/SET_SHARES'
 const UPDATE_SHARE = 'shares/UPDATE_SHARE'
 const REMOVE_SHARE = 'shares/REMOVE_SHARE'
 
 const load = (shares) => ({
     type: LOAD,
+    shares
+})
+
+const one = (shares) => ({
+    type: LOAD_ONE,
     shares
 })
 
@@ -33,7 +39,7 @@ export const getShares = () => async dispatch => {
 export const getSharesWithId = (id) => async dispatch => {
     const res = await fetch(`/api/shares/${id}`);
     const shares = await res.json();
-    dispatch(load(shares))
+    dispatch(one(shares))
 }
 
 export const purchase = (price_per_share, purchaseShares, id) => async dispatch => {
@@ -89,13 +95,23 @@ const sharesReducer = (state = initialState, action, id) => {
                 const all = {
                     ...state
                 }
+                all["total"] = []
                 if (action.shares.shares) {
                     action.shares.shares.forEach((share) => {
                         all[share.id] = share;
+                        all['total'].push(share.sneax_id)
                     });
 
                 }
-                if (action.shares.exists) {
+                return all;
+            }
+        case LOAD_ONE: {
+            if (state) {
+                state = null
+                const all = {
+                    ...state
+                }
+              if (action.shares.exists) {
                     action.shares.exists.forEach((share) => {
                         all['exists'] = share;
                     });
@@ -103,7 +119,7 @@ const sharesReducer = (state = initialState, action, id) => {
                 }
                 return all;
             }
-
+        }
 
         case SET_SHARES:
             return { shares : action.shares }

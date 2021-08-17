@@ -20,6 +20,10 @@ function Home() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
 
+  console.log("==============================================", sneax)
+  console.log("==============================================", shares)
+  console.log("===========================================ase===", Object.values(shares))
+
   const [ showEdit, setShowEdit ] = useState(false)
   const [ showTrade, setShowTrade ] = useState(false)
   const [ sellId, setSellId ] = useState('')
@@ -43,6 +47,7 @@ function Home() {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
+    // dispatch(shareAction.getSharesWithId(userId))
     if (!userId) {
       return;
     }
@@ -108,8 +113,8 @@ function Home() {
     if (current[0].wallet > totalPosition) {
       posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
       // if (false) {
-            // set up a conditional for if the sneax id sheare already exists or make thus buy unavailable.
-      //   // await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
+      //   //     set up a conditional for if the sneax id sheare already exists or make thus buy unavailable.
+      //   // // await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
       // }
       posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, SneakId))
       setWallet(wallet - totalPosition)
@@ -244,7 +249,8 @@ function Home() {
     )}})}
     <h2>total account value: </h2>
     <h2>total buying power: {wallet}</h2>
-    {sneax?.map(sneak => (
+    {sneax?.map(sneak => {
+      return (
           <>
 
             <Link to={`/sneax/${sneak.id}`}>
@@ -278,7 +284,8 @@ function Home() {
               Buy
             </button>
           </>
-    ))}
+
+    )})}
       {content}
     </>
   );
