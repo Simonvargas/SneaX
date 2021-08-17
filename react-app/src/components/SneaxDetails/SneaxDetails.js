@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './sneaxId.module.css'
 import NavBar from '../Navigation/NavBar';
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
 import { useDispatch, useSelector } from 'react-redux';
+// import styles from './sneaxId.module.css'
+import  './sneaxDetails.css'
+
 
 function SneaxDetails() {
   const [user, setUser] = useState({});
@@ -27,9 +29,6 @@ function SneaxDetails() {
   }, [id])
 
 
-
-
-
   useEffect(() => {
     if (!userId) {
       return;
@@ -48,27 +47,65 @@ function SneaxDetails() {
 
 
   return (
-  <>
-  <NavBar />
-  <img src={`${sneaxId.image}`}></img>
-  <p>{`${sneaxId.name} ${sneaxId.brand_name} ${sneaxId.market_price} ${sneaxId.details}`}</p>
-  <div className={styles.inputBox}>
-    <h3>Buy</h3>
-    <label>Invest in
-      <input
-      type='text'
-      value='Sneax'
-      >
-      </input>
-    </label>
-    <label> Sneax
-      <input type='number'></input>
-    </label>
-    <p>Market Price: {sneaxId.market_price}</p>
-    <button>Purchase</button>
-    <p>Buying Power available: {sessionUser.wallet}</p>
-  </div>
-  </>
+    <>
+    <NavBar />
+    <div></div>
+    <div className="sneax-detail-container">
+      <div clasName='sneax-info-container'>
+        <div className='sneax-info-box'>
+          <div className='sneax-name-brand-box'>
+            <div className='name'><h1 className="sneax-name">{sneaxId.name} </h1></div>
+            {/* <div className='brand'> */}
+            <h2 className='sneax-brand'>Brand: {sneaxId.brand_name}</h2>
+            <h1 className='sneax-price'>${sneaxId.market_price}</h1>
+          </div>
+          <div className='sneax-image'>
+            <img src={sneaxId.image}></img>
+          </div>
+          <div className='sneax-about-container'>
+            <h1>About</h1>
+          </div>
+          <div className='sneax-details'>
+            <p className='detail'>{sneaxId.details}</p>
+          </div>
+          <div className='random-words'>
+            <p>All investments involve risks, including the loss of principal. Securities trading offered through Robinhoot Financial LLC, a registered broker-dealer and Member SIPC. Full Disclosure</p>
+          </div>
+        </div>
+      </div>
+      <div className="shares-container">
+        <div className='shares-form-container'>
+          <div className='shares-buy-sell'>
+            <h2>Buy</h2>
+            <h2>Sell</h2>
+          </div>
+          <div className='shares-from'>
+            <div>
+              <label>Invest in
+              <input type='text' value='Sneax'></input>
+              </label>
+            </div>
+            <div>
+              <label> Sneax
+                <input type='number'></input>
+              </label>
+            </div>
+          <div className='market-price'>
+            <p>Market Price </p>
+            <p>{sneaxId.market_price}</p>
+          </div>
+
+          </div>
+          <button>Purchase</button>
+          <div className='buying-power'>
+            <p>Buying Power available: {sessionUser.wallet}</p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    </>
   );
 }
 export default SneaxDetails;

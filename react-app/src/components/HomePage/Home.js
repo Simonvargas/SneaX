@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 
 function Home() {
   const [user, setUser] = useState({});
-  const { userId }  = useParams();
+  const { userId}  = useParams();
   const sessionUser = useSelector(state => state.session.user)
 
   useEffect(() => {
