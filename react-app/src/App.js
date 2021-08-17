@@ -8,11 +8,9 @@ import NavBar from './components/Navigation/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import Home from './components/HomePage/Home';
 import { authenticate } from './store/session';
-import RealHome from './components/HomePage/RealHome'
-import SplashPage from './components/HomePage/SplashPage'
-
+import Home from './components/HomePage/Home'
+import SneaxDetails from './components/SneaxDetails/SneaxDetails';
 
 function App() {
   const sessionUser = useSelector(state => state.session.user)
@@ -50,7 +48,10 @@ function App() {
           <Home />
         </Route> */}
         <Route path='/' exact={true} >
-          <RealHome />
+          <Home />
+        </Route>
+        <Route path='/sneax/:id' exact={true}>
+          <SneaxDetails />
         </Route>
       </Switch>
     </BrowserRouter>

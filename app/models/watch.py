@@ -17,6 +17,6 @@ class Watch(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'list_name': self.list_name,
-            'user_id': self.user_id,
+            'watchlist_id': self.watchlist_id,
+            'sneax_id ': self.sneax_id,
         }
