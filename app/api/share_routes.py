@@ -14,6 +14,12 @@ def shares():
     return {'shares': [ share.to_dict() for share in shares ], 'sneax': [ sneak.to_dict() for sneak in sneax ],}
 
 
+@share_routes.route('/<int:id>')
+@login_required
+def exists(id):
+    shares = Share.query.filter((Share.user_id == current_user.id), (Share.sneax_id == id) )
+    return {'existing': [ share.to_dict() for share in shares ]}
+
 
 @share_routes.route('/<int:id>', methods=['POST'])
 @login_required

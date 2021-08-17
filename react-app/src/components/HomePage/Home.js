@@ -6,7 +6,7 @@ import NavBar from '../Navigation/NavBar';
 
 import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
-import * as sessionSlice from '../../store/shares';
+import * as shareAction from '../../store/shares';
 
 
 import './Home.css'
@@ -32,6 +32,7 @@ function Home() {
   const [ shareId, setShareId ] = useState('')
   const [ marketPrice, setMarketPrice ] = useState('')
   const [ SneakId, setSneakId ] = useState('')
+  const [wallet, setWallet] = useState(current[0].wallet)
 
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
@@ -40,7 +41,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(allSneax())
-    dispatch(sessionSlice.getShares())
+    dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
     if (!userId) {
       return;
@@ -63,32 +64,33 @@ function Home() {
 
   const reset = () => {
     // setTotalPosition()
-    setShareQty('')
+    // setShareQty('')
     setPurchaseShares('')
-    setSharePrice('')
-    setShareId('')
-    setMarketPrice('')
-    setSneakId('')
+    // setSharePrice('')
+    // // setShareId('')
+    // setMarketPrice('')
+    // setSneakId('')
   }
 
   const tradeSubmit = async (e) => {
     e.preventDefault();
-    posted = await dispatch(sessionSlice.updateShare(sharePrice, purchaseShares, sellId))
+    let answer = window.confirm("Are you sure you want to make this change?")
+    if (answer) {
+      if (current[0].wallet > (purchaseShares * sharePrice)) {
+        posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
+        window.alert("change complete")
+        history.push('/')
+        history.go(0)
+      } else {
+        window.alert('change canceled')
+      }
 
-    if (posted) {
-        let answer = window.confirm("Are you sure you want to make this change?")
-        if (answer) {
-          history.push('/')
-          history.go(0)
-        } else {
-          window.alert('change canceled')
-        }
     }
   }
 
   const handleSell = async (e) => {
     e.preventDefault()
-    posted = await dispatch(sessionSlice.deleteShare(shareId))
+    posted = await dispatch(shareAction.deleteShare(shareId))
     alert("remove went through")
     history.go(0)
   }
@@ -96,7 +98,13 @@ function Home() {
   const handleBuy = async (e) => {
     e.preventDefault()
     if (current[0].wallet > totalPosition) {
-      posted = await dispatch(sessionSlice.purchase(marketPrice, purchaseShares, SneakId ))
+      console.log('----------------------------',dispatch(shareAction.getSharesWithId(SneakId)))
+      if (dispatch(shareAction.getSharesWithId(SneakId))) {
+        posted = await dispatch(shareAction.updateShare(sharePrice, purchaseShares, sellId))
+        await dispatch(sessionAction.updateUser((wallet - totalPosition), userId))
+      }
+      posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, SneakId))
+      setWallet(wallet - totalPosition)
       alert("purchase went through")
       history.go(0)
     } else {
@@ -161,6 +169,7 @@ function Home() {
                 <input
                   type='number'
                   value={purchaseShares}
+                  min='0'
                   onChange={(e) => setPurchaseShares(e.target.value)}
                 />
               </label>
@@ -226,7 +235,7 @@ function Home() {
               </ul>
     )}})}
     <h2>total account value: </h2>
-    <h2>total buying power: {current[0].wallet}</h2>
+    <h2>total buying power: {wallet}</h2>
     {sneax?.map(sneak => (
           <>
 

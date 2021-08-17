@@ -29,6 +29,13 @@ export const getShares = () => async dispatch => {
     dispatch(load(shares))
 }
 
+
+export const getSharesWithId = (id) => async dispatch => {
+    const res = await fetch(`/api/shares/${id}`);
+    const shares = await res.json();
+    dispatch(load(shares))
+}
+
 export const purchase = (price_per_share, purchaseShares, id) => async dispatch => {
     const res = await fetch(`/api/shares/${id}`, {
         method: "POST",
@@ -87,7 +94,6 @@ const sharesReducer = (state = initialState, action, id) => {
                 });
                 return all;
             }
-
 
         case SET_SHARES:
             return { shares : action.shares }
