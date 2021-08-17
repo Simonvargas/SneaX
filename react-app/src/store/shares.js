@@ -19,7 +19,7 @@ const update = (share) => ({
     share
 })
 
-const remove = () => ({
+const remove = (id) => ({
     type: REMOVE_SHARE
 })
 
@@ -68,15 +68,16 @@ export const deleteShare = (id) => async dispatch => {
     const res = await fetch(`/api/shares/remove/${id}`, {
         method: "DELETE",
     })
-    dispatch(remove())
+    dispatch(remove(res))
     return res
 }
 
 const initialState = {}
 
-const sharesReducer = (state = initialState, action) => {
+const sharesReducer = (state = initialState, action, id) => {
     switch (action.type) {
         case LOAD:
+            console.log('action--------------------------------------------------', action)
             const all = {
                 ...state
             }
@@ -84,9 +85,9 @@ const sharesReducer = (state = initialState, action) => {
             action.shares.shares.forEach((share) => {
                 all[share.id] = share;
             });
-            action.shares.sneax.forEach((sneak) => {
-                all[sneak.id + '-data'] = sneak
-            })
+            // action.shares.sneax.forEach((sneak) => {
+            //     all[sneak.id + '-data'] = sneak
+            // })
             return all;
 
         case SET_SHARES:
@@ -98,8 +99,11 @@ const sharesReducer = (state = initialState, action) => {
             return { shares : action.shares }
 
         case REMOVE_SHARE:
-            const destroy = {...state};
-            delete destroy[action.shareId]
+            console.log("-----------------------------------------------------------------",action)
+            const data = {...state};
+            console.log("-----------------------------------------------------------------",data)
+            delete data[1]
+            return data
 
         case UPDATE_SHARE: {
             return {

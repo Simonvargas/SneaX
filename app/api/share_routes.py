@@ -43,11 +43,10 @@ def update(id):
     return share.to_dict()
 
 
-@share_routes.route('/remove/<int:id>', methods=['POST'])
+@share_routes.route('/remove/<int:id>', methods=['DELETE'])
 @login_required
 def remove(id):
     share = Share.query.get(id)
-    print('---------------------------------------------------THIS IS MUY ASHKFBAEKNFKJENDFAKJNFD',share)
     db.session.delete(share)
     db.session.commit()
     return share.to_dict()

@@ -79,7 +79,7 @@ function Home() {
     e.preventDefault()
     console.log('THIS IS THE SELL ID DDNJOAFDNALNFLA', shareId)
     posted = await dispatch(sessionSlice.deleteShare(shareId))
-    console.alert("remove went through")
+    alert("remove went through")
   }
 
 
@@ -87,7 +87,7 @@ function Home() {
     content = (
         <>
           <form>
-            <label> number of shares
+            <label> number of sharessss
               <input
                 type='number'
                 value={null}
