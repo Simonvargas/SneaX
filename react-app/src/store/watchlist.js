@@ -73,7 +73,7 @@ export const removeList = (id) => async (dispatch) => {
     dispatch(deleteList(id))
 }
 
-// reducer
+// reducer.
 
 const initialState = {};
 
