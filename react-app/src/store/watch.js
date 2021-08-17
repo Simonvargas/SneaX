@@ -26,7 +26,7 @@ const removeWatch = (watch) => {
 }
 // action thunk
 export const addOneWatch = (payload) => async(dispatch) => {
-    const res = await fetch('/api/watch', {
+    const res = await fetch('/api/watch/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(payload),
@@ -38,6 +38,13 @@ export const addOneWatch = (payload) => async(dispatch) => {
     }
 }
 
+export const getWatchs = () => async(dispatch) => {
+    const res = await fetch('/api/watch/');
+    const watchs = await res.json();
+    dispatch(loadWatch(watchs));
+}
+
+
 
 
 
@@ -48,5 +55,5 @@ export const addOneWatch = (payload) => async(dispatch) => {
 const initialState = {}
 
 const watchReducer = (state = initialState, action) => {
-    
-}
+
+} 
