@@ -34,6 +34,8 @@ function Home() {
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
 
+
+
   const history = useHistory()
 
   // const updateNumber
@@ -60,6 +62,16 @@ function Home() {
   let shareContent = null
   let posted;
 
+  const reset = () => {
+    // setTotalPosition()
+    setShareQty('')
+    setPurchaseShares('')
+    setSharePrice('')
+    setShareId('')
+    setMarketPrice('')
+    setSneakId('')
+  }
+
   const tradeSubmit = async (e) => {
     e.preventDefault();
     posted = await dispatch(sessionSlice.updateShare(sharePrice, purchaseShares, sellId))
@@ -77,6 +89,8 @@ function Home() {
     }
   }
 
+
+
   const handleSell = async (e) => {
     e.preventDefault()
     posted = await dispatch(sessionSlice.deleteShare(shareId))
@@ -87,21 +101,24 @@ function Home() {
 
   const handleBuy = async (e) => {
     e.preventDefault()
-    posted = await dispatch(sessionSlice.purchase())
+    posted = await dispatch(sessionSlice.purchase(marketPrice, ))
     alert("purchase went through")
     history.go(0)
   }
 
 
+
+
   if (showEdit) {
     content = (
         <>
-          <form>
+          <form
+          className='sell_form_container'>
             <label> number of sharessss
               <input
                 type='number'
-                value={null}
-                onChange={null}
+                value={purchaseShares}
+                onChange={(e) => setPurchaseShares(e.target.value)}
               />
             </label>
             <button onClick={(e) => handleBuy(e)} type='button'>Purchase</button>
@@ -176,6 +193,7 @@ function Home() {
       setOpenBuy(false)
       setOpenSell(false)
     } else {
+      reset()
       setShowTrade(false)
     }
   }
@@ -184,8 +202,8 @@ function Home() {
     content = (
         <div className='sell_form_container'>
 
-              <button onClick={() => (setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> {/*toggle button fuction as according to available position*/}
-              <button onClick={() => (setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
+              <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> {/*toggle button fuction as according to available position*/}
+              <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
               <button onClick={() => handleCancel()}>Cancel</button>
               {shareContent}
         </div>
@@ -214,7 +232,7 @@ function Home() {
                   <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
                 </li>
                 <button
-                  onClick={() => (setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
+                  onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
                 >trade</button>
               </ul>
     )}})}
@@ -248,7 +266,7 @@ function Home() {
               </ul>
             </Link>
             <button type='button'
-            onClick={() => (setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
+            onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
             >
               Buy
             </button>
