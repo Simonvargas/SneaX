@@ -83,7 +83,6 @@ const sharesReducer = (state = initialState, action, id) => {
             const all = {
                 ...state
             }
-            // console.log('this is action',action)
             action.shares.shares.forEach((share) => {
                 all[share.id] = share;
             });

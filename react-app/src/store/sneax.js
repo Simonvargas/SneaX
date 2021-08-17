@@ -20,7 +20,6 @@ export default function sneaxReducer (state = initialState, action) {
             const thisState = {
                 ...state,
             };
-            console.log('this is sneax action',action)
             action.sneaxs.sneaxs.forEach((sneax) => {
                 thisState[sneax.id] = sneax
             })

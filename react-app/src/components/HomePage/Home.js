@@ -28,6 +28,8 @@ function Home() {
   const [ purchaseShares, setPurchaseShares ] = useState('')
   const [ sharePrice, setSharePrice ] = useState('')
   const [ shareId, setShareId ] = useState('')
+  const [ marketPrice, setMarketPrice ] = useState('')
+  const [ SneakId, setSneakId ] = useState('')
 
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
@@ -83,6 +85,14 @@ function Home() {
   }
 
 
+  const handleBuy = async (e) => {
+    e.preventDefault()
+    posted = await dispatch(sessionSlice.purchase())
+    alert("purchase went through")
+    history.go(0)
+  }
+
+
   if (showEdit) {
     content = (
         <>
@@ -94,7 +104,7 @@ function Home() {
                 onChange={null}
               />
             </label>
-            <button type='button'>Purchase</button>
+            <button onClick={(e) => handleBuy(e)} type='button'>Purchase</button>
           </form>
         </>
     )
@@ -237,7 +247,9 @@ function Home() {
                   </ul>
               </ul>
             </Link>
-            <button type='button' onClick={() => setShowEdit(!showEdit)}>
+            <button type='button'
+            onClick={() => (setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
+            >
               Buy
             </button>
           </>
