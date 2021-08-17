@@ -15,6 +15,7 @@ function Home() {
 
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
+  // const current = useSelector((state) => Object.values(state.user))
   const [user, setUser] = useState({});
   const { userId }  = useParams();
 
@@ -34,11 +35,7 @@ function Home() {
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
 
-
-
   const history = useHistory()
-
-  // const updateNumber
 
   useEffect(() => {
     dispatch(allSneax())
@@ -81,15 +78,11 @@ function Home() {
         if (answer) {
           history.push('/')
           history.go(0)
-          // window.alert('change complete')
         } else {
           window.alert('change canceled')
         }
-
     }
   }
-
-
 
   const handleSell = async (e) => {
     e.preventDefault()
@@ -98,16 +91,12 @@ function Home() {
     history.go(0)
   }
 
-
   const handleBuy = async (e) => {
     e.preventDefault()
     posted = await dispatch(sessionSlice.purchase(marketPrice, purchaseShares, SneakId ))
     alert("purchase went through")
     history.go(0)
   }
-
-
-
 
   if (showEdit) {
     content = (
@@ -125,11 +114,8 @@ function Home() {
           </form>
         </>
     )
-  } else {
-    content = (
-        <></>
-    )
   }
+
 
   if (openBuy) {
     shareContent = (
@@ -187,7 +173,6 @@ function Home() {
     )
   }
 
-
   function handleCancel() {
     if (openBuy || openSell) {
       setOpenBuy(false)
@@ -209,8 +194,6 @@ function Home() {
         </div>
     )
   }
-
-
 
   return (
     <>

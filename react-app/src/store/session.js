@@ -1,6 +1,13 @@
 // constants
+const LOAD = 'session/LOAD'
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPDATE_USER = 'session/UPDATE_USER';
+
+const load = (user) => ({
+  type: LOAD,
+  user
+})
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +16,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+const update = (user) => ({
+    type: UPDATE_USER,
+    user
 })
 
 const initialState = { user: null };
@@ -101,8 +113,35 @@ export const signUp = (username, first_name, last_name, date_of_birth, wallet, e
   }
 }
 
+export const loadCurrent = (id) => async dispatch => {
+    const res = await fetch(`/api/users/${id}`);
+    const user = await res.json();
+    dispatch(load(user))
+}
+
+export const updateUser = (wallet, id) => async dispatch => {
+    const res = await fetch(`/api/users/${id}`, {
+        method: "POST",
+        headers: {"Content-Type": 'application/json'},
+        body: JSON.stringify({
+            wallet,
+        }),
+    })
+
+    const data = res.json()
+    if (res.ok) dispatch(update(data))
+    return true
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case LOAD:
+            if (state) {
+                state = null
+            }
+            const all = {
+                ...state
+            }
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:

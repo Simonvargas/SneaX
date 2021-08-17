@@ -79,9 +79,9 @@ const sharesReducer = (state = initialState, action, id) => {
         case LOAD:
             if (state) {
                 state = null
-            }
-            const all = {
-                ...state
+                const all = {
+                    ...state
+                }
             }
             action.shares.shares.forEach((share) => {
                 all[share.id] = share;
