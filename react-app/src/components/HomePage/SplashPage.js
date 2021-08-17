@@ -25,7 +25,7 @@ function User() {
   }
 
   return (
-    <>
+    <div className='splash-overall-container'>
     <NavBar />
     <div className='splash-container'>
       <div className='splash-info-container'>
@@ -69,6 +69,30 @@ function User() {
       </div>
       </div>
     </div>
+    <div className='fourth-splash-container'>
+        <div className='fourth-text-main'>
+        <h2>Introducing Fractional Shares</h2>
+        <p>Invest in thousands of stocks with as little as $1.</p>
+        </div>
+        <div className='fourth-content'>
+        <div className='fourth-content'>
+            <h3>Invest Any Amount</h3>
+            <p>Choose how much you want to invest, and we’ll convert from dollars to parts of a whole share.</p>
+        </div>
+        <div className='fourth-content'>
+            <h3>Build a Balanced Portfolio</h3>
+            <p>Customize your portfolio with pieces of different companies and funds to help reduce risk.</p>
+        </div>
+        <div className='fourth-content'>
+            <h3>Trade in Real Time</h3>
+            <p>Trades placed during market hours are executed at that time, so you’ll always know the share price.</p>
+        </div>
+        </div>
+        <div className='fourth-photo-container'>
+        <img className='fourth-photo' src='https://i.imgur.com/dN6DMnE.png'></img>
+        </div>
+        
+    </div>
     <footer className='footer'>
     <div className='footer-text'>
     <p>© 2021 Sneax. All rights reserved.</p>
@@ -80,7 +104,7 @@ function User() {
     <p>Securities trading is offered to self-directed customers by Sneax Financial. Sneax Financial is a member of the Financial Industry Regulatory Authority (FINRA).</p>
     </div>
     </footer>
-    </>
+    </div>
   );
 }
 export default User;

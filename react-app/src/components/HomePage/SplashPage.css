@@ -109,6 +109,8 @@
 
 .footer-text {
   text-align: center;
+  position: relative;
+  left: 250px;
 }
 
 .third-splash-container {
@@ -128,4 +130,30 @@
 .third-splash-text {
     position: relative;
     top: 40px;
+}
+
+.fourth-splash-container {
+    width: 100%;
+    height: 400px;
+    background-color: #bbf0f3;
+    background-image: linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%);
+
+}
+
+.fourth-photo-container {
+    float: right;
+    position: relative;
+    top: -270px;
+}
+
+.fourth-text-main {
+   position: relative;
+   right: -120px;
+   top: 50px;
+}
+
+.fourth-content {
+    font-family: 'Rubik', sans-serif;
+    position: relative;
+    top: 25px;
 }
