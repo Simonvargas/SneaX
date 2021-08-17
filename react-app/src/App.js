@@ -50,9 +50,6 @@ function App() {
           <Home />
         </Route> */}
         <Route path='/' exact={true} >
-          <SplashPage />
-        </Route>
-        <Route path='/real'>
           <RealHome />
         </Route>
       </Switch>

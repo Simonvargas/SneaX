@@ -95,7 +95,7 @@ function Home() {
   return (
     <>
     <NavBar />
-    {shares?.map(share => (
+    {/* {shares?.map(share => (
               <ul>
                 <li>
                   <strong>sneax id: {share.sneax_id}</strong>
@@ -149,7 +149,7 @@ function Home() {
             </button>
           </>
     ))}
-      {content}
+      {content} */}
     </>
   );
 }

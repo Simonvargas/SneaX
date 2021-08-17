@@ -5,21 +5,155 @@
     background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
     width: 100%;
     height: 600px;
+    border-bottom: 1px solid black;
 
 }
 
 .splash-info-container {
     width: 100%;
+    
 
 }
 
-.splash-info-container h1, h3{
+.splash-info-container p{
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+    font-size: 20px;
+}
+.splash-info-container h1{
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 100px;
 }
 
 
 .shoe-pic {
     width: 500px;
     padding: 20px;
+    position: relative;
+    top: 50px;
+    left: 60px;
+}
+
+.splash-content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 85px;
+    width: 60%;
+}
+
+.btn {
+    border-radius: 6px;
+	border: 1px blue;
+	background: radial-gradient(900px 900px at top center,#5e5e5e,#2d3334,#262626);
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 5px;
+	width: 140px;
+    position: relative;
+    top: 100px;
+    transition: all ease 0.3s;
+}
+
+.btn2:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+}
+
+.second-splash-container {
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.splash2-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 85px;
+    width: 60%;
+    position: relative;
+    bottom: 15px;
+}
+.splash2H1 {
+    display: block;
+    margin: auto;
+    position: relative;
+    right: 45px;
+    margin-top: 40px
+}
+
+.footer {
+    background-color: black;
+    width: 100%;
+    height: auto;
+    color: white;
+    position: relative;
+}
+
+.footer-text {
+  text-align: center;
+  position: relative;
+  left: 250px;
+}
+
+.third-splash-container {
+    display: grid;
+    grid-template-columns: 10fr 10fr;
+    width: 100%;
+    height: 550px;
+}
+
+.shoe-pic2 {
+    width: 500px;
+    position:relative;
+    top: 50px;
+    left: 150px;
+}
+
+.third-splash-text {
+    position: relative;
+    top: 40px;
+}
+
+.fourth-splash-container {
+    width: 100%;
+    height: 400px;
+    background-color: #bbf0f3;
+    background-image: linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%);
+
+}
+
+.fourth-photo-container {
+    float: right;
+    position: relative;
+    top: -270px;
+}
+
+.fourth-text-main {
+   position: relative;
+   right: -120px;
+   top: 50px;
+}
+
+.fourth-content {
+    font-family: 'Rubik', sans-serif;
+    position: relative;
+    top: 25px;
 }
