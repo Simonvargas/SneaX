@@ -36,7 +36,9 @@ const NavBar = () => {
               <Link className={styles.links} to='/'><LogoutButton /></Link>
               
               </div>
+              
       </div>
+      <LogoutButton />
       </div>
     </nav> }
     </div>
