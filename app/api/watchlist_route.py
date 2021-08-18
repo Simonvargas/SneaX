@@ -11,9 +11,9 @@ watchlist_routes = Blueprint('watchlists', __name__)
 @watchlist_routes.route('/')
 @login_required
 def get_watchlist():
-    watchlists = Watchlist.query.filter(Watchlist.user_id == current_user.id).all()
-    watchs = Watch.query.all()
-    return {'watchlist' : [watchlist.to_dict() for watchlist in watchlists], 'watch':[watch.to_dict() for watch in watchs]}
+    watchlists = Watchlist.query.filter((Watchlist.user_id == current_user.id), (Watchlist.id == Watch.watchlist_id)).all()
+    # watchs = Watch.query.all()
+    return {'watchlist' : [watchlist.to_dict() for watchlist in watchlists]}
 
 
 @watchlist_routes.route('/add', methods=['POST'])
@@ -49,12 +49,3 @@ def update_watchlist(watchlist_id):
         db.session.commit()
         return watchlist.to_dict()
     return {'error' : 'Invalid request'}
-
-
-
-
-
-
-
-
-

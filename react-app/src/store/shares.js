@@ -96,6 +96,7 @@ const sharesReducer = (state = initialState, action, id) => {
                     ...state
                 }
                 all["total"] = []
+                all["shares"] = {}
                 if (action.shares.shares) {
                     action.shares.shares.forEach((share) => {
                         all[share.id] = share;
