@@ -85,6 +85,7 @@ function Home() {
     // setSneakId('')
   }
 
+  
   const tradeSubmit = async (e) => {
     e.preventDefault();
     let answer = window.confirm("Are you sure you want to make this change?")
