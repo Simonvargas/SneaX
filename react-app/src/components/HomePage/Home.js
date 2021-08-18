@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
-import SplashPage from './SplashPage'
+import { allSneax } from '../../store/sneax';
 import { getList } from '../../store/watchlist'
 import TestingWatch from './TestingWatch';
-
+import SplashPage from './SplashPage'
+import NavBar from '../Navigation/NavBar';
 
 import './Dashboard.css'
-import NavBar from '../Navigation/NavBar';
+
 
 function Home() {
   const dispatch = useDispatch()
+  const { userId }  = useParams();
+  const history = useHistory()
 
-  const sneax = useSelector((state) => Object.values(state.sneax))
+  const sessionUser = useSelector(state => state.session.user)
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
-  const [user, setUser] = useState({});
-  const { userId }  = useParams();
+
+  const [user, setUser] = useState({})
   const [ showEdit, setShowEdit ] = useState(false)
   const [ showTrade, setShowTrade ] = useState(false)
   const [ sellId, setSellId ] = useState('')
   const [ sellQty, setSellQty ] = useState('')
-
-  const sessionUser = useSelector(state => state.session.user)
-
   const [ totalPosition, setTotalPosition ] = useState('')
   const [ shareQty, setShareQty ] = useState('')
   const [ purchaseShares, setPurchaseShares ] = useState('')
@@ -37,23 +35,9 @@ function Home() {
   const [ sneakId, setSneakId ] = useState('')
   let [ totalAccount, setTotalAccount ] = useState(0)
   const [ wallet, setWallet ] = useState('')
-
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
-
-  const watchlists = Object.values(useSelector(state => state.watchlist))
-
   const [watchState, setWatchstate] = useState(false)
-
-  const history = useHistory()
-
-  let currentwallet = 0
-  if (current[0]) {
-    currentwallet = current[0].wallet
-  }
-  function userWatchList() {
-    setWatchstate(true)
-  }
 
   useEffect(() => {
     dispatch(allSneax())
@@ -73,8 +57,9 @@ function Home() {
     })();
   }, [userId]);
 
-  if (!user) {
-    return null;
+  let currentwallet = 0
+  if (current[0]) {
+    currentwallet = current[0].wallet
   }
 
   let content = null
@@ -82,14 +67,15 @@ function Home() {
   let main = null
   let posted;
 
+
+
+  if (!user) {
+    return null;
+  }
+
+
   const reset = () => {
-    // setTotalPosition()
-    // setShareQty('')
     setPurchaseShares('')
-    // setSharePrice('')
-    // // setShareId('')
-    // setMarketPrice('')
-    // setSneakId('')
   }
 
 
@@ -111,7 +97,6 @@ function Home() {
 
 
   const handleSell = async () => {
-    // e.preventDefault()
     posted = await dispatch(shareAction.deleteShare(shareId))
     await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
     alert("remove went through")
@@ -278,7 +263,6 @@ function Home() {
         <TestingWatch />
       </div>
 
-
       {
         wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
           //   <h2>total account value: </h2>
@@ -296,7 +280,6 @@ function Home() {
 
   return (
     <>
-    {/* <Dashboard /> */}
     {main}
     </>
   );

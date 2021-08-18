@@ -18,7 +18,6 @@ function TestingWatch () {
     const sessionUser = useSelector(state => state.session.user)
     const allWatchs = Object.values(useSelector(state => state.watch))
     const sneaxs = useSelector((state) => Object.values(state.sneax))
-    const sneaxId = sneaxs.map(sneax => sneax.id)
     const shares = useSelector((state) => Object.values(state.shares))
 
     const [watchState, setWatchstate] = useState(false)
@@ -40,13 +39,7 @@ function TestingWatch () {
     }
 
     const reset = () => {
-        // setTotalPosition()
-        // setShareQty('')
         setPurchaseShares('')
-        // setSharePrice('')
-        // // setShareId('')
-        // setMarketPrice('')
-        // setSneakId('')
       }
 
 
@@ -109,10 +102,10 @@ function TestingWatch () {
                     for (let i = 0; i < sneaxs.length; i++) {
                         if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id)  {
                             return (
-                                <>
+                                <Link to={`/sneax/${sneaxs[i].id}`}>
                                 <div>{watch.id}</div>
                               <div>{sneaxs[i].name}</div>
-                              </>
+                              </Link>
                             )
                         }
                     }
@@ -120,6 +113,12 @@ function TestingWatch () {
             </ul>
         </div>
     : ''}
+
+{
+        wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
+          //   <h2>total account value: </h2>
+      }
+      {content}
     </>
     );
 
