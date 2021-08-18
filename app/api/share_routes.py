@@ -14,6 +14,12 @@ def shares():
     return {'shares': [ share.to_dict() for share in shares ], 'sneax': [ sneak.to_dict() for sneak in sneax ],}
 
 
+@share_routes.route('/<int:id>')
+@login_required
+def exists(id):
+    shares = Share.query.filter((Share.user_id == current_user.id), (Share.sneax_id == id) )
+    return {'exists': [ share.to_dict() for share in shares ]}
+
 
 @share_routes.route('/<int:id>', methods=['POST'])
 @login_required
@@ -43,11 +49,10 @@ def update(id):
     return share.to_dict()
 
 
-@share_routes.route('/remove/<int:id>', methods=['POST'])
+@share_routes.route('/remove/<int:id>', methods=['DELETE'])
 @login_required
 def remove(id):
     share = Share.query.get(id)
-    print('---------------------------------------------------THIS IS MUY ASHKFBAEKNFKJENDFAKJNFD',share)
     db.session.delete(share)
     db.session.commit()
     return share.to_dict()

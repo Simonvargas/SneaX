@@ -54,7 +54,7 @@ function Dashboard() {
   if (showEdit) {
     content = (
         <>
-          <form> 
+          <form>
             <label> number of shares
               <input
                 type='number'
@@ -101,7 +101,7 @@ function Dashboard() {
 
   return (
     <>
-    <NavBar />
+    {/* <NavBar /> */}
     {/* {shares?.map(share => (
               <ul>
                 <li>
@@ -122,7 +122,7 @@ function Dashboard() {
               </ul>
     ))}
     <h2>total account value: </h2>
-    
+
     {sneax?.map(sneak => (
           <>
 
