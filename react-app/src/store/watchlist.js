@@ -90,6 +90,7 @@ const watchlistReducer = (state = initialState, action) => {
             action.list.watchlist.forEach((oneList) => {
                 all[oneList.id] = oneList;
             });
+            return all
         case UPDATE_LIST:
             return {
                 ...state, 
