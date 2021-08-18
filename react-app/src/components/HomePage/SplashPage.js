@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
 import { NavLink } from 'react-router-dom';
 import './SplashPage.css'
 
 function User() {
+
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+
 
   useEffect(() => {
     if (!userId) {
@@ -23,6 +25,8 @@ function User() {
   if (!user) {
     return null;
   }
+
+
 
   return (
     <div className='splash-overall-container'>
@@ -91,7 +95,7 @@ function User() {
         <div className='fourth-photo-container'>
         <img className='fourth-photo' src='https://i.imgur.com/dN6DMnE.png'></img>
         </div>
-        
+
     </div>
     <footer className='footer'>
     <div className='footer-text'>
@@ -108,6 +112,3 @@ function User() {
   );
 }
 export default User;
-
-
-

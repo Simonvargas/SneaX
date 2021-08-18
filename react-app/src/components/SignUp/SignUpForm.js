@@ -75,7 +75,9 @@ const SignUpForm = () => {
       </div>
       <div className={styles.formContainer}>
         <div className={styles.welcome}>
-        <h3>Sneax</h3>
+          <Link className={styles.sneaxh3} to='/'>
+        <h3 className={styles.sneaxh3}>Sneax</h3>
+        </Link>
         <h3>Walk in style</h3>
         <p>Sneax lets you invest in the shoes you love, commission-free.</p>
         </div>

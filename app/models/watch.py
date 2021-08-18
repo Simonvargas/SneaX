@@ -18,5 +18,5 @@ class Watch(db.Model):
         return {
             'id': self.id,
             'watchlist_id': self.watchlist_id,
-            'sneax_id ': self.sneax_id,
+            'sneax_id': self.sneax_id,
         }

@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 import session from './session'
 import sneax from './sneax'
 import shares from './shares'
+import watch from './watch'
+import watchlist from './watchlist'
 
 const rootReducer = combineReducers({
   session,
   sneax,
   shares,
+  watch,
+  watchlist
 });
 
 
