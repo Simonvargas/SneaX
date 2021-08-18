@@ -113,7 +113,6 @@ const sharesReducer = (state = initialState, action, id) => {
                     ...state
                 }
                 all["total"] = []
-                all["shares"] = {}
                 if (action.shares.shares) {
                     action.shares.shares.forEach((share) => {
                         action.shares.sneax.forEach((sneaker) => {
@@ -124,11 +123,6 @@ const sharesReducer = (state = initialState, action, id) => {
                     })
                 });
 
-                }
-                if (action.shares.sneax) {
-                    action.shares.sneax.forEach((sneaker) => {
-                        all["shares"][sneaker.id] = sneaker
-                    })
                 }
                 return all;
             }
