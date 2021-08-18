@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom'
 import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
+import * as watchAction from '../../store/watch';
+import * as watchlistAction from '../../store/watchlist';
 import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
+
 
 
 import './Dashboard.css'
@@ -18,6 +21,7 @@ function Home() {
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
+  const watchlists = useSelector((state) => Object.values(state.watchlist))
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const [ showEdit, setShowEdit ] = useState(false)
@@ -51,6 +55,7 @@ function Home() {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
+    dispatch(watchlistAction.getList())
     setWallet(currentwallet)
 
     if (!userId) {
@@ -260,6 +265,15 @@ function Home() {
     )
   }
 
+  // watchlist here
+  const watchlistSection = (
+    <>
+      <h2>Watchlist</h2>
+
+    </>
+  ) 
+
+
   if (sessionUser) {
     main = (
       <>
@@ -291,7 +305,6 @@ function Home() {
                   </ul>
                   
         )}})}
-        <h2>WatchLists</h2>
         <div>
           
         </div>
@@ -314,6 +327,7 @@ function Home() {
     <>
     {/* <Dashboard /> */}
     {main}
+    {watchlistSection}
     </>
   );
 }

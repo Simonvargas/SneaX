@@ -75,7 +75,9 @@ export const removeList = (id) => async (dispatch) => {
 
 // reducer.
 
-const initialState = {};
+const initialState = {
+
+};
 
 const watchlistReducer = (state = initialState, action) => {
     switch ( action.type ) {
