@@ -93,7 +93,7 @@ function Home() {
     // setSneakId('')
   }
 
-  
+
   const tradeSubmit = async (e) => {
     e.preventDefault();
     let answer = window.confirm("Are you sure you want to make this change?")
@@ -301,7 +301,10 @@ function Home() {
                     </div>
                   </ul>
         )}})}
-        <div>
+      <div>
+        <TestingWatch />
+      </div>
+        {/* <div>
         <h2>Watchlists</h2>
         <>
             {watchlists?.map(watchlist => {
@@ -313,7 +316,7 @@ function Home() {
                 })}
                 {watchState ? <TestingWatch /> : ''}
                 </>
-        </div>
+        </div> */}
         </div>
         {
           wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null

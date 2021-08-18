@@ -18,8 +18,15 @@ function TestingWatch () {
     const sneaxs = useSelector((state) => Object.values(state.sneax))
     const sneaxId = sneaxs.map(sneax => sneax.id)
 
+    const [watchState, setWatchstate] = useState(false)
 
-    console.log(watchlists)
+
+
+    function userWatchList() {
+        setWatchstate(true)
+    }
+
+
 
     useEffect(() => {
         dispatch(allSneax());
@@ -28,14 +35,24 @@ function TestingWatch () {
     }, [dispatch, sessionUser.id]);
 
 
-    
+
     return (
         <>
-        {/* <div>
-            <h1>{userWat</h1>
-        </div> */}
+        <div>
+            <h2>Watchlists</h2>
+            <>
+            {watchlists?.map(watchlist => {
+                            return (
+                                <>
+                                <button onClick={userWatchList}>{watchlist.list_name}</button>
+                              </>
+                            )
+                })}
+
+                </>
+        </div>
+        {watchState ?
         <div className="testing-container">
-            <h1>Hello testing page</h1>
             <h2>List of Watchs</h2>
             <ul>
                 {allWatchs?.map(watch => {
@@ -52,7 +69,7 @@ function TestingWatch () {
                 })}
             </ul>
         </div>
-
+    : ''}
     </>
     );
 
