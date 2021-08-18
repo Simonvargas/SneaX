@@ -12,7 +12,9 @@ const NavBar = () => {
   const filter = (sneakers, query) => {
     return sneakers.filter((shoe) => {
       const sneakerName = shoe.name.toLowerCase()
+      const sneakerBrand = shoe.brand_name.toLowerCase()
       if (sneakerName.includes(query)) return sneakerName.includes(query)
+      if (sneakerBrand.includes(query)) return sneakerBrand.includes(query)
     })
   }
 
@@ -98,13 +100,15 @@ const NavBar = () => {
           </ul>
         </div>
       ))}
-      {/* {kicks.map(sneaker => (
+      {kicks.map(sneaker => (
         <div className='searchfield-container'>
           <ul>
-            <li>{sneaker.brand_name}</li>
+            <Link to={`/sneax/${sneaker.id}`}>
+              <li>{sneaker.brand_name}</li>
+            </Link>
           </ul>
         </div>
-      ))} */}
+      ))}
     </div>
     </div>
   );
