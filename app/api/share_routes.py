@@ -6,22 +6,23 @@ from app.forms import ShareForm
 
 share_routes = Blueprint('shares', __name__)
 
-@share_routes.route('/')
-@login_required
-def shares():
-    shares = Share.query.filter(Share.user_id == current_user.id)
-    # shares = Share.query(Sneax).join(Sneax)
-    sneax = Sneax.query.join(Share).filter(Share.user_id == current_user.id).all()
-    return {'shares': [ share.to_dict() for share in shares ], }
-
-
 # @share_routes.route('/')
 # @login_required
 # def shares():
-#     shares = Share.query.filter(Sneax).options(subqueryload(Share.sneaker))
-#     # sneax = Sneax.query.join(Share).filter(Share.user_id == current_user.id).all()
-#     # return {'shares': [ share.to_dict() for share in shares ], 'sneax': [ sneak.to_dict() for sneak in sneax ],}
-#     return {'shares': [ share.to_dict() for share in shares ]}
+#     shares = Share.query.filter(Share.user_id == current_user.id)
+#     # shares = Share.query(Sneax).join(Sneax)
+#     sneax = Sneax.query.join(Share).filter(Share.user_id == current_user.id).all()
+#     return {'shares': [ share.to_dict() for share in shares ], }
+
+
+@share_routes.route('/')
+@login_required
+def shares():
+    # shares = Share.query.filter(Sneax).options(subqueryload(Share.sneaker))
+    shares = Share.query.filter(Share.user_id == current_user.id)
+    sneax = Sneax.query.join(Share).filter(Share.user_id == current_user.id).all()
+    return {'shares': [ share.to_dict() for share in shares ], 'sneax': [ sneak.to_dict() for sneak in sneax ],}
+    # return {'shares': [ share.to_dict() for share in shares ]}
 
 
 @share_routes.route('/<int:id>')

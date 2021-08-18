@@ -106,6 +106,33 @@ const sharesReducer = (state = initialState, action, id) => {
                 }
                 return all;
             }
+            // case LOAD:
+            // if (state) {
+            //     state = null
+            //     const all = {
+            //         ...state
+            //     }
+            //     all["total"] = []
+            //     all["shares"] = {}
+            //     if (action.shares.shares) {
+            //         action.shares.shares.forEach((share) => {
+            //             if (action.shares.shares.sneax_id === action.shares.sneax.id) {
+            //                 action.shares.sneax.forEach((sneaker) => {
+            //                 all[share.id] = share[sneaker.name] = sneaker ;
+
+            //         })
+            //                 all['total'].push(share.sneax_id)
+            //             }
+            //         });
+
+            //     }
+            //     if (action.shares.sneax) {
+            //         action.shares.sneax.forEach((sneaker) => {
+            //             all["shares"][sneaker.id] = sneaker
+            //         })
+            //     }
+            //     return all;
+            // }
         case LOAD_ONE: {
             if (state) {
                 state = null
