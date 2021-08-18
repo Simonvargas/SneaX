@@ -18,29 +18,16 @@ function TestingWatch () {
     const sessionUser = useSelector(state => state.session.user)
     const allWatchs = Object.values(useSelector(state => state.watch))
     const sneaxs = useSelector((state) => Object.values(state.sneax))
-    const shares = useSelector((state) => Object.values(state.shares))
 
     const [watchState, setWatchstate] = useState(false)
     const [watchNumber, setWatchNumber] = useState(0)
-    const [ purchaseShares, setPurchaseShares ] = useState('')
-    const [ showEdit, setShowEdit ] = useState(false)
-    const [ showTrade, setShowTrade ] = useState(false)
-    const [ sellId, setSellId ] = useState('')
-    const [ sellQty, setSellQty ] = useState('')
-    const [ totalPosition, setTotalPosition ] = useState('')
-    const [ shareQty, setShareQty ] = useState('')
-    const [ sharePrice, setSharePrice ] = useState('')
-    const [ shareId, setShareId ] = useState('')
-    let [ totalAccount, setTotalAccount ] = useState(0)
+
 
     function userWatchList(e) {
         setWatchNumber(e.target.id)
         setWatchstate(true)
     }
 
-    const reset = () => {
-        setPurchaseShares('')
-      }
 
 
     useEffect(() => {
@@ -53,34 +40,6 @@ function TestingWatch () {
 
     return (
         <>
-        <h2>Shares</h2>
-        {shares?.map(share => {
-                if (Number(share.sneax_id)) {
-                  return (
-                  <ul>
-                    <li>
-                      <strong>sneax id: {share.sneax_id}</strong>
-                    </li>
-                    <li>
-                      <strong>Price: {share.price_per_share}</strong>
-                    </li>
-                    <li>
-                      <strong>quantity of shares: {share.number_of_shares}</strong>
-                    </li>
-                    <li>
-                      <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
-                    </li>
-                    <button
-                      onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
-                    >trade</button>
-                    <div hidden="true">
-                      {totalAccount += (share.number_of_shares * share.price_per_share)}.
-                    </div>
-                  </ul>
-        )}})}
-
-
-
         <div>
             <h2>Watchlists</h2>
             <>
@@ -114,7 +73,7 @@ function TestingWatch () {
         </div>
     : ''}
 
-    
+
     </>
     );
 

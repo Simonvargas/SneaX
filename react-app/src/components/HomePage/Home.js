@@ -17,6 +17,7 @@ function Home() {
   const { userId }  = useParams();
   const history = useHistory()
 
+  const sneaxs = useSelector((state) => Object.values(state.sneax))
   const sessionUser = useSelector(state => state.session.user)
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
@@ -37,7 +38,7 @@ function Home() {
   const [ wallet, setWallet ] = useState('')
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
-  const [watchState, setWatchstate] = useState(false)
+
 
   useEffect(() => {
     dispatch(allSneax())
@@ -247,7 +248,7 @@ function Home() {
     content = (
         <div className='sell_form_container'>
 
-              <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> {/*toggle button fuction as according to available position*/}
+              {/* <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> toggle button fuction as according to available position */}
               <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
               <button onClick={() => handleCancel()}>Cancel</button>
               {shareContent}
@@ -260,6 +261,31 @@ function Home() {
       <>
       <NavBar/>
       <div>
+      <h2>Shares</h2>
+        {shares?.map(share => {
+                if (Number(share.sneax_id)) {
+                  return (
+                  <ul>
+                    <li>
+                      <strong>sneax id: {share.sneax_id}</strong>
+                    </li>
+                    <li>
+                      <strong>Price: {share.price_per_share}</strong>
+                    </li>
+                    <li>
+                      <strong>quantity of shares: {share.number_of_shares}</strong>
+                    </li>
+                    <li>
+                      <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
+                    </li>
+                    <button
+                      onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
+                    >trade</button>
+                    <div hidden="true">
+                      {totalAccount += (share.number_of_shares * share.price_per_share)}.
+                    </div>
+                  </ul>
+        )}})}
         <TestingWatch />
       </div>
 

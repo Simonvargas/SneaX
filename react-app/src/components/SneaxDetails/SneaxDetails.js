@@ -88,12 +88,10 @@ function SneaxDetails() {
           </div>
         </div>
       </div>
-      {buy ?
       <div className="shares-container">
         <div className='shares-form-container'>
           <div className='shares-buy-sell'>
-            <div><Link onClick={showBuy}>Buy</Link></div>
-            <div><Link onClick={showSell}>Sell</Link></div>
+            <h2>Buy</h2>
           </div>
           <div className='shares-from'>
             <div>
@@ -118,40 +116,8 @@ function SneaxDetails() {
           </div>
         </div>
       </div>
-      : '' }
       <div>
-      {sell ?
-      <div className="shares-container">
-        <div className='shares-form-container'>
-          <div className='shares-buy-sell'>
-            <Link onClick={showBuy}>Buy</Link>
-            <Link onClick={showSell}>Sell</Link>
-          </div>
-          <div className='shares-from'>
-            <div>
-              <label>Invest in
-              <input type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
-              </label>
-            </div>
-            <div>
-              <label> Sneax
-                <input type='number'></input>
-              </label>
-            </div>
-          <div className='market-price'>
-            <p>Market Price </p>
-            <p>{sneaxId.market_price}</p>
-          </div>
-
-
-          <button>Sell</button>
-          </div>
-          <div className='buying-power'>
-            <p>Buying Power available: {sessionUser.wallet}</p>
-          </div>
-        </div>
-      </div>
-      : '' }
+      
       </div>
 
     </div>
