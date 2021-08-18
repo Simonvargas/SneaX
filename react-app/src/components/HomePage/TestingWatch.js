@@ -19,10 +19,11 @@ function TestingWatch () {
     const sneaxId = sneaxs.map(sneax => sneax.id)
 
     const [watchState, setWatchstate] = useState(false)
+    const [watchNumber, setWatchNumber] = useState(0)
 
 
-
-    function userWatchList() {
+    function userWatchList(e) {
+        setWatchNumber(e.target.id)
         setWatchstate(true)
     }
 
@@ -44,7 +45,7 @@ function TestingWatch () {
             {watchlists?.map(watchlist => {
                             return (
                                 <>
-                                <button onClick={userWatchList}>{watchlist.list_name}</button>
+                                <button onClick={(e) => userWatchList(e)} id={watchlist.id}>{watchlist.list_name}</button>
                               </>
                             )
                 })}
