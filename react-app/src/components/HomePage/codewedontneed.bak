@@ -1,0 +1,41 @@
+{/* {sneax?.map(sneak => {
+          return (
+              <>
+
+                <Link to={`/sneax/${sneak?.id}`}>
+                  <ul>
+
+                      <li>
+                          <strong>{sneak?.id}</strong> {}
+                      </li>
+                      <ul>
+                          <li>
+                              <strong>Brand: {sneak?.brand_name}</strong> {}
+                          </li>
+                          <li>
+                              <strong>Price: {sneak?.market_price}</strong> {}
+                          </li>
+                          <li>
+                              <strong>Name: {sneak?.name}</strong> {}
+                          </li>
+                          <li>
+                              <img src={sneak?.image} width='500px'/>
+                          </li>
+                          <li>
+                              <strong>Details: {sneak?.details}</strong> {}
+                          </li>
+                      </ul>
+                  </ul>
+                </Link>
+                <button type='button'
+                onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
+                >
+                  Buy
+                </button>
+              </>
+
+        )})} */}
+          {/* {content} */}
+
+
+hello
