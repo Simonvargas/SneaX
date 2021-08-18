@@ -6,9 +6,17 @@ import styles from './NavBar.module.css'
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
+  const sneax = useSelector((state) => Object.values(state.sneax))
   const [ searchInput, setSearchInput ] = useState('')
 
+  const filter = (sneakers, query) => {
+    return sneakers.filter((shoe) => {
+      const sneakerBrand = shoe.brand_name.toLowerCase()
+      return sneakerBrand.includes(query)
+    })
+  }
 
+  const kicks = filter(sneax, searchInput)
 
   return (
     <div>
@@ -80,6 +88,16 @@ const NavBar = () => {
               </div>
       </div>
     </nav> }
+    <div className='searchfield'>
+      {kicks.map(sneaker => (
+        <div className='searchfield-container'>
+          <ul>
+            <li>{sneaker.brand_name}</li>
+            <li>{sneaker.name}</li>
+          </ul>
+        </div>
+      ))}
+    </div>
     </div>
   );
 }
