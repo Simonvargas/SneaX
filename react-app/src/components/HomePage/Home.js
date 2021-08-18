@@ -9,7 +9,7 @@ import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
 import { getList } from '../../store/watchlist'
 import TestingWatch from './TestingWatch';
-
+import { getWatchs } from '../../store/watch';
 
 import './Dashboard.css'
 import NavBar from '../Navigation/NavBar';
@@ -17,6 +17,8 @@ import NavBar from '../Navigation/NavBar';
 function Home() {
   const dispatch = useDispatch()
 
+  const allWatchs = Object.values(useSelector(state => state.watch))
+  const sneaxs = useSelector((state) => Object.values(state.sneax))
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
@@ -45,6 +47,7 @@ function Home() {
   const watchlists = Object.values(useSelector(state => state.watchlist))
 
   const [watchState, setWatchstate] = useState(false)
+  const [watchNumber, setWatchNumber] = useState(0)
 
   const history = useHistory()
 
@@ -52,7 +55,8 @@ function Home() {
   if (current[0]) {
     currentwallet = current[0].wallet
   }
-  function userWatchList() {
+  function userWatchList(e) {
+    setWatchNumber(e.target.id)
     setWatchstate(true)
   }
 
@@ -306,11 +310,26 @@ function Home() {
             {watchlists?.map(watchlist => {
                             return (
                                 <>
-                                <button onClick={userWatchList}>{watchlist.list_name}</button>
+                                <button onClick={(e) => userWatchList(e)} id={watchlist.id}>{watchlist.list_name}</button>
                               </>
                             )
                 })}
-                {watchState ? <TestingWatch /> : ''}
+                {watchState ? <ul>
+                {allWatchs?.map(watch => {
+                    for (let i = 0; i < sneaxs.length; i++) {
+                      console.log('hello2', watchNumber)
+                      console.log('hello3', watch.watchlist_id)
+                        if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id) {
+                            return (
+                                <>
+                                <div>{watch.id}</div>
+                              <div>{sneaxs[i].name}</div>
+                              </>
+                            )
+                        }
+                    }
+                })}
+            </ul> : ''}
                 </>
         </div>
         </div>

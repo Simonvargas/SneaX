@@ -37,7 +37,6 @@ function TestingWatch () {
             <h2>List of Watchs</h2>
             <ul>
                 {allWatchs?.map(watch => {
-                    console.log('noo', watch)
                     for (let i = 0; i < sneaxs.length; i++) {
                         if (sneaxs[i].id === watch.sneax_id) {
                             return (
