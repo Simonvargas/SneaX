@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
 import { getWatchs } from '../../store/watch';
+import { allSneax } from '../../store/sneax';
 
 
 // import { getList } from '../../store/watchlist';
@@ -13,9 +14,15 @@ function TestingWatch () {
 
     const sessionUser = useSelector(state => state.session.user)
     const allWatchs = Object.values(useSelector(state => state.watch))
+    const sneaxs = useSelector((state) => Object.values(state.sneax))
+    const sneaxId = sneaxs.map(sneax => sneax.id)
+    console.log("WHATTTT", sneaxId)
+// if sneaxId === watch.sneax_id then return sneax.name?? trying to figure how to get the name of the sneax to populate 
+   
 
 
     useEffect(() => {
+        dispatch(allSneax());
         dispatch(getWatchs(sessionUser.id));
     }, [dispatch, sessionUser.id]);
 
@@ -25,7 +32,7 @@ function TestingWatch () {
             <h2>List of Watchs</h2>
             <ul>
                 {allWatchs?.map(watch => <li>
-                    {watch.sneax_id}
+                    { watch.sneax_id}
 
                 </li>)}
             </ul>
