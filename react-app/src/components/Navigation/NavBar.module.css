@@ -9,27 +9,27 @@
 
 .btn {
     border-radius: 4px;
-	border: 1px blue;
-	background: radial-gradient(900px 900px at top center,#5e5e5e,#2d3334,#262626);
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	margin: 5px;
-	width: 100px;
+    border: 1px blue;
+    background: radial-gradient(900px 900px at top center, #5e5e5e, #2d3334, #262626);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 5px;
+    width: 100px;
     position: relative;
     top: 0px;
     transition: all ease 0.3s;
 }
+
 .btn1:hover {
     color: #ffffff !important;
     background: #f6b93b;
     background-color: #20bf55;
     background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
     transition: all 0.4s ease 0s;
-
 }
 
 .btn2:hover {
@@ -43,19 +43,20 @@
     box-shadow: 0 3px 0 #00823F;
     top: 4px;
 }
+
 .btn2:active {
     box-shadow: 0 3px 0 #00823F;
     top: 4px;
 }
 
 .logo {
-position: relative;
-top: 65px;
-right: 55px;
+    position: relative;
+    top: 65px;
+    right: 55px;
 }
 
 .photo {
-    width:auto;
+    width: auto;
     background-size: cover;
 }
 
@@ -66,17 +67,13 @@ right: 55px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
- 
 }
 
-.icon {
-    
-}
+.icon {}
+
 .navBar2Container {
     width: 100%;
-   
 }
-
 
 .dropdownContent {
     display: none;
@@ -84,38 +81,42 @@ right: 55px;
     background-color: #000000;
     background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
     min-width: 260px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     right: 4px;
     left: auto;
     color: white;
     border-radius: 6px;
-   text-align: center;
-  }
+    text-align: center;
+}
 
-  .dropdownContent .links {
+.dropdownContent .links {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
+}
 
-  .dropdown:hover .dropdownContent {
+.dropdown:hover .dropdownContent {
     display: block;
-  }
+}
 
+.dropdownContent a:hover {
+    background-color: #ddd;
+}
 
-.dropdownContent a:hover {background-color: #ddd;}
+.dropdown:hover .dropdownContent {
+    display: block;
+}
 
-.dropdown:hover .dropdownContent {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
 
 .profileDropdown {
     float: right;
     width: 500px;
 }
-
 
 .dropContainer {
     position: relative;
@@ -149,6 +150,7 @@ right: 55px;
     border: none;
     left: -55px;
 }
+
 .searchBtn:hover {
     color: #ffffff !important;
     background-color: #3f0d12;
@@ -158,9 +160,18 @@ right: 55px;
 
 .searchBar:hover {
     -webkit-transform: rotate(15deg) scale(1.1);
-	transform: rotate(0deg) scale(1.02);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transform: rotate(0deg) scale(1.02);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
+}
+
+.searchfield {
+    border: 1px solid black;
+    background-color: red;
+}
+
+.searchfield-container {
+    border: 1px solid black;
 }

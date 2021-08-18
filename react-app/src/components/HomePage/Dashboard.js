@@ -4,14 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
+import { getWatchs } from '../../store/watch';
+// import { getList } from '../../store/watchlist';
 import NavBar from '../Navigation/NavBar';
 
 import './Home.css'
+
 
 function Dashboard() {
   const dispatch = useDispatch()
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
+  // const watchs = useSelector((state) => Object.values(state.watch))
+  // console.log("THIS IS WATCHS", watchs)
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const [ showEdit, setShowEdit ] = useState(false)
@@ -24,6 +29,8 @@ function Dashboard() {
   useEffect(() => {
     dispatch(allSneax())
     dispatch(getShares())
+    // dispatch(getWatchs())
+    // dispatch(getList())
     if (!userId) {
       return;
     }
@@ -45,7 +52,7 @@ function Dashboard() {
   if (showEdit) {
     content = (
         <>
-          <form> 
+          <form>
             <label> number of shares
               <input
                 type='number'
@@ -92,7 +99,7 @@ function Dashboard() {
 
   return (
     <>
-    <NavBar />
+    {/* <NavBar /> */}
     {/* {shares?.map(share => (
               <ul>
                 <li>
@@ -113,7 +120,7 @@ function Dashboard() {
               </ul>
     ))}
     <h2>total account value: </h2>
-    
+
     {sneax?.map(sneak => (
           <>
 

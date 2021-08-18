@@ -5,7 +5,7 @@ from app.models import Sneax
 sneax_routes = Blueprint('sneaxs', __name__)
 
 @sneax_routes.route('/')
-@login_required
+# @login_required
 def sneaxs():
     sneaxs = Sneax.query.all()
     return {'sneaxs': [sneax.to_dict() for sneax in sneaxs ]}
