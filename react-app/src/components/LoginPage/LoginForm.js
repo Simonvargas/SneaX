@@ -29,15 +29,10 @@ const LoginForm = () => {
   };
 
   const loginDemoUser = async(e) =>  {
-    // const demoUser = {
-    //   email: "demo@aa.io",
-    //   password: "password"
-    // }
     const email = "demo@aa.io"
     const password = "password"
 
     await dispatch(login(email, password))
-    // history.push('/')
   }
 
   if (user) {
