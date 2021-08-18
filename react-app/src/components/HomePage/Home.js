@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-
 import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
+import { getList } from '../../store/watchlist'
+import TestingWatch from './TestingWatch';
 
 
 import './Dashboard.css'
@@ -21,7 +22,6 @@ function Home() {
   const current = useSelector((state) => Object.values(state.session))
   const [user, setUser] = useState({});
   const { userId }  = useParams();
-
   const [ showEdit, setShowEdit ] = useState(false)
   const [ showTrade, setShowTrade ] = useState(false)
   const [ sellId, setSellId ] = useState('')
@@ -42,17 +42,25 @@ function Home() {
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
 
+  const watchlists = Object.values(useSelector(state => state.watchlist))
+
+  const [watchState, setWatchstate] = useState(false)
+
   const history = useHistory()
 
   let currentwallet = 0
   if (current[0]) {
     currentwallet = current[0].wallet
   }
+  function userWatchList() {
+    setWatchstate(true)
+  }
 
   useEffect(() => {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
+    dispatch(getList())
     setWallet(currentwallet)
 
     if (!userId) {
@@ -99,7 +107,6 @@ function Home() {
       } else {
         window.alert('change canceled')
       }
-
     }
   }
 
@@ -268,6 +275,8 @@ function Home() {
     main = (
       <>
       <NavBar/>
+      <div>
+        <h2>Shares</h2>
         {shares?.map(share => {
                 if (Number(share.sneax_id)) {
                   return (
@@ -292,47 +301,24 @@ function Home() {
                     </div>
                   </ul>
         )}})}
+        <div>
+        <h2>Watchlists</h2>
+        <>
+            {watchlists?.map(watchlist => {
+                            return (
+                                <>
+                                <button onClick={userWatchList}>{watchlist.list_name}</button>
+                              </>
+                            )
+                })}
+                {watchState ? <TestingWatch /> : ''}
+                </>
+        </div>
+        </div>
         {
           wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
             //   <h2>total account value: </h2>
         }
-        {sneax?.map(sneak => {
-          return (
-              <>
-
-                <Link to={`/sneax/${sneak?.id}`}>
-                  <ul>
-
-                      <li>
-                          <strong>{sneak?.id}</strong> {}
-                      </li>
-                      <ul>
-                          <li>
-                              <strong>Brand: {sneak?.brand_name}</strong> {}
-                          </li>
-                          <li>
-                              <strong>Price: {sneak?.market_price}</strong> {}
-                          </li>
-                          <li>
-                              <strong>Name: {sneak?.name}</strong> {}
-                          </li>
-                          <li>
-                              <img src={sneak?.image} width='500px'/>
-                          </li>
-                          <li>
-                              <strong>Details: {sneak?.details}</strong> {}
-                          </li>
-                      </ul>
-                  </ul>
-                </Link>
-                <button type='button'
-                onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
-                >
-                  Buy
-                </button>
-              </>
-
-        )})}
           {content}
     </>
     )
@@ -346,7 +332,7 @@ function Home() {
 
   return (
     <>
-    <Dashboard />
+    {/* <Dashboard /> */}
     {main}
     </>
   );
