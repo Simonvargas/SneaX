@@ -90,32 +90,34 @@ function Home() {
     }
   }
 
-  const tradeSell = async (e) => {
-    e.preventDefault();
-    let answer = window.confirm("Are you sure you want to make this sell?")
-    if (answer) {
-      if (sellQty > purchaseShares) {
-        console.log('========================',purchaseShares)
-        console.log('========================',sellQty)
-        posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), sellId))
-        await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
-        window.alert("change complete")
-        history.push('/')
-        history.go(0)
-      } else {
-        window.alert("You do not hold enough shares")
-      }
-    }
-  }
 
-
-  const handleSell = async (e) => {
-    e.preventDefault()
+  const handleSell = async () => {
+    // e.preventDefault()
     posted = await dispatch(shareAction.deleteShare(shareId))
     await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
     alert("remove went through")
     history.go(0)
   }
+
+    const tradeSell = async (e) => {
+      e.preventDefault();
+      let answer = window.confirm("Are you sure you want to make this sell?")
+      if (answer) {
+        if (sellQty >= purchaseShares) {
+          if ((Number(sellQty) - Number(purchaseShares) === 0)) {
+            handleSell()
+          } else {
+            posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), shareId))
+            await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
+            window.alert("change complete")
+            history.push('/')
+            history.go(0)
+          }
+        } else {
+          window.alert("You do not hold enough shares")
+        }
+      }
+    }
 
   const handleBuy = async (e) => {
     e.preventDefault()
@@ -135,7 +137,6 @@ function Home() {
       else {
         posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
         alert("purchase went through")
-        alert("purchase went fucker")
         history.go(0)
       }
     } else {
