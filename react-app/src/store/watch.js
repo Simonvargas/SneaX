@@ -94,6 +94,7 @@ const watchReducer = (state = initialState, action) => {
             action.watch.watchs.forEach((oneWatch) => {
                 all[oneWatch.id] = oneWatch;
             });
+            return all;
         case REMOVE_WATCH:{
             const newState = {...state};
             delete newState[action.watch];
