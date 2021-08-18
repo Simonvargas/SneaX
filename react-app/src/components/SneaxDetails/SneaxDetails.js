@@ -17,6 +17,7 @@ function SneaxDetails() {
   const shares = useSelector((state) => Object.values(state.shares))
   const sessionUser = useSelector(state => state.session.user)
 
+  
   useEffect(() => {
     (async function(){
       const res = await fetch(`/api/sneax/${id}`)
