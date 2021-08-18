@@ -78,7 +78,7 @@ function Home() {
     let answer = window.confirm("Are you sure you want to make this change?")
     if (answer) {
       if (current[0].wallet > (purchaseShares * sharePrice)) {
-        posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sellId))
+        posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), shareId))
         await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
         window.alert("change complete")
         history.push('/')
@@ -136,6 +136,7 @@ function Home() {
       }
       else {
         posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
+        await dispatch(sessionAction.updateUser(wallet -(purchaseShares * marketPrice), current[0].id))
         alert("purchase went through")
         history.go(0)
       }
