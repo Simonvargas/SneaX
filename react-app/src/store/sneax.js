@@ -11,6 +11,15 @@ export const allSneax = () => async (dispatch) => {
     dispatch(load(sneax))
 }
 
+export const getOneSneax = (id) => async (dispatch) => {
+    const res = await fetch(`/api/sneax/${id}`)
+    
+    if (res.ok) {
+        const sneax = await res.json
+        dispatch()
+    }
+}
+
 const initialState = [];
 
 

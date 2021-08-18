@@ -7,6 +7,8 @@ import NavBar from '../Navigation/NavBar';
 import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
+import SplashPage from './SplashPage'
+import Dashboard from './Dashboard';
 
 
 import './Home.css'
@@ -24,6 +26,8 @@ function Home() {
   const [ showTrade, setShowTrade ] = useState(false)
   const [ sellId, setSellId ] = useState('')
   const [ sellQty, setSellQty ] = useState('')
+
+  const sessionUser = useSelector(state => state.session.user)
 
   const [ totalPosition, setTotalPosition ] = useState('')
   const [ shareQty, setShareQty ] = useState('')
@@ -48,7 +52,7 @@ function Home() {
       return;
     }
     (async () => {
-      const response = await fetch(`/api/users/${shareId}`);
+      const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
 
@@ -254,6 +258,7 @@ function Home() {
   return (
     <>
     <NavBar/>
+     {/* {sessionUser ? <Dashboard /> : <SplashPage />} */}
     {shares?.map(share => {
             if (Number(share.sneax_id)) {
               return (

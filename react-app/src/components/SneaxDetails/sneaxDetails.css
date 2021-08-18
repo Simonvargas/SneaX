@@ -1,0 +1,117 @@
+.sneax-detail-container {
+    display: grid;
+    grid-template-columns: 9fr 5fr;
+    background-color: white;
+    margin-top: 35px;
+}
+
+.sneax-info-container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: 100vh;
+    /* margin-left: 500px; */
+    /* font-family: 'Rubik', sans-serif */
+
+}
+
+.sneax-info-box {
+    margin-left: 70px;
+    width: 800px;
+}
+
+.sneax-name-brand-box {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    /* height: 64px; */
+}
+
+.name {
+    padding: 0;
+    margin: 0;
+}
+
+.sneax-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 550;
+    height: 15px;
+}
+
+.brand {
+    margin-left: 10px;
+}
+
+.sneax-brand {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.sneax-price {
+    /* margin: 1px 0 0 0 ; */
+    padding: 0px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    margin-bottom: 10px;
+
+}
+
+.sneax-image {
+    width: 40%;
+}
+
+.sneax-image img {
+    width: 250%;
+}
+
+/* *************** Details******** */
+.sneax-about-container {
+    border-bottom: 1px solid #E3E9ED
+}
+
+.sneax-about-container h1 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+}
+
+.sneax-details {
+    margin-bottom: 100px;
+}
+
+.random-words {
+    height: 120px;
+}
+
+.random-words p {
+    width: 90%;
+    font-family: 'Rubik', sans-serif;
+    color: #6F787E;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+
+/* ************ Shares ********** */
+.shares-container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    position: sticky;
+
+}
+
+.shares-form-container {
+    margin-left: 40px;
+    box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
+    border-radius: 6px;
+    padding: 30px;
+    width: 270px;
+    height: 400px;
+    line-height: 20px;
+    
+
+}
