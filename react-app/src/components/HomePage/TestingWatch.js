@@ -16,7 +16,7 @@ function TestingWatch () {
     const allWatchs = Object.values(useSelector(state => state.watch))
     const sneaxs = useSelector((state) => Object.values(state.sneax))
     const sneaxId = sneaxs.map(sneax => sneax.id)
-    console.log("WHATTTT", sneaxId)
+    console.log("WHATTTT", sneaxs)
 // if sneaxId === watch.sneax_id then return sneax.name?? trying to figure how to get the name of the sneax to populate 
    
 
@@ -31,10 +31,22 @@ function TestingWatch () {
             <h1>Hello testing page</h1>
             <h2>List of Watchs</h2>
             <ul>
-                {allWatchs?.map(watch => <li>
-                    { watch.sneax_id}
+                {allWatchs?.map(watch => {
+                    for (let i = 0; i < sneaxs.length; i++) {
 
-                </li>)}
+                        if (sneaxs[i].id === watch.sneax_id) {
+                            return (
+                                <>
+                                <div>{watch.id}</div>
+                              <div>{sneaxs[i].name}</div>
+                              </>
+                            )
+                        }
+                    }
+                })}
+
+
+                
             </ul>
         </div>
     );
