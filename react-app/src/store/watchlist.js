@@ -73,7 +73,7 @@ export const removeList = (id) => async (dispatch) => {
     dispatch(deleteList(id))
 }
 
-// reducer
+// reducer.
 
 const initialState = {};
 
@@ -85,10 +85,11 @@ const watchlistReducer = (state = initialState, action) => {
                 [action.list.id]: action.list
             }
         case LOAD_LIST:
-            return {
-                ...state, 
-                ...Object.fromEntries(action.list.map((aList) => [aList.id, aList]))
-            }
+            console.log("THIS IS ACTIOON", action)
+            const all = {...state};
+            action.list.watchlist.forEach((oneList) => {
+                all[oneList.id] = oneList;
+            });
         case UPDATE_LIST:
             return {
                 ...state, 

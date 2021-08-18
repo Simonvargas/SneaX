@@ -1,18 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { allSneax } from "../../store/sneax";
-import { getShares } from "../../store/shares";
-import { getWatches } from "../../store/watchlist";
-import NavBar from "../Navigation/NavBar";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { allSneax } from '../../store/sneax';
+import { getShares } from '../../store/shares';
+import { getWatchs } from '../../store/watch';
+// import { getList } from '../../store/watchlist';
+import NavBar from '../Navigation/NavBar';
 
 import "./Dashboard.css";
 
+
 function Dashboard() {
-  const dispatch = useDispatch();
-  // const watch = useSelector((state) => Object.values(state.list));
-  const sneax = useSelector((state) => Object.values(state.sneax));
-  const shares = useSelector((state) => Object.values(state.shares));
+  const dispatch = useDispatch()
+
+  const sneax = useSelector((state) => Object.values(state.sneax))
+  const shares = useSelector((state) => Object.values(state.shares))
+  // const watchs = useSelector((state) => Object.values(state.watch))
+  // console.log("THIS IS WATCHS", watchs)
   const [user, setUser] = useState({});
   const { userId } = useParams();
 
@@ -24,9 +29,10 @@ function Dashboard() {
   const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
-    dispatch(allSneax());
-    dispatch(getShares());
-    // dispatch(getList());
+    dispatch(allSneax())
+    dispatch(getShares())
+    // dispatch(getWatchs())
+    // dispatch(getList())
     if (!userId) {
       return;
     }
@@ -46,17 +52,19 @@ function Dashboard() {
 
   if (showEdit) {
     content = (
-      <>
-        <form>
-          <label>
-            {" "}
-            number of shares
-            <input type="number" value={null} onChange={null} />
-          </label>
-          <button>Purchase</button>
-        </form>
-      </>
-    );
+        <>
+          <form>
+            <label> number of shares
+              <input
+                type='number'
+                value={null}
+                onChange={null}
+              />
+            </label>
+            <button>Purchase</button>
+          </form>
+        </>
+    )
   } else {
     content = <></>;
   }
@@ -85,11 +93,30 @@ function Dashboard() {
 
   return (
     <>
-      <NavBar />
-      {/* <div className='dash-container'>
-      <div className='dash-info-container'>
-        <div className='dash-info'> <h1>HELLO</h1> </div>
-      </div> */}
+    {/* <NavBar /> */}
+    {/* {shares?.map(share => (
+              <ul>
+                <li>
+                  <strong>sneax id: {share.sneax_id}</strong>
+                </li>
+                <li>
+                  <strong>Price: {share.price_per_share}</strong>
+                </li>
+                <li>
+                  <strong>quantity of shares: {share.number_of_shares}</strong>
+                </li>
+                <li>
+                  <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
+                </li>
+                <button
+                  onClick={() => (setShowSell(!showSell), setSellId(share.sneax_id), setSellQty(share.number_of_shares))}
+                >trade</button>
+              </ul>
+    ))}
+    <h2>total account value: </h2>
+
+    {sneax?.map(sneak => (
+          <>
 
       <div className="watch-shares-container">
         <div className="watch-info">

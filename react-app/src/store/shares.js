@@ -1,11 +1,17 @@
 
 const LOAD = 'shares/LOAD'
+const LOAD_ONE = 'shares/LOAD_ONE'
 const SET_SHARES = 'shares/SET_SHARES'
 const UPDATE_SHARE = 'shares/UPDATE_SHARE'
 const REMOVE_SHARE = 'shares/REMOVE_SHARE'
 
 const load = (shares) => ({
     type: LOAD,
+    shares
+})
+
+const one = (shares) => ({
+    type: LOAD_ONE,
     shares
 })
 
@@ -19,7 +25,7 @@ const update = (share) => ({
     share
 })
 
-const remove = () => ({
+const remove = (id) => ({
     type: REMOVE_SHARE
 })
 
@@ -27,6 +33,13 @@ export const getShares = () => async dispatch => {
     const res = await fetch('/api/shares/');
     const shares = await res.json();
     dispatch(load(shares))
+}
+
+
+export const getSharesWithId = (id) => async dispatch => {
+    const res = await fetch(`/api/shares/${id}`);
+    const shares = await res.json();
+    dispatch(one(shares))
 }
 
 export const purchase = (price_per_share, purchaseShares, id) => async dispatch => {
@@ -68,38 +81,52 @@ export const deleteShare = (id) => async dispatch => {
     const res = await fetch(`/api/shares/remove/${id}`, {
         method: "DELETE",
     })
-    dispatch(remove())
+    dispatch(remove(res))
     return res
 }
 
 const initialState = {}
 
-const sharesReducer = (state = initialState, action) => {
+const sharesReducer = (state = initialState, action, id) => {
     switch (action.type) {
         case LOAD:
-            const all = {
-                ...state
+            if (state) {
+                state = null
+                const all = {
+                    ...state
+                }
+                all["total"] = []
+                if (action.shares.shares) {
+                    action.shares.shares.forEach((share) => {
+                        all[share.id] = share;
+                        all['total'].push(share.sneax_id)
+                    });
+
+                }
+                return all;
             }
-            // console.log('this is action',action)
-            action.shares.shares.forEach((share) => {
-                all[share.id] = share;
-            });
-            action.shares.sneax.forEach((sneak) => {
-                all[sneak.id + '-data'] = sneak
-            })
-            return all;
+        case LOAD_ONE: {
+            if (state) {
+                state = null
+                const all = {
+                    ...state
+                }
+              if (action.shares.exists) {
+                    action.shares.exists.forEach((share) => {
+                        all['exists'] = share;
+                    });
+
+                }
+                return all;
+            }
+        }
 
         case SET_SHARES:
-            // const make = {
-            //     ...state,
-            //     [action.shares.id]: action.shares
-            // };
-            // return make;
             return { shares : action.shares }
 
         case REMOVE_SHARE:
-            const destroy = {...state};
-            delete destroy[action.shareId]
+            const data = {...state};
+            return data
 
         case UPDATE_SHARE: {
             return {
@@ -107,7 +134,6 @@ const sharesReducer = (state = initialState, action) => {
                 [action.share.id]: action.share
             }
         }
-
         default:
             return state;
     };
