@@ -17,16 +17,12 @@ function TestingWatch () {
     const allWatchs = Object.values(useSelector(state => state.watch))
     const sneaxs = useSelector((state) => Object.values(state.sneax))
     const sneaxId = sneaxs.map(sneax => sneax.id)
+    // console.log("WHATTTT", watchlists)
+    // console.log("NOOOO", allWatchs)
+// if sneaxId === watch.sneax_id then return sneax.name?? trying to figure how to get the name of the sneax to populate
 
 
-    const userWatchList = watchlists.map(watchlist => {
-        return watchlist.watchlist
-    });
-
-
-    console.log(Object.values(userWatchList))
-
-
+// console.log('hello', userWatchList)
 
     useEffect(() => {
         dispatch(allSneax());
@@ -46,8 +42,8 @@ function TestingWatch () {
             <h2>List of Watchs</h2>
             <ul>
                 {allWatchs?.map(watch => {
+                    console.log('noo', watch)
                     for (let i = 0; i < sneaxs.length; i++) {
-
                         if (sneaxs[i].id === watch.sneax_id) {
                             return (
                                 <>
@@ -58,7 +54,6 @@ function TestingWatch () {
                         }
                     }
                 })}
-
             </ul>
         </div>
 

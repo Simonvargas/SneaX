@@ -7,6 +7,8 @@ import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
+import { getList } from '../../store/watchlist'
+import TestingWatch from './TestingWatch';
 
 
 import './Dashboard.css'
@@ -40,17 +42,25 @@ function Home() {
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
 
+  const watchlists = Object.values(useSelector(state => state.watchlist))
+
+  const [watchState, setWatchstate] = useState(false)
+
   const history = useHistory()
 
   let currentwallet = 0
   if (current[0]) {
     currentwallet = current[0].wallet
   }
+  function userWatchList() {
+    setWatchstate(true)
+  }
 
   useEffect(() => {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
+    dispatch(getList())
     setWallet(currentwallet)
 
     if (!userId) {
@@ -265,7 +275,7 @@ function Home() {
       <>
       <NavBar/>
       <div>
-      <h2>Shares</h2>
+        <h2>Shares</h2>
         {shares?.map(share => {
                 if (Number(share.sneax_id)) {
                   return (
@@ -289,17 +299,26 @@ function Home() {
                       {totalAccount += (share.number_of_shares * share.price_per_share)}.
                     </div>
                   </ul>
-                  
         )}})}
-        <h2>WatchLists</h2>
         <div>
-          
+        <h2>Watchlists</h2>
+        <>
+            {watchlists?.map(watchlist => {
+                            return (
+                                <>
+                                <button onClick={userWatchList}>{watchlist.list_name}</button>
+                              </>
+                            )
+                })}
+                {watchState ? <TestingWatch /> : ''}
+                </>
         </div>
         </div>
         {
           wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
             //   <h2>total account value: </h2>
         }
+          {content}
     </>
     )
   } else {
