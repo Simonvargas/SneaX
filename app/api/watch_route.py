@@ -1,6 +1,7 @@
 from flask import Blueprint
-from flask_login import login_required
-from app.models import Watch, db, Sneax
+from sqlalchemy.sql.functions import user
+from flask_login import login_required, current_user
+from app.models import Watch, db, Sneax, Watchlist
 # from app.forms import WatchForm
 from sqlalchemy.orm import joinedload
 
@@ -10,11 +11,12 @@ watch_routes = Blueprint('watchs', __name__)
 @login_required
 def watchs():
     # sneaxs = Sneax.query.order_by(Sneax.name).options(joinedload(Sneax.watchs)).all()
+    # sneaxs = Sneax.query.join(Watch).filter(Watch.sneax_id == current_user.id)
     watchs = Watch.query.all()
+    watch_dict = {'watchs': [watch.to_dict() for watch in watchs]}
 
-    watch_dict = [watch.to_dict() for watch in watchs]
     # nest sneaxs in watchs 
-    return{'watchs': [watch.to_dict() for watch in watchs]}
+    return watch_dict
     
 
 # post route 
