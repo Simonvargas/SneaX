@@ -6,7 +6,6 @@ import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import SplashPage from './SplashPage'
-import Dashboard from './Dashboard';
 import { getList } from '../../store/watchlist'
 import TestingWatch from './TestingWatch';
 import { getWatchs } from '../../store/watch';
@@ -96,6 +95,7 @@ function Home() {
     // setMarketPrice('')
     // setSneakId('')
   }
+
 
   const tradeSubmit = async (e) => {
     e.preventDefault();
@@ -279,65 +279,15 @@ function Home() {
       <>
       <NavBar/>
       <div>
-        <h2>Shares</h2>
-        {shares?.map(share => {
-                if (Number(share.sneax_id)) {
-                  return (
-                  <ul>
-                    <li>
-                      <strong>sneax id: {share.sneax_id}</strong>
-                    </li>
-                    <li>
-                      <strong>Price: {share.price_per_share}</strong>
-                    </li>
-                    <li>
-                      <strong>quantity of shares: {share.number_of_shares}</strong>
-                    </li>
-                    <li>
-                      <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
-                    </li>
-                    <button
-                      onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
-                    >trade</button>
-                    <div hidden="true">
-                      {totalAccount += (share.number_of_shares * share.price_per_share)}.
-                    </div>
-                  </ul>
-        )}})}
-        <div>
-        <h2>Watchlists</h2>
-        <>
-            {watchlists?.map(watchlist => {
-                            return (
-                                <>
-                                <button onClick={(e) => userWatchList(e)} id={watchlist.id}>{watchlist.list_name}</button>
-                              </>
-                            )
-                })}
-                {watchState ? <ul>
-                {allWatchs?.map(watch => {
-                    for (let i = 0; i < sneaxs.length; i++) {
-                      console.log('hello2', watchNumber)
-                      console.log('hello3', watch.watchlist_id)
-                        if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id) {
-                            return (
-                                <>
-                                <div>{watch.id}</div>
-                              <div>{sneaxs[i].name}</div>
-                              </>
-                            )
-                        }
-                    }
-                })}
-            </ul> : ''}
-                </>
-        </div>
-        </div>
-        {
-          wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
-            //   <h2>total account value: </h2>
-        }
-          {content}
+        <TestingWatch />
+      </div>
+
+
+      {
+        wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
+          //   <h2>total account value: </h2>
+      }
+      {content}
     </>
     )
   } else {
