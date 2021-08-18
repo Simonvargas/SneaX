@@ -271,10 +271,10 @@ function Home() {
                   return (
                   <ul>
                     <li>
-                      <strong>sneax id: {share.sneax_id}</strong>
+                      <strong>Sneax name: {share.sneax.name}</strong>
                     </li>
                     <li>
-                      <strong>Price: {share.price_per_share}</strong>
+                      <strong>Price: $ {share.price_per_share}</strong>
                     </li>
                     <li>
                       <strong>quantity of shares: {share.number_of_shares}</strong>
