@@ -10,7 +10,7 @@ import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
 
 
-import './Home.css'
+import './Dashboard.css'
 import NavBar from '../Navigation/NavBar';
 
 function Home() {

@@ -8,24 +8,26 @@ import { getWatchs } from '../../store/watch';
 // import { getList } from '../../store/watchlist';
 import NavBar from '../Navigation/NavBar';
 
-import './Home.css'
+import "./Dashboard.css";
 
 
 function Dashboard() {
   const dispatch = useDispatch()
+
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   // const watchs = useSelector((state) => Object.values(state.watch))
   // console.log("THIS IS WATCHS", watchs)
   const [user, setUser] = useState({});
-  const { userId }  = useParams();
-  const [ showEdit, setShowEdit ] = useState(false)
-  const [ showSell, setShowSell ] = useState(false)
-  const [ sellId, setSellId ] = useState('')
-  const [ sellQty, setSellQty ] = useState('')
-  const [ numberShares, setNumber ] = useState('')
-  const sessionUser = useSelector(state => state.session.user)
-  console.log('hello', sessionUser)
+  const { userId } = useParams();
+
+  const [showEdit, setShowEdit] = useState(false);
+  const [showSell, setShowSell] = useState(false);
+  const [sellId, setSellId] = useState("");
+  const [sellQty, setSellQty] = useState("");
+  const [numberShares, setNumber] = useState("");
+  const sessionUser = useSelector((state) => state.session.user);
+
   useEffect(() => {
     dispatch(allSneax())
     dispatch(getShares())
@@ -38,7 +40,6 @@ function Dashboard() {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
-
     })();
   }, [userId]);
 
@@ -46,7 +47,7 @@ function Dashboard() {
     return null;
   }
 
-  let content = null
+  let content = null;
 
 
   if (showEdit) {
@@ -65,37 +66,30 @@ function Dashboard() {
         </>
     )
   } else {
-    content = (
-        <></>
-    )
+    content = <></>;
   }
 
   if (showSell) {
     content = (
-        <div className='sell_form_container'>
-            <form className='sell_form_mod'>
-              <label> number of shares
-                <input
-                  type='number'
-                  value={sellQty}
-                  onChange={null}
-                />
-              </label>
-              <label> number of shares
-                <input
-                  type='number'
-                  value={null}
-                  onChange={null}
-                />
-              </label>
-              <button>Buy</button> {/*toggle button fuction as according to available position*/}
-              <button>Sell</button>
-            </form>
-        </div>
-    )
+      <div className="sell_form_container">
+        <form className="sell_form_mod">
+          <label>
+            {" "}
+            number of shares
+            <input type="number" value={sellQty} onChange={null} />
+          </label>
+          <label>
+            {" "}
+            number of shares
+            <input type="number" value={null} onChange={null} />
+          </label>
+          <button>Buy</button>{" "}
+          {/*toggle button fuction as according to available position*/}
+          <button>Sell</button>
+        </form>
+      </div>
+    );
   }
-
-
 
   return (
     <>
@@ -124,37 +118,14 @@ function Dashboard() {
     {sneax?.map(sneak => (
           <>
 
-            <Link to={`/sneax/${sneak.id}`}>
-              <ul>
+      <div className="watch-shares-container">
+        <div className="watch-info">
+          {" "}
+          <h1>HELLO</h1>
+        </div>
+      </div>
 
-                  <li>
-                      <strong>{sneak?.id}</strong> {}
-                  </li>
-                  <ul>
-                      <li>
-                          <strong>Brand: {sneak?.brand_name}</strong> {}
-                      </li>
-                      <li>
-                          <strong>Price: {sneak?.market_price}</strong> {}
-                      </li>
-                      <li>
-                          <strong>Name: {sneak?.name}</strong> {}
-                      </li>
-                      <li>
-                          <img src={sneak?.image} width='500px'/>
-                      </li>
-                      <li>
-                          <strong>Details: {sneak?.details}</strong> {}
-                      </li>
-                  </ul>
-              </ul>
-            </Link>
-            <button type='button' onClick={() => setShowEdit(!showEdit)}>
-              Buy
-            </button>
-          </>
-    ))}
-      {content} */}
+      {/* </div> */}
     </>
   );
 }
