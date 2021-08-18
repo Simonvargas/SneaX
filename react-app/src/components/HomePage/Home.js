@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import NavBar from '../Navigation/NavBar';
 
 import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
@@ -36,7 +35,8 @@ function Home() {
   const [ shareId, setShareId ] = useState('')
   const [ marketPrice, setMarketPrice ] = useState('')
   const [ sneakId, setSneakId ] = useState('')
-  const [ wallet, setWallet ] = useState(current[0].wallet)
+  let [ totalAccount, setTotalAccount ] = useState(0)
+  const [ wallet, setWallet ] = useState('')
 
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
@@ -47,6 +47,7 @@ function Home() {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
+    setWallet(current[0].wallet)
 
     if (!userId) {
       return;
@@ -65,6 +66,7 @@ function Home() {
 
   let content = null
   let shareContent = null
+  let main = null
   let posted;
 
   const reset = () => {
@@ -255,71 +257,89 @@ function Home() {
     )
   }
 
+  if (sessionUser) {
+    main = (
+      <>
+        {shares?.map(share => {
+                if (Number(share.sneax_id)) {
+                  return (
+                  <ul>
+                    <li>
+                      <strong>sneax id: {share.sneax_id}</strong>
+                    </li>
+                    <li>
+                      <strong>Price: {share.price_per_share}</strong>
+                    </li>
+                    <li>
+                      <strong>quantity of shares: {share.number_of_shares}</strong>
+                    </li>
+                    <li>
+                      <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
+                    </li>
+                    <button
+                      onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
+                    >trade</button>
+                    <div hidden="true">
+                      {totalAccount += (share.number_of_shares * share.price_per_share)}.
+                    </div>
+                  </ul>
+        )}})}
+        {
+          wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
+            //   <h2>total account value: </h2>
+        }
+        {sneax?.map(sneak => {
+          return (
+              <>
+
+                <Link to={`/sneax/${sneak?.id}`}>
+                  <ul>
+
+                      <li>
+                          <strong>{sneak?.id}</strong> {}
+                      </li>
+                      <ul>
+                          <li>
+                              <strong>Brand: {sneak?.brand_name}</strong> {}
+                          </li>
+                          <li>
+                              <strong>Price: {sneak?.market_price}</strong> {}
+                          </li>
+                          <li>
+                              <strong>Name: {sneak?.name}</strong> {}
+                          </li>
+                          <li>
+                              <img src={sneak?.image} width='500px'/>
+                          </li>
+                          <li>
+                              <strong>Details: {sneak?.details}</strong> {}
+                          </li>
+                      </ul>
+                  </ul>
+                </Link>
+                <button type='button'
+                onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
+                >
+                  Buy
+                </button>
+              </>
+
+        )})}
+          {content}
+    </>
+    )
+  } else {
+    main = (
+      <>
+        <SplashPage />
+      </>
+    )
+  }
+
   return (
     <>
-    <NavBar/>
-     {/* {sessionUser ? <Dashboard /> : <SplashPage />} */}
-    {shares?.map(share => {
-            if (Number(share.sneax_id)) {
-              return (
-              <ul>
-                <li>
-                  <strong>sneax id: {share.sneax_id}</strong>
-                </li>
-                <li>
-                  <strong>Price: {share.price_per_share}</strong>
-                </li>
-                <li>
-                  <strong>quantity of shares: {share.number_of_shares}</strong>
-                </li>
-                <li>
-                  <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
-                </li>
-                <button
-                  onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
-                >trade</button>
-              </ul>
-    )}})}
-    <h2>total account value: </h2>
-    <h2>total buying power: {wallet}</h2>
-    {sneax?.map(sneak => {
-      return (
-          <>
-
-            <Link to={`/sneax/${sneak.id}`}>
-              <ul>
-
-                  <li>
-                      <strong>{sneak?.id}</strong> {}
-                  </li>
-                  <ul>
-                      <li>
-                          <strong>Brand: {sneak?.brand_name}</strong> {}
-                      </li>
-                      <li>
-                          <strong>Price: {sneak?.market_price}</strong> {}
-                      </li>
-                      <li>
-                          <strong>Name: {sneak?.name}</strong> {}
-                      </li>
-                      <li>
-                          <img src={sneak?.image} width='500px'/>
-                      </li>
-                      <li>
-                          <strong>Details: {sneak?.details}</strong> {}
-                      </li>
-                  </ul>
-              </ul>
-            </Link>
-            <button type='button'
-            onClick={() => (reset(), setShowTrade(false), setShowEdit(!showEdit), setMarketPrice(sneak.market_price), setSneakId(sneak.id))}
-            >
-              Buy
-            </button>
-          </>
-
-    )})}
-      {content}
+    <Dashboard />
+    {main}
     </>
   );
 }

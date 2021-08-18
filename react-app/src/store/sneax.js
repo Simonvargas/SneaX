@@ -13,14 +13,15 @@ export const allSneax = () => async (dispatch) => {
 
 export const getOneSneax = (id) => async (dispatch) => {
     const res = await fetch(`/api/sneax/${id}`)
-    
+
     if (res.ok) {
         const sneax = await res.json
         dispatch()
     }
 }
 
-const initialState = [];
+const initialState = {
+};
 
 
 export default function sneaxReducer (state = initialState, action) {
