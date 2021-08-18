@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import Home from './components/HomePage/Home'
 import SneaxDetails from './components/SneaxDetails/SneaxDetails';
 import TestingWatch from './components/HomePage/TestingWatch';
+import CrudTesting from './components/HomePage/CrudTesting';
 
 function App() {
   const sessionUser = useSelector(state => state.session.user)
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route path='/testingWatch' exact={true}>
           <TestingWatch/>
+        </Route>
+        <Route path='/CrudTesting' exact={true}>
+          <CrudTesting/>
         </Route>
       </Switch>
     </BrowserRouter>

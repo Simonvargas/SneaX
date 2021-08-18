@@ -4,6 +4,7 @@ from flask_login import login_required, current_user
 from app.models import Watch, db, Sneax, Watchlist
 # from app.forms import WatchForm
 from sqlalchemy.orm import joinedload
+from app.forms import WatchForm
 
 watch_routes = Blueprint('watchs', __name__)
 
@@ -25,11 +26,14 @@ def watchs():
 @watch_routes.route('/add', methods=['POST'])
 @login_required
 def post_watch():
-    # form = WatchForm()
-    # if form.validate_on_submit():
-    watch = Watch()
-    db.session.add(watch)
-    db.session.commit()
+    form = WatchForm()
+    if not form.validate_on_submit():
+        watch = Watch(
+            watchlist_id = form.data['watchlist_id'],
+            sneax_id = form.data['sneax_id'],
+        )
+        db.session.add(watch)
+        db.session.commit()
     return watch.to_dict()
 
 # delete route 

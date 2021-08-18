@@ -36,11 +36,14 @@ const removeWatch = (watch) => {
 
 
 // Thunks 
-export const addOneWatch = (payload) => async(dispatch) => {
+export const addOneWatch = (watchlist_id, sneax_id) => async(dispatch) => {
     const res = await fetch('/api/watch/add', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+            watchlist_id,
+            sneax_id
+        }),
     })
     if(!res.ok) throw res
     const watch = await res.json();
