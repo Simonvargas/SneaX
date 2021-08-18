@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 // import styles from './sneaxId.module.css'
 import  './sneaxDetails.css'
-
 
 function SneaxDetails() {
   const [user, setUser] = useState({});
@@ -16,7 +15,13 @@ function SneaxDetails() {
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   const sessionUser = useSelector(state => state.session.user)
+  const dispatch = useDispatch()
+  const [buy, setBuy] = useState(true)
+  const [sell, setSell] = useState(false)
+  
+  const numShares = shares?.map(share => share.user_id === sessionUser.id)
 
+  console.log(numShares)
   useEffect(() => {
     (async function(){
       const res = await fetch(`/api/sneax/${id}`)
@@ -27,9 +32,19 @@ function SneaxDetails() {
       }
     })()
   }, [id])
+  function showSell() {
+    setBuy(false)
+    setSell(true)
+  }
 
+  function showBuy(){
+    setBuy(true)
+    setSell(false)
+  }
 
   useEffect(() => {
+      dispatch(allSneax())
+      dispatch(getShares())
     if (!userId) {
       return;
     }
@@ -73,11 +88,12 @@ function SneaxDetails() {
           </div>
         </div>
       </div>
+      {buy ?
       <div className="shares-container">
         <div className='shares-form-container'>
           <div className='shares-buy-sell'>
-            <h2>Buy</h2>
-            <h2>Sell</h2>
+            <Link onClick={showBuy}>Buy</Link>
+            <Link onClick={showSell}>Sell</Link>
           </div>
           <div className='shares-from'>
             <div>
@@ -101,10 +117,46 @@ function SneaxDetails() {
             <p>Buying Power available: {sessionUser.wallet}</p>
           </div>
         </div>
-
-
       </div>
+      : '' }
+      <div>
+      {sell ?
+      <div className="shares-container">
+        <div className='shares-form-container'>
+          <div className='shares-buy-sell'>
+            <Link onClick={showBuy}>Buy</Link>
+            <Link onClick={showSell}>Sell</Link>
+          </div>
+          <div className='shares-from'>
+            <div>
+              <label>Invest in
+              <input type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
+              </label>
+            </div>
+            <div>
+              <label> Sneax
+                <input type='number'></input>
+              </label>
+            </div>
+          <div className='market-price'>
+            <p>Market Price </p>
+            <p>{sneaxId.market_price}</p>
+          </div>
+
+          
+          <button>Sell</button>
+          </div>
+          <div className='buying-power'>
+            <p>Buying Power available: {sessionUser.wallet}</p>
+          </div>
+        </div>
+      </div>
+      : '' }
+      </div>
+      
     </div>
+    
+    
     </>
   );
 }

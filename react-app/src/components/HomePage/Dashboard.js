@@ -10,12 +10,10 @@ import './Home.css'
 
 function Dashboard() {
   const dispatch = useDispatch()
-
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   const [user, setUser] = useState({});
   const { userId }  = useParams();
-
   const [ showEdit, setShowEdit ] = useState(false)
   const [ showSell, setShowSell ] = useState(false)
   const [ sellId, setSellId ] = useState('')
