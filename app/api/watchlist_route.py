@@ -14,7 +14,8 @@ def get_watchlist():
     watchlists = Watchlist.query.filter(Watchlist.user_id == current_user.id)
     watchs = Watch.query.filter((Watchlist.user_id == current_user.id) & (Watchlist.id == Watch.watchlist_id))
 
-    return {'watchlist' : [watchlist.to_dict() for watchlist in watchlists], 'watchs' : [watch.to_dict() for watch in watchs]}
+    return {'watchlist' : [watchlist.to_dict() for watchlist in watchlists]}
+# 'watchs' : [watch.to_dict() for watch in watchs]
 
 
 @watchlist_routes.route('/add', methods=['POST'])

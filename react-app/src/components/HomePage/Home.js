@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,12 +6,11 @@ import { Link } from 'react-router-dom'
 import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
-import * as watchAction from '../../store/watch';
-import * as watchlistAction from '../../store/watchlist';
 import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
-
-
+import { getList } from '../../store/watchlist'
+import TestingWatch from './TestingWatch';
+import { getWatchs } from '../../store/watch';
 
 import './Dashboard.css'
 import NavBar from '../Navigation/NavBar';
@@ -18,10 +18,11 @@ import NavBar from '../Navigation/NavBar';
 function Home() {
   const dispatch = useDispatch()
 
+  const allWatchs = Object.values(useSelector(state => state.watch))
+  const sneaxs = useSelector((state) => Object.values(state.sneax))
   const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
-  const watchlists = useSelector((state) => Object.values(state.watchlist))
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const [ showEdit, setShowEdit ] = useState(false)
@@ -44,18 +45,27 @@ function Home() {
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
 
+  const watchlists = Object.values(useSelector(state => state.watchlist))
+
+  const [watchState, setWatchstate] = useState(false)
+  const [watchNumber, setWatchNumber] = useState(0)
+
   const history = useHistory()
 
   let currentwallet = 0
   if (current[0]) {
     currentwallet = current[0].wallet
   }
+  function userWatchList(e) {
+    setWatchNumber(e.target.id)
+    setWatchstate(true)
+  }
 
   useEffect(() => {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
-    dispatch(watchlistAction.getList())
+    dispatch(getList())
     setWallet(currentwallet)
 
     if (!userId) {
@@ -265,21 +275,12 @@ function Home() {
     )
   }
 
-  // watchlist here
-  const watchlistSection = (
-    <>
-      <h2>Watchlist</h2>
-
-    </>
-  ) 
-
-
   if (sessionUser) {
     main = (
       <>
       <NavBar/>
       <div>
-      <h2>Shares</h2>
+        <h2>Shares</h2>
         {shares?.map(share => {
                 if (Number(share.sneax_id)) {
                   return (
@@ -303,16 +304,41 @@ function Home() {
                       {totalAccount += (share.number_of_shares * share.price_per_share)}.
                     </div>
                   </ul>
-                  
         )}})}
         <div>
-          
+        <h2>Watchlists</h2>
+        <>
+            {watchlists?.map(watchlist => {
+                            return (
+                                <>
+                                <button onClick={(e) => userWatchList(e)} id={watchlist.id}>{watchlist.list_name}</button>
+                              </>
+                            )
+                })}
+                {watchState ? <ul>
+                {allWatchs?.map(watch => {
+                    for (let i = 0; i < sneaxs.length; i++) {
+                      console.log('hello2', watchNumber)
+                      console.log('hello3', watch.watchlist_id)
+                        if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id) {
+                            return (
+                                <>
+                                <div>{watch.id}</div>
+                              <div>{sneaxs[i].name}</div>
+                              </>
+                            )
+                        }
+                    }
+                })}
+            </ul> : ''}
+                </>
         </div>
         </div>
         {
           wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
             //   <h2>total account value: </h2>
         }
+          {content}
     </>
     )
   } else {
@@ -327,7 +353,6 @@ function Home() {
     <>
     {/* <Dashboard /> */}
     {main}
-    {watchlistSection}
     </>
   );
 }
