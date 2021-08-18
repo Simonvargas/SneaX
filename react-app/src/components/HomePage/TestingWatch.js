@@ -114,11 +114,7 @@ function TestingWatch () {
         </div>
     : ''}
 
-{
-        wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
-          //   <h2>total account value: </h2>
-      }
-      {content}
+    
     </>
     );
 
