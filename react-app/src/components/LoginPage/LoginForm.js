@@ -33,7 +33,6 @@ const LoginForm = () => {
       email: "demo@aa.io",
       password: "password"
     }
-
     await dispatch(login(demoUser))
     history.push('/')
   }
