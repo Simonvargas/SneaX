@@ -57,7 +57,7 @@ function TestingWatch () {
             <ul>
                 {allWatchs?.map(watch => {
                     for (let i = 0; i < sneaxs.length; i++) {
-                        if (sneaxs[i].id === watch.sneax_id) {
+                        if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id)  {
                             return (
                                 <>
                                 <div>{watch.id}</div>
