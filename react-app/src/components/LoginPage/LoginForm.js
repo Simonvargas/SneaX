@@ -29,10 +29,15 @@ const LoginForm = () => {
   };
 
   const loginDemoUser = async(e) =>  {
+    // const demoUser = {
+    //   email: "demo@aa.io",
+    //   password: "password"
+    // }
     const email = "demo@aa.io"
     const password = "password"
 
     await dispatch(login(email, password))
+    // history.push('/')
   }
 
   if (user) {
@@ -62,11 +67,12 @@ const LoginForm = () => {
             <div className='signup-redirect'>
                 <p>Don't have an account? <a href='/signup'>Sign up here</a></p>
             </div>
-            <div className='login-buttons'>
-              <button id='login-bttn' type='submit'>Sign In</button>
-              <button onClick={loginDemoUser} id='demo-bttn' type='submit'>Demo User</button>
-            </div>
+                <button id='login-bttn' type='submit'>Sign In</button>
+
           </form>
+              <div className='login-buttons'>
+                <button onClick={loginDemoUser} id='demo-bttn' type='submit'>Demo User</button>
+            </div>
         </div>
 
       </div>
