@@ -18,7 +18,7 @@ function SneaxDetails() {
   const dispatch = useDispatch()
   const [buy, setBuy] = useState(true)
   const [sell, setSell] = useState(false)
-  
+
   const numShares = shares?.map(share => share.user_id === sessionUser.id)
 
   console.log(numShares)
@@ -92,8 +92,8 @@ function SneaxDetails() {
       <div className="shares-container">
         <div className='shares-form-container'>
           <div className='shares-buy-sell'>
-            <Link onClick={showBuy}>Buy</Link>
-            <Link onClick={showSell}>Sell</Link>
+            <div><Link onClick={showBuy}>Buy</Link></div>
+            <div><Link onClick={showSell}>Sell</Link></div>
           </div>
           <div className='shares-from'>
             <div>
@@ -143,7 +143,7 @@ function SneaxDetails() {
             <p>{sneaxId.market_price}</p>
           </div>
 
-          
+
           <button>Sell</button>
           </div>
           <div className='buying-power'>
@@ -153,10 +153,10 @@ function SneaxDetails() {
       </div>
       : '' }
       </div>
-      
+
     </div>
-    
-    
+
+
     </>
   );
 }
