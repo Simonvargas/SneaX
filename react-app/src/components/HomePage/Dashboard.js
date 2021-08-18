@@ -94,7 +94,7 @@ function Dashboard() {
 
   return (
     <>
-    <NavBar />
+    {/* <NavBar /> */}
     {/* {shares?.map(share => (
               <ul>
                 <li>

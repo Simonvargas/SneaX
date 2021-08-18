@@ -11,6 +11,7 @@ import Dashboard from './Dashboard';
 
 
 import './Home.css'
+import NavBar from '../Navigation/NavBar';
 
 function Home() {
   const dispatch = useDispatch()
@@ -43,11 +44,16 @@ function Home() {
 
   const history = useHistory()
 
+  let currentwallet = 0
+  if (current[0]) {
+    currentwallet = current[0].wallet
+  }
+
   useEffect(() => {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
-    setWallet(current[0].wallet)
+    setWallet(currentwallet)
 
     if (!userId) {
       return;
@@ -260,6 +266,7 @@ function Home() {
   if (sessionUser) {
     main = (
       <>
+      <NavBar/>
         {shares?.map(share => {
                 if (Number(share.sneax_id)) {
                   return (
