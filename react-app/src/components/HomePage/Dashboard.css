@@ -1,13 +1,6 @@
 @import url('./graph.css');
 
 
-.sell_form_container {
-    position: sticky;
-    bottom: 100px;
-    margin: 0 auto;
-    width: 400px;
-    border: 1px solid black;
-}
 
 .sneax-dashboard-container {
     display: flex;
@@ -95,6 +88,7 @@
     flex-direction: column;
     width: auto;
     position: sticky;
+    margin-top: 30px;
 
 }
 
@@ -102,9 +96,10 @@
     margin-left: 40px;
     box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
     border-radius: 6px;
-    width: 340px;
-    height: 700px;
+    width: 440px;
+    height: 419px;
     line-height: 20px;
+    overflow: scroll;
 }
 
 .shares {
@@ -112,14 +107,16 @@
     border-bottom: 1px solid #E3E9ED;
     width: auto;
     padding: 7px;
+    justify-content: center;
 
 }
 
 .shares h1{
-    font-weight: 500;
-    font-size: 17px;
+    font-weight: 600;
+    font-size: 25px;
     font-family: 'Rubik', sans-serif;
     margin-left: 20px;
+    text-align: center;
 }
 
 .single-sneax-container {
@@ -127,8 +124,8 @@
     flex-direction: row;
     /* justify-content: flex-end; */
     justify-content: space-between;
-    border-bottom: 1px solid #E3E9ED;
     width: 100%;
+    padding: 5px;
 
 }
 
@@ -141,49 +138,26 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
 }
-.share-sneax-name  {
+.dash-sneax-info  {
     margin-right: 12px;
     width: 40%;
 }
-.share-sneax-name p {
+
+
+.dash-sneax-info p {
     font-family: 'Rubik', sans-serif;
-    margin: 0;
+    margin: 2px;
     /* top, right, bottom , left */
     padding: 0;
+    font-weight: 600;
 
 }
 
-.sneax-price-total {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%
-}
+.dash-sneax-info p:hover {
+    color: grey;
 
-.sneax-price {
-    display: flex;
-    flex-direction: row;
-    width: 100%
-}
-.sneax-price p {
-    font-family: 'Rubik', sans-serif;
-    margin: 0;
-    /* top, right, bottom , left */
-    padding: 0;
-}
-
-.sneax-total {
-    display: flex;
-    flex-direction: row;
-    width: 100%
-}
-
-.sneax-total p {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 100%
 }
 
 .trade-bttn {
@@ -191,14 +165,37 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    border-bottom: 1px solid #E3E9ED;
+    margin: 0;
 }
 
 .trade-bttn button {
-    border-radius: 10%;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+
 
 }
 
-
+.trade-bttn button:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
 /* ********* BUY SELL CANCEL BUTTONS ********************* */
 
 
@@ -327,20 +324,96 @@
 /* ********* BUY SELL FORMS ********************* */
 
 
-.shares-form-container {
+.dash-shares-form-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     background-color: white;
+    border-radius: 5px;
 
 }
 
 .shares-form {
     background-color: white;
+    width:300px
 }
 
 .form-divs {
     display: flex;
     flex-direction: column;
     margin: 20px;
+
+}
+
+.form-divs label {
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 7px;
+
+}
+
+.form-divs input {
+    height: 25px;
+    border-radius: 6px;
+}
+
+.form-divs button {
+    width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+    padding: 12px;
+
+}
+
+
+.form-divs button:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+
+.watchlist-container {
+    margin-left: 40px;
+    box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
+    border-radius: 6px;
+    width: 400px;
+    height: 700px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.watch-items {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 30px;
+}
+
+.delete-btn-watch {
+    display: block;
+    float: right;
+}
+
+.items-link {
+    text-decoration: none;
+    color: black
+}
+
+img {
+    width: 30px;
+    float: left;
 }
