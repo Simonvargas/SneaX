@@ -268,7 +268,7 @@ function Home() {
                 </li>
               ))}
             </ul> */}
-            <LineChart width={400} height={400} data={data}>
+            <LineChart width={800} height={450} data={data}>
               <Line type='monotone' dataKey='uv' stroke='#000000' />
               <CartesianGrid stroke="#ccc" />
               <XAxis dataKey="name" />
