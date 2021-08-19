@@ -8,6 +8,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import  './sneaxDetails.css'
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
+import { getList } from '../../store/watchlist'
 
 function SneaxDetails() {
   const [user, setUser] = useState({});
@@ -28,6 +29,10 @@ function SneaxDetails() {
 
   const history = useHistory()
 
+  const [showList, setShowList] = useState(false)
+  const [listOption, setListOption] = useState('')
+
+  const watchlists = Object.values(useSelector(state => state.watchlist))
 
   const numShares = shares?.map(share => share.user_id === sessionUser.id)
 
@@ -56,6 +61,7 @@ function SneaxDetails() {
       dispatch(allSneax())
       dispatch(getShares())
       setWallet(currentwallet)
+      dispatch(getList())
     if (!userId) {
       return;
     }
@@ -103,12 +109,18 @@ function SneaxDetails() {
     }
   }
 
+  function showLists() {
+    setShowList(true)
+  }
+
+  function addToWatchList() {
+    
+  }
 
 
   return (
     <>
     <NavBar />
-    <div></div>
     <div className="sneax-detail-container">
       <div clasName='sneax-info-container'>
         <div className='sneax-info-box'>
@@ -135,31 +147,48 @@ function SneaxDetails() {
       <div className="shares-container">
         <div className='shares-form-container'>
           <div className='shares-buy-sell'>
-            <h2>Buy</h2>
+            <h2 className='buyh2'>Buy</h2>
           </div>
           <div className='shares-from'>
-            <div>
-              <label>Invest in
-              <input type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
+            <div >
+              <label><span className='investSpan'>Invest</span>
+              <input className='input' type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
               </label>
             </div>
             <div>
-              <label> Sneax
-                <input value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
+              <label> 
+                <input className='input' value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
               </label>
             </div>
           <div className='market-price'>
-            <p>Market Price </p>
-            <p>{sneaxId.market_price}</p>
+            <p>Market Price: ${sneaxId.market_price}</p>
           </div>
 
           </div>
-          <button onClick={handleBuy}>Purchase</button>
+      
+          <button className='purchase-btn' onClick={handleBuy}>Purchase</button>
+          
           <div className='buying-power'>
-            <p>Buying Power available: {sessionUser.wallet}</p>
+            <div>
+            <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
+            </div>
           </div>
+          
         </div>
+        <div className='addToListContainer'>
+          <button onClick={showLists} className='purchase-btn'>Add to Lists</button>
+          <div className='watchlist-items'>
+            
+          {showList ? <div><select> {watchlists?.map(watchlist => {
+                            return (
+                                <option value={listOption} onChange={(e) => setListOption(watchlist.id)} id={watchlist.id}>{watchlist.list_name}</option>
+                            )
+          })} </select> <button >add</button> </div> : '' }
+                </div>
+          </div>
       </div>
+      
+
       <div>
       
       </div>

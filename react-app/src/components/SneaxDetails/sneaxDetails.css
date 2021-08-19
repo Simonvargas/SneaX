@@ -70,7 +70,8 @@
 
 /* *************** Details******** */
 .sneax-about-container {
-    border-bottom: 1px solid #E3E9ED
+    border-top: 1px solid E3E9ED;
+    border-bottom: 2px solid #E3E9ED
 }
 
 .sneax-about-container h1 {
@@ -98,20 +99,114 @@
 /* ************ Shares ********** */
 .shares-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     width: auto;
     position: sticky;
+    height: 50%;
+    width: 64%;
 
 }
 
 .shares-form-container {
-    margin-left: 40px;
+    /* margin-left: -40px; */
     box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
     border-radius: 6px;
     padding: 30px;
     width: 270px;
-    height: 400px;
-    line-height: 20px;
+    height: 360px;
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    color: white;
+    position: absolute;
+    top: 80px;
+    /* left: 50px; */
 
+    
+}
 
+.buying-power {
+    position: absolute;
+    bottom: 0px;
+    border-top: 1px solid white;
+    width: 330px;
+    left: 0px;
+    text-align: center;
+}
+
+.purchase-btn {
+    border-radius: 4px;
+    border: 1px blue;
+    background: radial-gradient(900px 900px at top center, #5e5e5e, #2d3334, #262626);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 5px;
+    float: right;
+    width: 115px;
+    height: 50px;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+}
+
+.purchase-btn:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+}
+
+.purchase-btn:active {
+    box-shadow: 0 3px 0 #3f0d12;
+    top: 4px;
+}
+
+.input {
+    background-color: #eee;
+	border: none;
+	border-radius: 5px;
+	padding: 12px 15px;
+	margin: 8px 0;
+    float: right;
+}
+
+.market-price {
+    position: relative;
+    top: 30px;
+    left: -10px; 
+    width: 90px;
+    /* font-size: 20px; */
+    font-weight: bold;
+}
+
+.buyh2 {
+    text-align: center;
+    position: relative;
+    bottom: 15px;
+}
+
+.investSpan {
+    position: relative;
+    top: 15px;
+    left: -10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.list-button {
+    width: 100px;
+    /* height: 100px;  */
+}
+
+.addToListContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.watchlist-items {
+    
 }
