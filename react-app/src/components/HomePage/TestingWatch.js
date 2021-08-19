@@ -56,7 +56,7 @@ function TestingWatch () {
                             )
                 })}
                 </>
-        
+
         {watchState ?
         <div className="testing-container">
             <h2>List of Watchs</h2>
@@ -69,7 +69,7 @@ function TestingWatch () {
                               <div className='watch-items'>
                               <Link className='items-link' to={`/sneax/${sneaxs[i].id}`}>
                                 <div>
-                                <img src={sneaxs[i].image}></img> 
+                                <img src={sneaxs[i].image}></img>
                                 </div>
                                 {sneaxs[i].name}
                                 </Link>

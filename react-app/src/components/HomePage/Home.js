@@ -55,6 +55,7 @@ function Home() {
     dispatch(getList())
     setWallet(currentwallet)
 
+
     if (!userId) {
       return;
     }
@@ -236,7 +237,7 @@ function Home() {
       data.push({name: `${share?.sneax.brand_name}`, uv: `${share?.price_per_share}`, pv: 2400, amt:2400})
     })
   }
-
+  // dataPts()
 
   if (showGraph) {
     dataPts()
