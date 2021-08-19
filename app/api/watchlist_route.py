@@ -23,8 +23,10 @@ def get_watchlist():
 def add_watchlist():
     form = WatchlistForm()
     if form.validate_on_submit():
-        watchlist = Watchlist()
-        form.populate_obj(watchlist)
+        watchlist = Watchlist(
+            list_name = form.data['list_name'],
+            user_id = form.data['user_id']
+        )
         db.session.add(watchlist)
         db.session.commit()
         return watchlist.to_dict()
@@ -34,7 +36,7 @@ def add_watchlist():
 @watchlist_routes.route('/delete/<int:watchlist_id>', methods=['DELETE'])
 @login_required
 def delete_watchlist(watchlist_id):
-    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id).all()
+    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id)
     if watchlist:
         db.session.delete(watchlist)
         db.session.commit()
@@ -44,7 +46,7 @@ def delete_watchlist(watchlist_id):
 @watchlist_routes.route('/edit/<int:watchlist_id>', methods=['PUT'])
 @login_required
 def update_watchlist(watchlist_id):
-    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id).all()
+    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id)
     form = WatchlistForm()
     if form.validate_on_submit():
         form.populate_obj(watchlist)
