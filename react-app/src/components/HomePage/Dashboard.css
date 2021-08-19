@@ -1,3 +1,6 @@
+@import url('./graph.css');
+
+
 .sell_form_container {
     position: sticky;
     bottom: 100px;
@@ -6,3 +9,338 @@
     border: 1px solid black;
 }
 
+.sneax-dashboard-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    background-color: white;
+    margin-top: 35px;
+}
+
+/* ***************DASH BOARD INFO***************** */
+
+.sneax-dash-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* width: auto; */
+    height: 100vh;
+    margin-left: 300px;
+}
+
+.sneax-dash-info-box{
+    width: 800px;
+
+}
+
+.sneax-shares-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.sneax-graph {
+   width: 800px;
+   height: 500px;
+   border-bottom: 1px solid #E3E9ED;
+}
+
+.buying-power-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #E3E9ED;
+    padding: 10px;
+    margin-top: 10px;
+
+}
+
+.dash-buying-power {
+    font-family: 'Rubik', sans-serif;
+    color: grey;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.dash-wallet {
+    font-family: 'Rubik', sans-serif;
+    color: grey;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.random-dash {
+    margin-top: 70px;
+}
+
+.random-dash p{
+    width: 90%;
+    font-family: 'Rubik', sans-serif;
+    color: #8e9396;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+
+
+/********************8SHARES CONTAINER **********************/
+
+.sneax-link {
+    padding: 0;
+    margin: 0;
+}
+
+.sneax-shares-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    position: sticky;
+
+}
+
+.dash-shares-box{
+    margin-left: 40px;
+    box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
+    border-radius: 6px;
+    width: 340px;
+    height: 700px;
+    line-height: 20px;
+}
+
+.shares {
+    display: flex;
+    border-bottom: 1px solid #E3E9ED;
+    width: auto;
+    padding: 7px;
+
+}
+
+.shares h1{
+    font-weight: 500;
+    font-size: 17px;
+    font-family: 'Rubik', sans-serif;
+    margin-left: 20px;
+}
+
+.single-sneax-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    justify-content: space-between;
+    border-bottom: 1px solid #E3E9ED;
+    width: 100%;
+
+}
+
+.single-sneax-container:hover {
+    background-color: #f4f6f8;
+}
+
+.sneax-name-shares {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.share-sneax-name  {
+    margin-right: 12px;
+    width: 40%;
+}
+.share-sneax-name p {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    /* top, right, bottom , left */
+    padding: 0;
+
+}
+
+.sneax-price-total {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%
+}
+
+.sneax-price {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+.sneax-price p {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    /* top, right, bottom , left */
+    padding: 0;
+}
+
+.sneax-total {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+
+.sneax-total p {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%
+}
+
+.trade-bttn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.trade-bttn button {
+    border-radius: 10%;
+
+}
+
+
+/* ********* BUY SELL CANCEL BUTTONS ********************* */
+
+
+/* .sell_form_container {
+    position: sticky;
+    bottom: 100px;
+    margin: 0 auto;
+    width: 400px;
+    border: 1px solid black;
+} */
+
+.buy-sell-bttn-container {
+    width: 100%;
+    height: auto;
+}
+
+.buy-sell-bttns-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 50px;
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+
+.shares-buy-bttn {
+    margin-right: 20px;
+}
+
+.shares-buy-bttn button{
+    width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+    padding: 12px;
+
+}
+
+.shares-buy-bttn button:hover{
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+.shares-sell-bttn {
+    margin-right: 20px;
+}
+
+.shares-sell-bttn button{
+    width: 100%;
+    height: 100%;
+    margin-right: 40px;
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+
+
+
+}
+
+.shares-sell-bttn button:hover{
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+.shares-cancel-bttn button{
+    width: 100%;
+    height: 100%;
+    margin-right: 40px;
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.shares-cancel-bttn button:hover{
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+
+/* ********* BUY SELL FORMS ********************* */
+
+
+.shares-form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+
+}
+
+.shares-form {
+    background-color: white;
+}
+
+.form-divs {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}

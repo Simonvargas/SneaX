@@ -9,7 +9,6 @@ from app.forms import WatchForm
 watch_routes = Blueprint('watchs', __name__)
 
 @watch_routes.route('/')
-@login_required
 def watchs():
     # nest sneaxs in watchs to get the Sneaxs.name
     # sneaxs = Sneax.query.order_by(Sneax.name).options(joinedload(Sneax.watchs)).all()

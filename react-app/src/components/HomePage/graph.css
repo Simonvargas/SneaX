@@ -1,0 +1,19 @@
+.line-chart-container {
+    width: 350px;
+    height: 250px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.line-chart-graph {
+    list-style: none;
+}
+
+.graph-data {
+    background-color: rgb(194, 188, 188);
+    border: 5px solid blue;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    position: relative;
+}

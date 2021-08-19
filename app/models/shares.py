@@ -14,7 +14,7 @@ class Share(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     users = db.relationship('User', back_populates='share')
-    sneaker = db.relationship('Sneax')
+    sneaker = db.relationship('Sneax', back_populates="shares")
 
 
     def to_dict(self):

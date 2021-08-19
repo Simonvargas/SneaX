@@ -1,4 +1,4 @@
-// action verbs 
+// action verbs
 const ADD_LIST = 'watchlist/ADD_LIST';
 const LOAD_LIST = 'watchlist/LOAD_LIST';
 const UPDATE_LIST = 'watchlist/UPDATE_LIST';
@@ -31,7 +31,7 @@ const deleteList = (listId) => ({
 
 
 
-// thunk 
+// thunk
 
 export const createList = (list_name, user_id) => async (dispatch) => {
     const res = await fetch(`/api/watchlist/add`, {
@@ -50,7 +50,7 @@ export const getList = () => async (dispatch) => {
     const list= await res.json();
     dispatch(loadList(list));
     return list;
-} 
+}
 
 export const editList = (list_name, user_id, id) => async (dispatch) => {
     const response = await fetch(`/api/watchlist/edit/${id}`, {
@@ -83,11 +83,10 @@ const watchlistReducer = (state = initialState, action) => {
     switch ( action.type ) {
         case ADD_LIST:
             return {
-                ...state, 
+                ...state,
                 [action.list.id]: action.list
             }
         case LOAD_LIST:
-            console.log("THIS IS ACTIOON", action)
             const all = {...state};
             action.list.watchlist.forEach((oneList) => {
                 all[oneList.id] = oneList;
@@ -95,7 +94,7 @@ const watchlistReducer = (state = initialState, action) => {
             return all
         case UPDATE_LIST:
             return {
-                ...state, 
+                ...state,
                 [action.list.id]: action.list
             }
         case DELETE_LIST:{
