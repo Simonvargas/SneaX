@@ -35,18 +35,21 @@ const removeWatch = (watch) => {
 
 
 
-// Thunks 
-export const addOneWatch = (payload) => async(dispatch) => {
+// Thunks
+export const addOneWatch = (watchlist_id, sneax_id) => async(dispatch) => {
     const res = await fetch('/api/watch/add', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+            watchlist_id,
+            sneax_id
+        }),
     })
     if(!res.ok) throw res
     const watch = await res.json();
     dispatch(addWatch(watch));
     return watch;
-    
+
 }
 
 
@@ -69,16 +72,13 @@ export const getOneWatch = (id) => async(dispatch) => {
 export const removeOneWatch = (id) => async(dispatch) => {
     const res = await fetch(`/api/watch/delete/${id}`, {
         method: 'DELETE',
-        body: JSON.stringify({id}),
     });
-    if(!res.ok) throw res;
-    const watch = await res.json();
-    dispatch(removeWatch(watch));
-    return watch;
+    dispatch(removeWatch(res));
+    return res;
 
 }
 
-// reducer  
+// reducer
 
 const initialState = {}
 
@@ -100,10 +100,10 @@ const watchReducer = (state = initialState, action) => {
             delete newState[action.watch];
             return newState;
         }
-    default: 
+    default:
         return state;
     }
-   
-} 
+
+}
 
 export default watchReducer;

@@ -13,6 +13,7 @@ import Home from './components/HomePage/Home'
 import SneaxDetails from './components/SneaxDetails/SneaxDetails';
 import TestingWatch from './components/HomePage/TestingWatch';
 
+
 function App() {
   const sessionUser = useSelector(state => state.session.user)
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,7 @@ function App() {
         <Route path='/testingWatch' exact={true}>
           <TestingWatch/>
         </Route>
+
       </Switch>
     </BrowserRouter>
   );

@@ -25,7 +25,7 @@ const update = (share) => ({
     share
 })
 
-const remove = (id) => ({
+const remove = () => ({
     type: REMOVE_SHARE
 })
 
@@ -64,7 +64,7 @@ export const purchase = (price_per_share, purchaseShares, id) => async dispatch 
 
 export const updateShare = (price_per_share, purchaseShares, id) => async dispatch => {
     const res = await fetch(`/api/shares/users/${id}`, {
-        method: "POST",
+        method: "PUT",
         headers: {"Content-Type": 'application/json'},
         body: JSON.stringify({
             price_per_share,
@@ -90,23 +90,6 @@ const initialState = {}
 const sharesReducer = (state = initialState, action, id) => {
     switch (action.type) {
         case LOAD:
-            // if (state) {
-            //     state = null
-            //     const all = {
-            //         ...state
-            //     }
-            //     all["total"] = []
-            //     all["shares"] = {}
-            //     if (action.shares.shares) {
-            //         action.shares.shares.forEach((share) => {
-            //             all[share.id] = share;
-            //             all['total'].push(share.sneax_id)
-            //         });
-
-            //     }
-            //     return all;
-            // }
-            case LOAD:
             if (state) {
                 state = null
                 const all = {
@@ -115,13 +98,9 @@ const sharesReducer = (state = initialState, action, id) => {
                 all["total"] = []
                 if (action.shares.shares) {
                     action.shares.shares.forEach((share) => {
-                        action.shares.sneax.forEach((sneaker) => {
-                            if (share.sneax_id === sneaker.id) {
-                                all[share.id] = {...share, sneax: {...sneaker} }
-                                all['total'].push(share.sneax_id)
-                        }
-                    })
-                });
+                        all[share.id] = share;
+                        all['total'].push(share.sneax_id)
+                    });
 
                 }
                 return all;
