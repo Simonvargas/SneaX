@@ -179,7 +179,7 @@ function Home() {
 
   if (openBuy) {
     shareContent = (
-      <div className='shares-form-container'>
+      <div className='dash-shares-form-container'>
             <form className='shares-form' onSubmit={(e) => tradeSubmit(e)} >
               <div className='form-divs'>
               <label> Number Of Shares</label>
@@ -215,13 +215,16 @@ function Home() {
     )
   } else if (openSell) {
     shareContent = (
-      <div className='shares-form-container'>
-      <form onSubmit={(e) => tradeSell(e)}>
-        <label> number
-          <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
-        </label>
-        <button type='submit'>Sell</button>
-      </form>
+      <div className='dash-shares-form-container'>
+        <form className='shares-form' onSubmit={(e) => tradeSell(e)}>
+          <div className='form-divs'>
+            <label> Number Of Purchased Shares</label>
+            <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
+          </div>
+          <div className='form-divs'>
+            <button type='submit'>Sell</button>
+          </div>
+        </form>
       {/* <button onClick={(e) => handleSell(e)}>Sell</button> */} {/* this deletes */}
     </div>
     )
@@ -248,14 +251,6 @@ function Home() {
   if (showGraph) {
     graphContent = (
       <>
-
-            {/* <ul className='line-chart-graph'>
-              {sneaxs?.map((sneaker, index) => (
-                <li>
-                  <div className='graph-data' style={{top: (sneaker.market_price)/1000, right: (index * -50) }} data-value={`${sneaker.market_price}`}></div>
-                </li>
-              ))}
-            </ul> */}
             <LineChart width={800} height={450} data={data}>
               <Line type='monotone' dataKey='uv' stroke='#000000' />
               <CartesianGrid stroke="#ccc" />
@@ -309,40 +304,8 @@ function Home() {
   if (sessionUser) {
     main = (
       <>
-      <NavBar/>
-{/* <<<<<<< HEAD
-      <div>
-      <h2>Shares</h2>
-        {shares?.map(share => {
-                if (Number(share.sneax_id)) {
-                  return (
-                  <ul>
-                    <li>
-                      <strong>Sneax name: {share.sneax.name}</strong>
-                    </li>
-                    <li>
-                      <strong>Price: $ {share.price_per_share}</strong>
-                    </li>
-                    <li>
-                      <strong>quantity of shares: {share.number_of_shares}</strong>
-                    </li>
-                    <li>
-                      <strong>total position: ${share.number_of_shares * share.price_per_share}</strong>
-                    </li>
-                    <button
-                      onClick={() => (reset(), setShowEdit(false), setShowTrade(!showTrade), setSellId(share.sneax_id), setSellQty(share.number_of_shares), setTotalPosition(share.number_of_shares * share.price_per_share), setShareQty(share.number_of_shares), setSharePrice(share.price_per_share), setShareId(share.id))}
-                    >trade</button>
-                    <div hidden="true">
-                      {totalAccount += (share.number_of_shares * share.price_per_share)}.
-                    </div>
-                  </ul>
-        )}})}
-        <TestingWatch />
-        <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
-        {graphContent} */}
-{/* ======= */}
+      <NavBar />
       <div className="sneax-dashboard-container">
-
         <div className= 'sneax-shares-container'>
           <div className='dash-shares-container'>
             <div className='dash-shares-box'>
@@ -352,17 +315,28 @@ function Home() {
                 {shares?.map(share => {
                         if (Number(share.sneax_id)) {
                           return (
-                              <div className='single-sneax-container'>
+                              <div >
                                 <Link className="sneax-link" style={{ textDecoration: 'none' , color: 'black'}} to={`/sneax/${share.sneax_id}`}>
-                                  <div className='sneax-name-shares'>
-                                    <div className='share-sneax-name'><p>{share.sneax.name}</p></div>
-                                    <div className='sneax-shares-price'><p>$ {share.price_per_share}</p></div>
-                                  </div>
-                                  <div className='sneax-price-total'>
-                                  <div className='sneax-price'><p>{share.number_of_shares} Shares</p></div>
-                                  <div className='sneax-total'><p>Total Position: ${share.number_of_shares * share.price_per_share}</p></div>
+                                  <div className='single-sneax-container'>
+                                    <div className='sneax-name-shares'>
+                                      <div className='dash-sneax-info'>
+                                        <p>{share.sneax.name}</p>
+                                      </div>
+                                      <div className='dash-sneax-info'>
+                                        <p>$ {share.price_per_share}</p>
+                                      </div>
+                                    </div>
+                                    <div className='sneax-name-shares'>
+                                      <div className='dash-sneax-info'>
+                                        <p>{share.number_of_shares} Shares</p>
+                                      </div>
+                                      <div className='dash-sneax-info'>
+                                        <p>Total Position: ${share.number_of_shares * share.price_per_share}</p>
+                                      </div>
+                                    </div>
                                   </div>
                                 </Link>
+
                                 <div className='trade-bttn'>
                                   <button onClick={() => (
                                       reset(),
@@ -376,6 +350,7 @@ function Home() {
                                       setShareId(share.id))}>Trade
                                   </button>
                                 </div>
+
                                 <div hidden="true">
                                   {totalAccount += (share.number_of_shares * share.price_per_share)}.
                                 </div>
