@@ -146,6 +146,7 @@ function SneaxDetails() {
       </div>
       <div className="shares-container">
         <div className='shares-form-container'>
+        <div className='shares-box'>
           <div className='shares-buy-sell'>
             <h2 className='buyh2'>Buy</h2>
           </div>
@@ -167,7 +168,7 @@ function SneaxDetails() {
           </div>
       
           <button className='purchase-btn' onClick={handleBuy}>Purchase</button>
-          
+          </div>
           <div className='buying-power'>
             <div>
             <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
