@@ -39,10 +39,10 @@ function TestingWatch () {
     }, [dispatch, sessionUser.id]);
 
     async function deleteWatch(e){
-      await dispatch(removeOneWatch(Number(item)))
-      // history.go(0)
+      await dispatch(removeOneWatch(Number(e.target.id)))
+      history.go(0)
     }
-
+    console.log(item)
     return (
         <>
         <div className='watchlist-container'>
@@ -73,7 +73,7 @@ function TestingWatch () {
                                 </div>
                                 {sneaxs[i].name}
                                 </Link>
-                                <button onClick={() => deleteWatch()} id={watch.id} className='delete-btn-watch'>Delete</button>
+                                <button onClick={deleteWatch} id={watch.id} className='delete-btn-watch'>Delete</button>
                                 </div>
                               </>
                             )
