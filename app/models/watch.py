@@ -10,7 +10,8 @@ class Watch(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
-    listwatch = db.relationship('Watchlist', back_populates='watch', cascade="all, delete-orphan")
+    listwatch = db.relationship('Watchlist', back_populates='watch' )
+
     sneaker = db.relationship('Sneax')
 
 

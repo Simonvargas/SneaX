@@ -46,7 +46,7 @@ def share(id):
         return share.to_dict()
 
 
-@share_routes.route('/users/<int:id>', methods=['POST'])
+@share_routes.route('/users/<int:id>', methods=['PUT'])
 @login_required
 def update(id):
     share = Share.query.get(id)

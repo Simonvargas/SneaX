@@ -118,7 +118,7 @@ function CrudTesting() {
   const handleSell = async () => {
     await dispatch(editList("Watchlist TEST", 1, 1))
     alert("remove went through")
- 
+
   }
 
     const addWatch = async (e) => {
@@ -154,7 +154,7 @@ function CrudTesting() {
 
   // this is the remove function
   const removeWatch = async () => {
-    await dispatch(removeOneWatch(1))
+    await dispatch(removeList(1))
   }
 
   if (showEdit) {

@@ -64,7 +64,7 @@ export const purchase = (price_per_share, purchaseShares, id) => async dispatch 
 
 export const updateShare = (price_per_share, purchaseShares, id) => async dispatch => {
     const res = await fetch(`/api/shares/users/${id}`, {
-        method: "POST",
+        method: "PUT",
         headers: {"Content-Type": 'application/json'},
         body: JSON.stringify({
             price_per_share,
