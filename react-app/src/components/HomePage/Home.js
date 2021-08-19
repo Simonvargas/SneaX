@@ -233,12 +233,13 @@ function Home() {
     let test = shares
     test.pop()
     test?.map((share, index) => {
-      data.push({name: `${share.sneax.brand_name}`, uv: `${share.price_per_share}`, pv: 2400, amt:2400})
+      data.push({name: `${share?.sneax.brand_name}`, uv: `${share?.price_per_share}`, pv: 2400, amt:2400})
     })
   }
-  dataPts()
+
 
   if (showGraph) {
+    dataPts()
     graphContent = (
       <>
             <LineChart width={800} height={450} data={data}>
