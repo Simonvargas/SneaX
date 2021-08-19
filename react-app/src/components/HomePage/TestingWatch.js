@@ -23,6 +23,8 @@ function TestingWatch () {
     const [watchState, setWatchstate] = useState(false)
     const [watchNumber, setWatchNumber] = useState(0)
     const [item, setDeleteItem] = useState(0)
+    const [createList, setCreateList] = useState(false)
+    const [updateList, setUpdateList] = useState(false)
 
     const history = useHistory()
     function userWatchList(e) {
@@ -30,7 +32,14 @@ function TestingWatch () {
         setWatchstate(true)
     }
 
-
+    function createAList() {
+      setUpdateList(false)
+      setCreateList(true)
+    }
+    function updateAList() {
+      setCreateList(false)
+      setUpdateList(true)
+    }
 
     useEffect(() => {
         dispatch(allSneax());
@@ -47,7 +56,25 @@ function TestingWatch () {
         <>
         <div className='watchlist-container'>
             <h2>Watchlists</h2>
+            <div className='watchlist-add-edit'>
+            <button onClick={createAList}>Create WatchList</button>
+            <button onClick={updateAList}>Update WatchList</button>
+            
+            {createList? <div><input placeholder='List name'></input><button>Create</button></div> : ''}
+            {updateList? <div>
+              
+              <div><select> {watchlists?.map(watchlist => {
+                            return (
+                                <option  id={watchlist.id{watchlist.list_name}</option>
+                            )
+          })} </select> 
+          <input placeholder='New name'></input>
+          <button >add</button> </div>
+              </div> : ''}
+
+            </div>
             <>
+            <div className='testing-btns2'>
             {watchlists?.map(watchlist => {
                             return (
                                 <>
@@ -55,6 +82,7 @@ function TestingWatch () {
                               </>
                             )
                 })}
+                </div>
                 </>
         
         {watchState ?
