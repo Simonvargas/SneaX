@@ -25,7 +25,7 @@ const update = (share) => ({
     share
 })
 
-const remove = (id) => ({
+const remove = () => ({
     type: REMOVE_SHARE
 })
 

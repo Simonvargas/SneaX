@@ -10,7 +10,7 @@ import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
 import { getList } from '../../store/watchlist'
 import TestingWatch from './TestingWatch';
-import { getWatchs, addOneWatch } from '../../store/watch';
+import { getWatchs, addOneWatch, removeOneWatch } from '../../store/watch';
 
 import './Dashboard.css'
 import NavBar from '../Navigation/NavBar';
@@ -154,6 +154,10 @@ function CrudTesting() {
     }
   }
 
+  const removeWatch = async () => {
+    await dispatch(removeOneWatch(1))
+  }
+
   if (showEdit) {
     content = (
         <>
@@ -223,10 +227,10 @@ function CrudTesting() {
     shareContent = (
           <>
       <form onSubmit={(e) => addWatch(e)}>
-        
+
         <button type='submit'>Add to Watchlist</button>
       </form>
-      {/* <button onClick={(e) => handleSell(e)}>Sell</button> */} {/* this deletes */}
+      <button onClick={() => removeWatch()}>remove</button> {/* this deletes */}
     </>
     )
   }
