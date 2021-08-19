@@ -6,3 +6,191 @@
     border: 1px solid black;
 }
 
+.sneax-dashboard-container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    background-color: white;
+    margin-top: 35px;
+}
+
+/* ***************DASH BOARD INFO***************** */
+
+.sneax-dash-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* width: auto; */
+    height: 100vh;
+    margin-left: 300px;
+}
+
+.sneax-dash-info-box{
+    width: 800px;
+
+}
+
+.sneax-shares-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.sneax-graph {
+   width: 800px;
+   height: 500px;
+   border-bottom: 1px solid #E3E9ED;
+}
+
+.buying-power-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #E3E9ED;
+    padding: 10px;
+    margin-top: 10px;
+
+}
+
+.dash-buying-power {
+    font-family: 'Rubik', sans-serif;
+    color: grey;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.dash-wallet {
+    font-family: 'Rubik', sans-serif;
+    color: grey;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.random-dash {
+    margin-top: 70px;
+}
+
+.random-dash p{
+    width: 90%;
+    font-family: 'Rubik', sans-serif;
+    color: #8e9396;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+
+
+/********************8SHARES CONTAINER **********************/
+
+.sneax-link {
+    padding: 0;
+    margin: 0;
+}
+
+.sneax-shares-container {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    position: sticky;
+
+}
+
+.dash-shares-box{
+    margin-left: 40px;
+    box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
+    border-radius: 6px;
+    width: 340px;
+    height: 700px;
+    line-height: 20px;
+}
+
+.shares {
+    display: flex;
+    border-bottom: 1px solid #E3E9ED;
+    width: auto;
+    padding: 7px;
+
+}
+
+.shares h1{
+    font-weight: 500;
+    font-size: 17px;
+    font-family: 'Rubik', sans-serif;
+    margin-left: 20px;
+}
+
+.single-sneax-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-end; */
+    justify-content: space-between;
+    border-bottom: 1px solid #E3E9ED;
+    width: 100%;
+
+}
+
+.single-sneax-container:hover {
+    background-color: #f4f6f8;
+}
+
+.sneax-name-shares {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.share-sneax-name  {
+    margin-right: 12px;
+    width: 40%;
+}
+.share-sneax-name p {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    /* top, right, bottom , left */
+    padding: 0;
+
+}
+
+.sneax-price-total {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%
+}
+
+.sneax-price {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+.sneax-price p {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    /* top, right, bottom , left */
+    padding: 0;
+}
+
+.sneax-total {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
+
+.sneax-total p {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%
+}
+
+.trade-bttn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.trade-bttn button {
+    border-radius: 10%;
+
+}
