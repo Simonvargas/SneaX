@@ -154,6 +154,7 @@ function CrudTesting() {
     }
   }
 
+  // this is the remove function
   const removeWatch = async () => {
     await dispatch(removeOneWatch(1))
   }
