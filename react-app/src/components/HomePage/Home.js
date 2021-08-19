@@ -248,7 +248,7 @@ function Home() {
     content = (
         <div className='sell_form_container'>
 
-              {/* <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> toggle button fuction as according to available position */}
+              <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy more</button> 
               <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
               <button onClick={() => handleCancel()}>Cancel</button>
               {shareContent}
