@@ -38,6 +38,7 @@ function Home() {
   const [ wallet, setWallet ] = useState('')
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
+  const [ showGraph, setShowGraph ] = useState(false)
 
 
   useEffect(() => {
@@ -234,6 +235,25 @@ function Home() {
     )
   }
 
+  let graphContent = null
+
+
+  if (showGraph) {
+    graphContent = (
+      <>
+        <figure className='line-chart-container' >
+            <ul className='line-chart-graph'>
+              {sneaxs?.map((sneaker, index) => (
+                <li>
+                  <div className='graph-data' style={{top: (sneaker.market_price)/1000, right: (index * -50) }} data-value={`${sneaker.market_price}`}></div>
+                </li>
+              ))}
+            </ul>
+        </figure>
+      </>
+    )
+  }
+
   function handleCancel() {
     if (openBuy || openSell) {
       setOpenBuy(false)
@@ -287,6 +307,8 @@ function Home() {
                   </ul>
         )}})}
         <TestingWatch />
+        <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
+        {graphContent}
       </div>
 
       {

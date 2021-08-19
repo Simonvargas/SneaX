@@ -1,3 +1,6 @@
+@import url('./graph.css');
+
+
 .sell_form_container {
     position: sticky;
     bottom: 100px;
@@ -5,4 +8,3 @@
     width: 400px;
     border: 1px solid black;
 }
-
