@@ -379,7 +379,7 @@ function Home() {
                 {graphContent}
               </div>
               <div className='buying-power-container'>
-                <div><h1 className='dash-buying-power'>Buy Power</h1></div>
+                <div><h1 className='dash-buying-power'>Buying Power</h1></div>
                 <div><h1 className='dash-wallet'>$ {wallet}</h1></div>
               </div>
               <div className='random-dash'>
