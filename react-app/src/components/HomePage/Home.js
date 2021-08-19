@@ -174,31 +174,43 @@ function Home() {
 
   if (openBuy) {
     shareContent = (
-      <>
-            <form
-              onSubmit={(e) => tradeSubmit(e)} className='sell_form_mod'>
-              <label> number of shares
-                <input type='number' value={sellQty} onChange={null}/>
-              </label>
-              <label> Sneax Id
-                <input type='number' value={sellId} onChange={null} />
-              </label>
-              <label> total position
-                <input type='number' value={totalPosition} onChange={null} />
-              </label>
+      <div className='shares-form-container'>
+            <form className='shares-form' onSubmit={(e) => tradeSubmit(e)} >
+              <div className='form-divs'>
+              <label> Number Of Shares</label>
+              <input type='number' value={sellQty} onChange={null}/>
+              </div>
+
+              <div className='form-divs'>
+              <label> Sneax Id</label>
+              <input type='number' value={sellId} onChange={null} />
+              </div>
+
+              <div className='form-divs'>
+              <label> Total Position </label>
+              <input type='number' value={totalPosition} onChange={null} />
+              </div>
+{/*
+              <div>
               <label> number of shares
                 <input type='number' value={shareQty} onChange={null} />
               </label>
-              <label> number
-                <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
-              </label>
-              <button type='submit'>Purchase</button>
+              </div> */}
+
+              <div className='form-divs'>
+              <label> Number</label>
+              <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
+              </div  >
+
+              <div className='form-divs'>
+                <button type='submit'>Purchase</button>
+              </div>
             </form>
-    </>
+    </div>
     )
   } else if (openSell) {
     shareContent = (
-          <>
+      <div className='shares-form-container'>
       <form onSubmit={(e) => tradeSell(e)}>
         <label> number
           <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
@@ -206,7 +218,7 @@ function Home() {
         <button type='submit'>Sell</button>
       </form>
       {/* <button onClick={(e) => handleSell(e)}>Sell</button> */} {/* this deletes */}
-    </>
+    </div>
     )
   }
 
@@ -223,11 +235,24 @@ function Home() {
   if (showTrade) {
     content = (
         <div className='sell_form_container'>
-
-              <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy more</button>
-              <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
-              <button onClick={() => handleCancel()}>Cancel</button>
+          {showModal && (
+            <Modal>
+              <div className='buy-sell-bttn-container'>
+                <div className='buy-sell-bttns-box'>
+                  <div className='shares-buy-bttn'>
+                    <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy more</button>
+                  </div>
+                  <div className='shares-sell-bttn'>
+                    <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
+                  </div>
+                  <div className='shares-cancel-bttn'>
+                    <button onClick={() => handleCancel()}>Cancel</button>
+                  </div>
+                </div>
+              </div>
               {shareContent}
+            </Modal>
+          )}
         </div>
     )
   }
@@ -261,6 +286,7 @@ function Home() {
                                 <div className='trade-bttn'>
                                   <button onClick={() => (
                                       reset(),
+                                      setShowModal(true),
                                       setShowEdit(false),
                                       setShowTrade(!showTrade),
                                       setSellId(share.sneax_id),
