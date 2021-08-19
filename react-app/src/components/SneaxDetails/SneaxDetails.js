@@ -8,6 +8,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import  './sneaxDetails.css'
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
+import * as watchAction from '../../store/watch';
 import { getList } from '../../store/watchlist'
 
 function SneaxDetails() {
@@ -26,6 +27,7 @@ function SneaxDetails() {
   const [ sneakId, setSneakId ] = useState('')
   const [ wallet, setWallet ] = useState('')
   const [ purchaseShares, setPurchaseShares ] = useState(0)
+  const [watchlist, setWatchList ] = useState([])
 
   const history = useHistory()
 
@@ -33,10 +35,10 @@ function SneaxDetails() {
   const [listOption, setListOption] = useState('')
 
   const watchlists = Object.values(useSelector(state => state.watchlist))
+  const watching = Object.values(useSelector(state => state.watch))
 
   const numShares = shares?.map(share => share.user_id === sessionUser.id)
 
-  console.log(numShares)
   useEffect(() => {
     (async function(){
       const res = await fetch(`/api/sneax/${id}`)
@@ -82,7 +84,7 @@ function SneaxDetails() {
     currentwallet = current[0].wallet
   }
   let posted;
-  
+
   const handleBuy = async (e) => {
     e.preventDefault()
 
@@ -113,8 +115,19 @@ function SneaxDetails() {
     setShowList(true)
   }
 
-  function addToWatchList() {
-    
+  function addToWatchList(e) {
+    e.preventDefault();
+    watching.map(watch => {
+      watchlist.push( watch.sneax_id )
+    })
+    console.log(sneaxId.id)
+    console.log(watchlist)
+    if (!watchlist.includes(sneaxId.id)) {
+      dispatch(watchAction.addOneWatch(watchlists[0].id, sneaxId.id))
+      // setWatchBool(false)
+      window.alert('added to watchlist!')
+    }
+    setWatchList([])
   }
 
 
@@ -156,7 +169,7 @@ function SneaxDetails() {
               </label>
             </div>
             <div>
-              <label> 
+              <label>
                 <input className='input' value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
               </label>
             </div>
@@ -165,32 +178,32 @@ function SneaxDetails() {
           </div>
 
           </div>
-      
+
           <button className='purchase-btn' onClick={handleBuy}>Purchase</button>
-          
+
           <div className='buying-power'>
             <div>
             <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
             </div>
           </div>
-          
+
         </div>
         <div className='addToListContainer'>
           <button onClick={showLists} className='purchase-btn'>Add to Lists</button>
           <div className='watchlist-items'>
-            
+
           {showList ? <div><select> {watchlists?.map(watchlist => {
                             return (
                                 <option value={listOption} onChange={(e) => setListOption(watchlist.id)} id={watchlist.id}>{watchlist.list_name}</option>
                             )
-          })} </select> <button >add</button> </div> : '' }
+          })} </select> <button onClick={(e) => addToWatchList(e)}>add</button> </div> : '' }
                 </div>
           </div>
       </div>
-      
+
 
       <div>
-      
+
       </div>
 
     </div>

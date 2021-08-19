@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
 import { getWatchs } from '../../store/watch';
-// import { getList } from '../../store/watchlist';
+import { getList } from '../../store/watchlist';
 import NavBar from '../Navigation/NavBar';
 
 import "./Dashboard.css";
