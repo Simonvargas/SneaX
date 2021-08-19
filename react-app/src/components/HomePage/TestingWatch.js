@@ -65,7 +65,7 @@ function TestingWatch () {
               
               <div><select> {watchlists?.map(watchlist => {
                             return (
-                                <option  id={watchlist.id{watchlist.list_name}</option>
+                                <option  id={watchlist.id}>{watchlist.list_name}</option>
                             )
           })} </select> 
           <input placeholder='New name'></input>
