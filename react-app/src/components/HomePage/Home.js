@@ -394,6 +394,7 @@ function Home() {
               </div>
               <div className='sneax-graph'>
                 <h1>PUT GRAPH HERE</h1>
+                {graphContent}
               </div>
               <div className='buying-power-container'>
                 <div><h1 className='dash-buying-power'>Buy Power</h1></div>
