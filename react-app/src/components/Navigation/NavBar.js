@@ -90,7 +90,7 @@ const NavBar = () => {
               </div>
       </div>
     </nav> }
-    {sessionUser ?
+    {/* {sessionUser ?
     <div className='searchfield'>
       {kicks.map(sneaker => (
         <div className='searchfield-container'>
@@ -100,7 +100,7 @@ const NavBar = () => {
             </Link>
           </ul>
         </div>
-      ))}
+      ))} */}
       {/* {kicks.map(sneaker => (
         <div className='searchfield-container'>
           <ul>
@@ -110,8 +110,8 @@ const NavBar = () => {
           </ul>
         </div>
       ))} */}
-    </div>
-    : null}
+    {/* </div>
+    : null} */}
     </div>
   );
 }

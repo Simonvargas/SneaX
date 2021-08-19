@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link , useHistory} from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
 import { useDispatch, useSelector} from 'react-redux';
 // import styles from './sneaxId.module.css'
 import  './sneaxDetails.css'
+import * as sessionAction from '../../store/session';
+import * as shareAction from '../../store/shares';
+import { getList } from '../../store/watchlist'
 
 function SneaxDetails() {
   const [user, setUser] = useState({});
@@ -18,6 +21,18 @@ function SneaxDetails() {
   const dispatch = useDispatch()
   const [buy, setBuy] = useState(true)
   const [sell, setSell] = useState(false)
+  const current = useSelector((state) => Object.values(state.session))
+  const [ totalPosition, setTotalPosition ] = useState('')
+  const [ sneakId, setSneakId ] = useState('')
+  const [ wallet, setWallet ] = useState('')
+  const [ purchaseShares, setPurchaseShares ] = useState(0)
+
+  const history = useHistory()
+
+  const [showList, setShowList] = useState(false)
+  const [listOption, setListOption] = useState('')
+
+  const watchlists = Object.values(useSelector(state => state.watchlist))
 
   const numShares = shares?.map(share => share.user_id === sessionUser.id)
 
@@ -45,6 +60,8 @@ function SneaxDetails() {
   useEffect(() => {
       dispatch(allSneax())
       dispatch(getShares())
+      setWallet(currentwallet)
+      dispatch(getList())
     if (!userId) {
       return;
     }
@@ -60,11 +77,50 @@ function SneaxDetails() {
     return null;
   }
 
+  let currentwallet = 0
+  if (current[0]) {
+    currentwallet = current[0].wallet
+  }
+  let posted;
+  
+  const handleBuy = async (e) => {
+    e.preventDefault()
+
+    if (current[0].wallet > totalPosition) {
+      if (shares[shares.length -1].includes(sneaxId.id) ) {
+        window.alert('Sneax owner, please edit through dashboard')
+        window.alert('Purchase canceled')
+
+        // console.log("=========================================",sharePrice)
+        // console.log("=========================================",sellQty)
+        // console.log("=========================================",purchaseShares)
+        // posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sneakId))
+        // await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
+        // window.alert("change complete")
+      }
+      else {
+        posted = await dispatch(shareAction.purchase(sneaxId.market_price, purchaseShares, sneaxId.id))
+        await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sneaxId.market_price), current[0].id))
+        alert("purchase went through")
+        history.go(0)
+      }
+    } else {
+      alert("you too broke")
+    }
+  }
+
+  function showLists() {
+    setShowList(true)
+  }
+
+  function addToWatchList() {
+    
+  }
+
 
   return (
     <>
     <NavBar />
-    <div></div>
     <div className="sneax-detail-container">
       <div clasName='sneax-info-container'>
         <div className='sneax-info-box'>
@@ -91,31 +147,48 @@ function SneaxDetails() {
       <div className="shares-container">
         <div className='shares-form-container'>
           <div className='shares-buy-sell'>
-            <h2>Buy</h2>
+            <h2 className='buyh2'>Buy</h2>
           </div>
           <div className='shares-from'>
-            <div>
-              <label>Invest in
-              <input type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
+            <div >
+              <label><span className='investSpan'>Invest</span>
+              <input className='input' type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
               </label>
             </div>
             <div>
-              <label> Sneax
-                <input type='number'></input>
+              <label> 
+                <input className='input' value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
               </label>
             </div>
           <div className='market-price'>
-            <p>Market Price </p>
-            <p>{sneaxId.market_price}</p>
+            <p>Market Price: ${sneaxId.market_price}</p>
           </div>
 
           </div>
-          <button>Purchase</button>
+      
+          <button className='purchase-btn' onClick={handleBuy}>Purchase</button>
+          
           <div className='buying-power'>
-            <p>Buying Power available: {sessionUser.wallet}</p>
+            <div>
+            <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
+            </div>
           </div>
+          
         </div>
+        <div className='addToListContainer'>
+          <button onClick={showLists} className='purchase-btn'>Add to Lists</button>
+          <div className='watchlist-items'>
+            
+          {showList ? <div><select> {watchlists?.map(watchlist => {
+                            return (
+                                <option value={listOption} onChange={(e) => setListOption(watchlist.id)} id={watchlist.id}>{watchlist.list_name}</option>
+                            )
+          })} </select> <button >add</button> </div> : '' }
+                </div>
+          </div>
       </div>
+      
+
       <div>
       
       </div>
