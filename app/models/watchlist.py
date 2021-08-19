@@ -1,5 +1,5 @@
 from .db import db
-from sqlalchemy.sql import func
+from sqlalchemy.sql import func, backref
 
 class Watchlist(db.Model):
     __tablename__ = 'watchlists'
@@ -11,7 +11,7 @@ class Watchlist(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     user = db.relationship('User', back_populates='watchlist')
-    watch = db.relationship('Watch', back_populates='listwatch')
+    watch = db.relationship('Watch', back_populates='listwatch', backref=backref("watchs", cascade="all, delete-orphan"))
 
     def to_dict(self):
         return {

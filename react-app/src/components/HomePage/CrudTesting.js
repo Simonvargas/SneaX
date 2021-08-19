@@ -8,7 +8,7 @@ import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import SplashPage from './SplashPage'
 import Dashboard from './Dashboard';
-import { getList } from '../../store/watchlist'
+import { getList, createList, removeList, editList  } from '../../store/watchlist'
 import TestingWatch from './TestingWatch';
 import { getWatchs, addOneWatch, removeOneWatch } from '../../store/watch';
 
@@ -116,11 +116,9 @@ function CrudTesting() {
 
 
   const handleSell = async () => {
-    // e.preventDefault()
-    posted = await dispatch(shareAction.deleteShare(shareId))
-    await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
+    await dispatch(editList("Watchlist TEST", 1, 1))
     alert("remove went through")
-    history.go(0)
+ 
   }
 
     const addWatch = async (e) => {
@@ -171,7 +169,7 @@ function CrudTesting() {
                 onChange={(e) => (setPurchaseShares(e.target.value), setTotalPosition(e.target.value * marketPrice))}
               />
             </label>
-            <button onClick={(e) => handleBuy(e)} type='button'>Purchase</button>
+            <button onClick={(e) => handleSell()} type='button'>Purchase</button>
           </form>
         </>
     )
@@ -227,9 +225,9 @@ function CrudTesting() {
   } else if (openSell) {
     shareContent = (
           <>
-      <form onSubmit={(e) => addWatch(e)}>
+      <form >
 
-        <button type='submit'>Add to Watchlist</button>
+        <button type='button' onClick={(e) => handleSell(e)}>Add A Watchlist</button>
       </form>
       <button onClick={() => removeWatch()}>remove</button> {/* this deletes */}
     </>

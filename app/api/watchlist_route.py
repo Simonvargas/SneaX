@@ -18,11 +18,12 @@ def get_watchlist():
 # 'watchs' : [watch.to_dict() for watch in watchs]
 
 
+# post route
 @watchlist_routes.route('/add', methods=['POST'])
 @login_required
 def add_watchlist():
     form = WatchlistForm()
-    if form.validate_on_submit():
+    if not form.validate_on_submit():
         watchlist = Watchlist(
             list_name = form.data['list_name'],
             user_id = form.data['user_id']
@@ -33,26 +34,28 @@ def add_watchlist():
     return {'error' : 'Invalid request'}
 
 
-@watchlist_routes.route('/delete/<int:watchlist_id>', methods=['DELETE'])
+@watchlist_routes.route('/delete/<int:id>', methods=['DELETE'])
 @login_required
-def delete_watchlist(watchlist_id):
-    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id)
+def delete_watchlist(id):
+    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == id)
+    res = Watchlist.query.get(id)
     if watchlist:
-        db.session.delete(watchlist)
+        db.session.delete(res)
         db.session.commit()
         return watchlist.to_dict()
 
 
-@watchlist_routes.route('/edit/<int:watchlist_id>', methods=['PUT'])
+@watchlist_routes.route('/edit/<int:id>', methods=['PUT'])
 @login_required
-def update_watchlist(watchlist_id):
-    watchlist = Watchlist.query.filter(Watchlist.user_id == current_user.id, Watchlist.id == watchlist_id)
+def update_watchlist(id):
+    res = Watchlist.query.get(id)
     form = WatchlistForm()
-    if form.validate_on_submit():
-        form.populate_obj(watchlist)
-        db.session.commit()
-        return watchlist.to_dict()
-    return {'error' : 'Invalid request'}
+    
+    res.list_name = form.data['list_name']
+    res.user_id = form.data['user_id']
+    db.session.commit()
+    return res.to_dict()
+    # return {'error' : 'Invalid request'}
 
 
 
