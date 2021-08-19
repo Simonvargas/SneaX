@@ -394,6 +394,7 @@ function Home() {
               </div>
               <div className='sneax-graph'>
                 <h1>PUT GRAPH HERE</h1>
+                <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
                 {graphContent}
               </div>
               <div className='buying-power-container'>
