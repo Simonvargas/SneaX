@@ -5,9 +5,11 @@ import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import { allSneax } from '../../store/sneax';
 import { getList } from '../../store/watchlist'
+import { Modal } from '../../context/Modal';
 import TestingWatch from './TestingWatch';
 import SplashPage from './SplashPage'
 import NavBar from '../Navigation/NavBar';
+
 
 import './Dashboard.css'
 
@@ -38,7 +40,7 @@ function Home() {
   const [ wallet, setWallet ] = useState('')
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
-
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(allSneax())
@@ -67,7 +69,6 @@ function Home() {
   let shareContent = null
   let main = null
   let posted;
-
 
 
   if (!user) {
@@ -100,7 +101,7 @@ function Home() {
   const handleSell = async () => {
     posted = await dispatch(shareAction.deleteShare(shareId))
     await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
-    alert("remove went through")
+    alert("Remove successful")
     history.go(0)
   }
 
@@ -114,7 +115,7 @@ function Home() {
           } else {
             posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), shareId))
             await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
-            window.alert("change complete")
+            window.alert("Change complete")
             history.push('/')
             history.go(0)
           }
@@ -131,18 +132,11 @@ function Home() {
       if (shares[shares.length -1].includes(sneakId) ) {
         window.alert('Sneax owner, please edit through dashboard')
         window.alert('Purchase canceled')
-
-        // console.log("=========================================",sharePrice)
-        // console.log("=========================================",sellQty)
-        // console.log("=========================================",purchaseShares)
-        // posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sneakId))
-        // await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
-        // window.alert("change complete")
       }
       else {
         posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
         await dispatch(sessionAction.updateUser(wallet -(purchaseShares * marketPrice), current[0].id))
-        alert("purchase went through")
+        alert("Purchase completed")
         history.go(0)
       }
     } else {
@@ -156,10 +150,7 @@ function Home() {
           <form
           className='sell_form_container'>
             <label> number of sharessss
-              <input
-                type='number'
-                value={purchaseShares}
-                onChange={(e) => (setPurchaseShares(e.target.value), setTotalPosition(e.target.value * marketPrice))}
+              <input type='number' value={purchaseShares} onChange={(e) => (setPurchaseShares(e.target.value), setTotalPosition(e.target.value * marketPrice))}
               />
             </label>
             <button onClick={(e) => handleBuy(e)} type='button'>Purchase</button>
@@ -168,48 +159,38 @@ function Home() {
     )
   }
 
+  if (showTrade) {
+    content = (
+        <div className='sell_form_container'>
+
+              <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button>
+              <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
+              <button onClick={() => handleCancel()}>Cancel</button>
+              {shareContent}
+        </div>
+    )
+  }
+
 
   if (openBuy) {
     shareContent = (
       <>
             <form
-              onSubmit={(e) => tradeSubmit(e)}
-              className='sell_form_mod'>
+              onSubmit={(e) => tradeSubmit(e)} className='sell_form_mod'>
               <label> number of shares
-                <input
-                  type='number'
-                  value={sellQty}
-                  onChange={null}
-                />
+                <input type='number' value={sellQty} onChange={null}/>
               </label>
               <label> Sneax Id
-                <input
-                  type='number'
-                  value={sellId}
-                  onChange={null}
-                />
+                <input type='number' value={sellId} onChange={null} />
               </label>
               <label> total position
-                <input
-                  type='number'
-                  value={totalPosition}
-                  onChange={null}
-                />
+                <input type='number' value={totalPosition} onChange={null} />
               </label>
               <label> number of shares
-                <input
-                  type='number'
-                  value={shareQty}
-                  onChange={null}
-                />
+                <input type='number' value={shareQty} onChange={null} />
               </label>
               <label> number
-                <input
-                  type='number'
-                  value={purchaseShares}
-                  min='0'
-                  onChange={(e) => setPurchaseShares(e.target.value)}
-                />
+                <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
               </label>
               <button type='submit'>Purchase</button>
             </form>
@@ -220,12 +201,7 @@ function Home() {
           <>
       <form onSubmit={(e) => tradeSell(e)}>
         <label> number
-          <input
-            type='number'
-            value={purchaseShares}
-            min='0'
-            onChange={(e) => setPurchaseShares(e.target.value)}
-          />
+          <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
         </label>
         <button type='submit'>Sell</button>
       </form>
@@ -244,17 +220,6 @@ function Home() {
     }
   }
 
-  if (showTrade) {
-    content = (
-        <div className='sell_form_container'>
-
-              {/* <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy</button> toggle button fuction as according to available position */}
-              <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
-              <button onClick={() => handleCancel()}>Cancel</button>
-              {shareContent}
-        </div>
-    )
-  }
 
   if (sessionUser) {
     main = (
