@@ -3,6 +3,7 @@
     grid-template-columns: 9fr 5fr;
     background-color: white;
     margin-top: 35px;
+    /* width: 55%; */
 }
 
 .sneax-info-container {
@@ -17,7 +18,7 @@
 
 .sneax-info-box {
     margin-left: 70px;
-    width: 800px;
+    width: 80%;
 }
 
 .sneax-name-brand-box {
@@ -25,7 +26,6 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    /* height: 64px; */
 }
 
 .name {
@@ -108,7 +108,6 @@
 }
 
 .shares-form-container {
-    /* margin-left: -40px; */
     box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
     border-radius: 6px;
     padding: 30px;
@@ -119,9 +118,6 @@
     color: white;
     position: absolute;
     top: 80px;
-    /* left: 50px; */
-
-    
 }
 
 .buying-power {
@@ -205,8 +201,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    position: relative;
+    top: 25px
 }
 
 .watchlist-items {
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shares-box {
+    display: inline-block;
 }
