@@ -220,6 +220,17 @@ function Home() {
     }
   }
 
+  if (showTrade) {
+    content = (
+        <div className='sell_form_container'>
+
+              <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy more</button>
+              <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
+              <button onClick={() => handleCancel()}>Cancel</button>
+              {shareContent}
+        </div>
+    )
+  }
 
   if (sessionUser) {
     main = (
