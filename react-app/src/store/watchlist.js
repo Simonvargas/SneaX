@@ -69,7 +69,6 @@ export const removeList = (id) => async (dispatch) => {
     const res = await fetch(`/api/watchlist/delete/${id}`, {
         method : 'DELETE',
     });
-
     dispatch(deleteList(res))
 }
 

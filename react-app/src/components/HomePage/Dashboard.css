@@ -417,3 +417,14 @@ img {
     width: 30px;
     float: left;
 }
+
+.watchlist-add-edit {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black
+}
+
+.testing-btns2 {
+    padding-top: 10px
+}
+
