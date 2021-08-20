@@ -107,7 +107,8 @@
     border-bottom: 1px solid #E3E9ED;
     width: auto;
     padding: 7px;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
 
 }
 
@@ -216,7 +217,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    height: 50px;
+    height: 60px;
     width: 100%;
     margin-bottom: 20px;
 
@@ -227,9 +228,8 @@
 }
 
 .shares-buy-bttn button{
-    width: 100%;
+    width: 130px;
     height: 100%;
-    margin-right: 20px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 4px;
@@ -260,9 +260,8 @@
 }
 
 .shares-sell-bttn button{
-    width: 100%;
+    width: 130px;
     height: 100%;
-    margin-right: 40px;
     font-size: 18px;
     padding: 12px;
     border-radius: 4px;
@@ -292,9 +291,8 @@
 }
 
 .shares-cancel-bttn button{
-    width: 100%;
     height: 100%;
-    margin-right: 40px;
+    width: 130px;
     font-size: 15px;
     padding: 12px;
     border-radius: 4px;
@@ -345,6 +343,12 @@
 
 }
 
+.form-divs h1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    text-align:  center;
+}
+
 .form-divs label {
     font-family: 'Rubik', sans-serif;
     margin-bottom: 7px;
@@ -360,6 +364,7 @@
     width: 100%;
     height: 100%;
     margin-right: 20px;
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 4px;
@@ -387,26 +392,84 @@
 }
 
 
+/* ****************WATCHLIST CONTAINER******************* */
+
+.testing-container {
+    margin-top: 8px;
+    width: 100%;
+    overflow: scroll;
+    position: sticky;
+
+}
+.testing-container h1{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+
+.fas.fa-plus, .far.fa-edit, .fas.fa-trash-alt {
+    cursor: pointer;
+    font-size: 27px;
+    color: black;
+    margin: 10px;
+}
+
+.fas.fa-plus:hover, .far.fa-edit:hover, .fas.fa-trash-alt:hover{
+    color: grey;
+}
+
+
+
 .watchlist-container {
+    display: flex;
+    flex-direction: column;
     margin-left: 40px;
     box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
     border-radius: 6px;
-    width: 400px;
-    height: 700px;
+    width: 440px;
+    height: 600px;
     line-height: 20px;
     text-align: center;
+    margin-top: 20px;
 }
 
-.watch-items {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    height: 30px;
+.test-container-ignore {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    overflow: scroll;
 }
 
-.delete-btn-watch {
-    display: block;
-    float: right;
+
+.watch-items-container {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    border-top: 1px solid #E3E9ED;
+    border-bottom: 1px solid #E3E9ED;
 }
+
+.watch-items-container:hover  {
+    color: grey;
+}
+
+.delete-list-bttn i {
+    visibility: hidden;
+}
+
+.test-container-ignore:hover .delete-list-bttn i {
+    visibility: visible;
+}
+
+
+.delete-list-bttn {
+    display: flex;
+    align-items: center;
+}
+
 
 .items-link {
     text-decoration: none;
@@ -414,17 +477,49 @@
 }
 
 img {
-    width: 30px;
+    width: 80px;
     float: left;
 }
 
 .watchlist-add-edit {
     padding: 10px;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black
+    border-bottom: 1px solid #E3E9ED;
 }
+
+
 
 .testing-btns2 {
-    padding-top: 10px
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
 }
 
+.watchlist-bttn {
+    margin: 4px;
+}
+
+.watchlist-bttn button{
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.watchlist-bttn button:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
