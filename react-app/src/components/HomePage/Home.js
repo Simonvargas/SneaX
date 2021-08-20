@@ -222,7 +222,8 @@ function Home() {
   }
 
   let graphContent = null
-  const data = [{name: 'page A', uv: 100, pv: 2400, amt: 2400}]
+  // const data = [{name: 'page A', uv: 100, pv: 2400, amt: 2400}]
+  const data = []
 
     // function dataPts() {
     //   sneaxs?.map((sneaker, index) => {
@@ -233,8 +234,12 @@ function Home() {
   function dataPts() {
     let test = shares
     test.pop()
+    console.log(test)
     test?.map((share, index) => {
-      data.push({name: `${share?.sneax.brand_name}`, uv: `${share?.price_per_share}`, pv: 2400, amt:2400})
+      if (test) {
+        data.push({name: `${share?.sneax.brand_name}`, uv: `${share?.price_per_share * share.number_of_shares}`, pv: 2400, amt:2400})
+
+      }
     })
   }
   // dataPts()

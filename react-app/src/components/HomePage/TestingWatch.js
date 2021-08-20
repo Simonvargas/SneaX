@@ -45,7 +45,9 @@ function TestingWatch () {
       setCreateList(false)
       setUpdateList(true)
       setListName('')
-      setEditId(watchlists[0].id)
+      if (watchlists[0]) {
+        setEditId(watchlists[0].id)
+      }
     }
 
     async function createNew() {
