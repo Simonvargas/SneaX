@@ -47,6 +47,8 @@ function Home() {
   const [ showGraph, setShowGraph ] = useState(false)
 
   const [showModal, setShowModal] = useState(false);
+  // const [slideImages, setSlideImages] = useState(false);
+
 
   useEffect(() => {
     dispatch(allSneax())
@@ -164,6 +166,29 @@ function Home() {
           </form>
         </>
     )
+  }
+
+
+  let randomeid = 1
+  let randomNums = []
+  let slideImages = null
+
+  if (!showGraph) {
+    slideImages = (
+      <>
+          {shares.forEach(share => {
+            // {randomNums.push(shares?.sneax?.id)}
+            // {console.log(share.sneax?.image)}
+
+            <>
+              <h1>hi</h1>
+              <img src={`${share.sneax?.image}`} alt={`${share.sneax?.id}`} style={{width:"200"}}/>
+            </>
+
+          })}
+            <button onClick={() => console.log('hi')}></button>
+        </>
+      )
   }
 
 
@@ -380,6 +405,7 @@ function Home() {
               <div className='sneax-graph'>
                 <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
                 {graphContent}
+                {slideImages}
               </div>
               <div className='buying-power-container'>
                 <div><h1 className='dash-buying-power'>Buying Power</h1></div>
