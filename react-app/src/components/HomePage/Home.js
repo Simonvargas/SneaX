@@ -13,7 +13,7 @@ import NavBar from '../Navigation/NavBar';
 
 // const faker = require('faker/locale/de')
 
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
 import './Dashboard.css'
 
@@ -237,7 +237,8 @@ function Home() {
     console.log(test)
     test?.map((share, index) => {
       if (test) {
-        data.push({name: `${share?.sneax.brand_name}`, uv: `${share?.price_per_share * share.number_of_shares}`, pv: 2400, amt:2400})
+        const sharep = share?.price_per_share * share.number_of_shares
+        data.push({name: `${share?.sneax.brand_name}`, uv: `${sharep}`, pv: 2400*sharep, amt:2400*sharep})
 
       }
     })
@@ -248,12 +249,17 @@ function Home() {
     dataPts()
     graphContent = (
       <>
-            <LineChart width={800} height={450} data={data}>
-              <Line type='monotone' dataKey='uv' stroke='#000000' />
+      <ResponsiveContainer width="100%" height="100%">
+            <LineChart  data={data} >
+              <Line type='monotone' dataKey='uv' stroke='#d123d2' activeDot={{ r: 8 }}/>
               <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" />
-              <YAxis  />
+              <XAxis dataKey="name" padding={{ left: 30, right: 30 }}/>
+              {/* <Line type='monotone' dataKey={'uv'*.6} stroke='#d123d2' activeDot={{ r: 8 }} /> */}
+              <YAxis />
+              <Tooltip />
             </LineChart>
+
+      </ResponsiveContainer>
 
       </>
     )

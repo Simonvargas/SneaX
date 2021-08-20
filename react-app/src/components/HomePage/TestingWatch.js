@@ -93,7 +93,7 @@ function TestingWatch () {
 
               <div><select onChange={(e) => setEditId(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
-                                <option value={watchlist.id} id={watchlist.id}>{watchlist.list_name}</option>
+                                <option value={watchlist.id} id={watchlist.id} key={watchlist.id}>{watchlist.list_name}</option>
                             )
           })} </select>
           <input onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
@@ -116,7 +116,7 @@ function TestingWatch () {
         {watchState ?
         <div className="testing-container">
             <h2>List of Watchs</h2>
-            <ul>
+            <div>
                 {allWatchs?.map(watch => {
                     for (let i = 0; i < sneaxs.length; i++) {
                         if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id)  {
@@ -137,7 +137,7 @@ function TestingWatch () {
                         }
                       })}
                       <button onClick={(e) => deleteList(e)}>delete this list</button>
-            </ul>
+            </div>
         </div>
     : ''}
   </div>
