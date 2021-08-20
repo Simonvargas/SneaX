@@ -137,7 +137,9 @@ function SneaxDetails() {
       <div clasName='sneax-info-container'>
         <div className='sneax-info-box'>
           <div className='sneax-name-brand-box'>
-            <div className='name'><h1 className="sneax-name">{sneaxId.name} </h1></div>
+            <div className='name'>
+              <h1 className="sneax-name">{sneaxId.name} </h1>
+            </div>
             {/* <div className='brand'> */}
             <h2 className='sneax-brand'>Brand: {sneaxId.brand_name}</h2>
             <h1 className='sneax-price'>${sneaxId.market_price}</h1>

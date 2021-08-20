@@ -374,7 +374,9 @@ function Home() {
           <div className='sneax-info-container'>
             <div className='sneax-dash-info-box'>
               <div className='sneax-name-brand-box'>
-                <div className='name'><h1 className="sneax-name">$ {totalAccount}</h1></div>
+                <div className='name'>
+                  <h1 className="sneax-name">$ {totalAccount}</h1>
+                </div>
                 <h2 className='sneax-brand'>$200 2.00% Today</h2>
               </div>
               <div className='sneax-graph'>
