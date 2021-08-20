@@ -139,7 +139,7 @@ function TestingWatch () {
                                     <Link className='items-link' to={`/sneax/${sneaxs[i].id}`}>
                                         <div className='watch-items-container'>
                                             <div className='watch-items-box'>
-                                                <img src={sneaxs[i].image}></img>
+                                                <img className="watchlist-img" src={sneaxs[i].image}></img>
                                             </div>
                                             <div div className='watch-items-box'>
                                                 {sneaxs[i].name}

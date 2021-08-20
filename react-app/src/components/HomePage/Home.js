@@ -47,7 +47,7 @@ function Home() {
   const [ showGraph, setShowGraph ] = useState(false)
 
   const [showModal, setShowModal] = useState(false);
-  // const [slideImages, setSlideImages] = useState(false);
+  const [slideImageUrl, setSlideImageUrl] = useState('');
 
 
   useEffect(() => {
@@ -169,27 +169,6 @@ function Home() {
   }
 
 
-  let randomeid = 1
-  let randomNums = []
-  let slideImages = null
-
-  if (!showGraph) {
-    slideImages = (
-      <>
-          {shares.forEach(share => {
-            // {randomNums.push(shares?.sneax?.id)}
-            // {console.log(share.sneax?.image)}
-
-            <>
-              <h1>hi</h1>
-              <img src={`${share.sneax?.image}`} alt={`${share.sneax?.id}`} style={{width:"200"}}/>
-            </>
-
-          })}
-            <button onClick={() => console.log('hi')}></button>
-        </>
-      )
-  }
 
 
 
@@ -261,14 +240,15 @@ function Home() {
     //   })
     // }
 
+  let test = shares
+
   function dataPts() {
-    let test = shares
     test.pop()
 
     test?.map((share, index) => {
       if (test) {
         const sharep = share?.price_per_share * share.number_of_shares
-        data.push({name: `${share?.sneax.brand_name}`, uv: `${sharep}`, pv: 2400*sharep, amt:2400*sharep})
+        data.push({name: `${share?.sneax.brand_name}`, uv: `${sharep}`, pv: 2400, amt:2400, image:`${share?.sneax.image}`})
 
       }
     })
@@ -293,6 +273,33 @@ function Home() {
 
       </>
     )
+  } else {
+    test.pop()
+    graphContent = (
+      <>
+      {test.map(share => (
+            // {randomNums.push(shares?.sneax?.id)}
+                // console.log('this si hitting',share.sneax?.image)
+                <>
+                  <img id="sluder" className="slider slideimage" src={`${slideImageUrl}`} alt={`${share.sneax?.id}`} />
+                </>
+          ))}
+          {/* <button onClick={() => {console.log(share.sneax?.image)}}></button> */}
+        </>
+
+    )
+  }
+
+
+  let randomeid = 1
+  let randomNums = []
+  let slideImages = null
+
+  if (!showGraph) {
+    test.pop()
+    slideImages = (
+     <></>
+      )
   }
 
   function handleCancel() {
