@@ -178,7 +178,7 @@ function SneaxDetails() {
             </div>
             <div className='buying-power'>
             <div>
-            <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
+            <p className='buyP'>Buying Power available: {sessionUser?.wallet}</p>
             </div>
           </div>
 
