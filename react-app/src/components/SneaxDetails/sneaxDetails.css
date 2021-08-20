@@ -116,13 +116,6 @@
 
 }
 
-.investSpan {
-    margin: 0;
-    /* display: flex;
-    flex-direction: column; */
-    position: relative;
-    width: 1000px
-}
 
 .shares-form-container {
     box-shadow: 0px 8px 24px rgb(0 0 0 / 20%);
@@ -130,9 +123,9 @@
     padding: 30px;
     width: 270px;
     height: 360px;
-    background-color: white;
-    /* background-color: #000000;
-    background-image: linear-gradient(315deg, #000000 0%, #414141 74%); */
+    color: white;
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
     position: absolute;
     top: 80px;
 }
@@ -183,22 +176,24 @@
 	border-radius: 5px;
 	padding: 12px 15px;
 	margin: 8px 0;
-    float: right;
+    width: 250px;
 }
 
-
-.buyh2 {
-    text-align: center;
-    position: relative;
-    color: black;
-}
 
 .investSpan {
-    position: relative;
+    /* position: relative;
     top: 15px;
     left: -10px;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: bold; */
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif
+
+}
+
+.invest-words p{
+  padding: 0;
+  margin: 0;
 }
 
 .list-button {
@@ -227,6 +222,14 @@
 
 .shares-buy-sell {
     border-bottom: 1px solid #E3E9ED;
+    width: 100%;
+    position: relative;
+    bottom: 25px;
+}
+
+.buyh2 {
+    text-align: center;
+    color: white;
 }
 
 .purchase-bttn {
@@ -248,7 +251,7 @@
     font-weight: bold;
     border-radius: 4px;
     border: 1px blue;
-    background: black;
+    background: radial-gradient(900px 900px at top center, #5e5e5e, #2d3334, #262626);
     color: #ffffff;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -265,4 +268,8 @@
     transition: all 0.4s ease 0s;
     cursor: pointer;
     box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+.buyP {
+    font-weight: 700;
 }

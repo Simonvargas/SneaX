@@ -158,29 +158,33 @@ function SneaxDetails() {
       </div>
       <div className="shares-container">
         <div className='shares-form-container'>
-        <div className='shares-box'>
           <div className='shares-buy-sell'>
             <h2 className='buyh2'>Buy</h2>
           </div>
           <div className='shares-from'>
               <div className='investSpan'>
-                <p >Invest</p>
-                <input className='input' type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
-                <p>Market Price: ${sneaxId.market_price}</p>
-                <input className='input' min="0" value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
-              </div>
+                <div className='invest-words'>
+                  <p >Invest</p>
+                  <input className='input' type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
+                </div>
+                <div>
+                  <p>Market Price: ${sneaxId.market_price}</p>
+                  <input className='input' min="0" value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
+                </div>
+                </div>
           </div>
             <div className='purchase-bttn'>
               <button  onClick={handleBuy}>Purchase</button>
             </div>
-          </div>
-          <div className='buying-power'>
+            <div className='buying-power'>
             <div>
             <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
             </div>
           </div>
 
-        </div>
+          </div>
+
+
         <div className='addToListContainer'>
           <button onClick={() => (showLists(), setListOption(watchlists[0].id))} className='purchase-btn'>Add to Lists</button>
           <div className='watchlist-items'>
