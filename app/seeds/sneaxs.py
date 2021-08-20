@@ -57,8 +57,15 @@ def seed_sneaxs():
         name='Nike Dunk High AMBUSH Deep Royal', market_price=404, image='https://images.stockx.com/360/Nike-Dunk-High-AMBUSH-Deep-Royal/Images/Nike-Dunk-High-AMBUSH-Deep-Royal/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1622142484&h=320&fm=webp', details='Adding to their collection of idiosyncratic Nike Dunks, Nike and AMBUSH bring a Deep Royal colorway to the unique silhouette. An exaggerated black Swoosh extends towards the heel and from there, bold AMBUSH branding projects off an elevated heel cap. Lastly, Deep Royal leather overlays are stacked on white leather panels to complete the design. The Nike Dunk High AMBUSH Deep Royal released in June of 2021 for $150.', brand_name='Nike')
     jeezy = Sneax(    # sample
         name='MSCHF x INRI x Nike Air Max 97 ‘Jesus Shoes’', market_price=4590, image='https://stockx.imgix.net/Nike-Air-Max-97-MSCHF-x-INRI-Jesus-Shoes-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&q=90&dpr=2&trim=color&updated_at=1603481985', details='The MSCHF x INRI x Nike Air Max 97 ‘Jesus Shoes’ allows the wearer to literally walk on water. A custom design conceived and engineered by Brooklyn-based creative agency MSCHF, the retro runner’s Max Air unit is injected with 60cc of holy water, sourced from the River Jordan and blessed by a priest in Brooklyn. The pristine upper, constructed from blue-tinged mesh with white leather overlays, features a gold crucifix lace jewel and MSCHF branding on the left heel tab. ‘INRI’ is printed on the opposite tab (short for Iesus Nazarenus Rex Iudaeorum, which was inscribed on the cross), while the lateral forefoot is marked with an allusion to Matthew 14:25, the biblical chapter and verse that references Jesus’ feat of walking on water.', brand_name='Nike')
-    # mag = Sneax(    # sample
-    #     name='name', market_price=0000, image='img', details='deet', brand_name='brand')
+    delta = Sneax(    # sample
+        name='Jordan Delta 2', market_price=125, image='https://images.stockx.com/images/Air-Jordan-Delta-2-Black-Infrared.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629246684&pad=0&fm=webp', details='The Jordan Delta 2 offers a fresh, fearless take on the features you want: durability, comfort and an attitude that is Jordan to the core. We updated design lines and swapped out some components, but the idea is the same as the first Delta. The 2 still has that clashing combination of supportive and space age-like materials, with lots of different textures and heavy stitching to create a look that is both adventurous and iconic.', brand_name='Nike')
+    fyw = Sneax(    # sample
+        name='adidas Y-3 FYW S-97', market_price=223, image='https://images.stockx.com/images/adidas-Y-3-FYW-S-97-Off-Black-White.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1627415422&pad=0&fm=webp', details='Introduced in July 2019, the Y-3 FYW S-97 is a reimagined edition of the adidas Salvation sneaker. First seen in 1997, the Salvation is one of adidas’ original running silhouettes with Feet You Wear technology. The sneaker has been refreshed with a flexible Primeknit upper and adorned with the signature of Japanese fashion designer Yohji Yamamoto. Suede and leather detailing appear on the heel and forefoot. Below, the midsole features cut-outs to reveal the adidas Boost cushioning.', brand_name='adidas')
+    nbOne= Sneax(    # sample
+        name='New Balance 2002R', market_price=240, image='https://images.stockx.com/images/New-Balance-M2002-Protection-Pack-Rain-Cloud.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1624346652&pad=0&fm=webp', details='The 2002R reintroduces a technical running favorite from 2010, outfitting the original design with modern performance upgrades. Don’t call it retro though. A mesh and suede overlay upper construction is rendered with sleek curves and cutout segments for a futuristic take on a classic look. The performance of a Stability Web equipped and N-ergy shock absorbing outsole, ABZORB midsole and ABZORB SBS heel cushioning offer comfort and performance that can’t be pinned down with a date.', brand_name='New Balance')
+    nbTwo = Sneax(    # sample
+        name='New Balance 574', market_price=128, image='https://images.stockx.com/images/new-balance-574-tds-white-grey-ver2.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1623473292&pad=0&fm=webp', details='The 574 isn’t just any shoe. Crafted with updated materials, this women’s throwback sneaker is a symbol of ingenuity and originality — no matter how you wear it.', brand_name='New Balance')
+
 
     db.session.add(yeezy)
     db.session.add(travvii)
@@ -86,6 +93,10 @@ def seed_sneaxs():
     db.session.add(off)
     db.session.add(frag)
     db.session.add(maadg)
+    db.session.add(delta)
+    db.session.add(fyw)
+    db.session.add(nbTwo)
+    db.session.add(nbOne)
 
     db.session.commit()
 
