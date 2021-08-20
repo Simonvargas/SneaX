@@ -45,9 +45,9 @@ function App() {
         <Route path='/' exact={true} >
           <Home />
         </Route>
-        <Route path='/sneax/:id' exact={true}>
+        <ProtectedRoute path='/sneax/:id' exact={true}>
           <SneaxDetails />
-        </Route>
+        </ProtectedRoute>
         <Route path='/testingWatch' exact={true}>
           <TestingWatch/>
         </Route>

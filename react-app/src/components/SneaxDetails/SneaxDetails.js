@@ -36,7 +36,7 @@ function SneaxDetails() {
   const watchlists = Object.values(useSelector(state => state.watchlist))
   const watching = Object.values(useSelector(state => state.watch))
 
-  const numShares = shares?.map(share => share.user_id === sessionUser.id)
+  const numShares = shares?.map(share => share?.user_id === sessionUser?.id)
 
   useEffect(() => {
     (async function(){
@@ -180,7 +180,7 @@ function SneaxDetails() {
             </div>
             <div className='buying-power'>
             <div>
-            <p className='buyP'>Buying Power available: {sessionUser.wallet}</p>
+            <p className='buyP'>Buying Power available: {sessionUser?.wallet}</p>
             </div>
           </div>
 

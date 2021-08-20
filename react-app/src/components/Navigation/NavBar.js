@@ -19,6 +19,10 @@ const NavBar = () => {
     })
   }
 
+  // if (window.onclick()) {
+  //   console.log("hi")
+  // }
+
   const kicks = filter(sneax, searchInput)
 
   let searchbar = null
