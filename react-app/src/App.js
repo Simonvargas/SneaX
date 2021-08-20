@@ -42,9 +42,6 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        {/* <Route path='/' exact={true} >
-          <Home />
-        </Route> */}
         <Route path='/' exact={true} >
           <Home />
         </Route>
@@ -54,7 +51,10 @@ function App() {
         <Route path='/testingWatch' exact={true}>
           <TestingWatch/>
         </Route>
-        
+        <Route>
+          {/* put 404 route */}
+        </Route>
+
       </Switch>
     </BrowserRouter>
   );

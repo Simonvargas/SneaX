@@ -163,23 +163,16 @@ function SneaxDetails() {
             <h2 className='buyh2'>Buy</h2>
           </div>
           <div className='shares-from'>
-            <div >
-              <label><span className='investSpan'>Invest</span>
-              <input className='input' type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
-              </label>
-            </div>
-            <div>
-              <label>
+              <div className='investSpan'>
+                <p >Invest</p>
+                <input className='input' type='text' value='Sneax' readOnly='readonly' disabled={true}></input>
+                <p>Market Price: ${sneaxId.market_price}</p>
                 <input className='input' min="0" value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
-              </label>
+              </div>
+          </div>
+            <div className='purchase-bttn'>
+              <button  onClick={handleBuy}>Purchase</button>
             </div>
-          <div className='market-price'>
-            <p>Market Price: ${sneaxId.market_price}</p>
-          </div>
-
-          </div>
-
-          <button className='purchase-btn' onClick={handleBuy}>Purchase</button>
           </div>
           <div className='buying-power'>
             <div>

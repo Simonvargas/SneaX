@@ -100,11 +100,29 @@
 .shares-container {
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
     width: auto;
     position: sticky;
-    height: 50%;
-    width: 64%;
+    height: 600px;
+    width:  100%;
 
+}
+
+.shares-from {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    width: 0;
+
+}
+
+.investSpan {
+    margin: 0;
+    /* display: flex;
+    flex-direction: column; */
+    position: relative;
+
+    width: 1000px
 }
 
 .shares-form-container {
@@ -113,9 +131,9 @@
     padding: 30px;
     width: 270px;
     height: 360px;
-    background-color: #000000;
-    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
-    color: white;
+    background-color: white;
+    /* background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%); */
     position: absolute;
     top: 80px;
 }
@@ -123,7 +141,7 @@
 .buying-power {
     position: absolute;
     bottom: 0px;
-    border-top: 1px solid white;
+    border-top: 1px solid #E3E9ED;
     width: 330px;
     left: 0px;
     text-align: center;
@@ -169,19 +187,11 @@
     float: right;
 }
 
-.market-price {
-    position: relative;
-    top: 30px;
-    left: -10px; 
-    width: 90px;
-    /* font-size: 20px; */
-    font-weight: bold;
-}
 
 .buyh2 {
     text-align: center;
     position: relative;
-    bottom: 15px;
+    color: black;
 }
 
 .investSpan {
@@ -214,4 +224,46 @@
 
 .shares-box {
     display: inline-block;
+}
+
+.shares-buy-sell {
+    border-bottom: 1px solid #E3E9ED;
+}
+
+.purchase-bttn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
+    position: absolute;
+    bottom: 50px;
+    width: 98%;
+    right: -7px;
+}
+
+.purchase-bttn button{
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px blue;
+    background: black;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.purchase-bttn button:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
 }
