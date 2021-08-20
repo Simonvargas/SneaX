@@ -14,6 +14,7 @@
 }
 
 .searchfield {
+    /* z-index: 7; */
     position: absolute;
     text-align: left;
     overflow: scroll;
@@ -23,6 +24,8 @@
 
 .searchfield-container {
     display: flex;
+    border-bottom: 1px solid #E3E9ED;
+
 
 }
 
@@ -39,6 +42,10 @@
     margin: 0;
 }
 
+.search-link:hover {
+    color: grey;
+
+}
 
 
 /* .search-link:visited{
