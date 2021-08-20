@@ -11,7 +11,6 @@ class Watch(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     listwatch = db.relationship('Watchlist', back_populates='watch' )
-
     sneaker = db.relationship('Sneax')
 
 

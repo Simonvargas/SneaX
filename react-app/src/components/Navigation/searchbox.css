@@ -1,0 +1,27 @@
+.searchfield {
+    overflow-y: scroll;
+    width: 350px;
+    right: 40%;
+    left: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.searchfield {
+    position: absolute;
+    text-align: left;
+    /* position: fixed; */
+}
+
+.searchfield-container {
+    display: flex;
+}
+
+.search-cover {
+    display: flex;
+}

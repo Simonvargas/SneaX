@@ -69,6 +69,7 @@ export const removeList = (id) => async (dispatch) => {
     const res = await fetch(`/api/watchlist/delete/${id}`, {
         method : 'DELETE',
     });
+
     dispatch(deleteList(res))
 }
 
@@ -98,7 +99,6 @@ const watchlistReducer = (state = initialState, action) => {
             }
         case DELETE_LIST:{
            const newState = {...state}
-           delete newState[action.listId]
            return newState
         }
 

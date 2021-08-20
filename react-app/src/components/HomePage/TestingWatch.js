@@ -45,7 +45,9 @@ function TestingWatch () {
       setCreateList(false)
       setUpdateList(true)
       setListName('')
-      setEditId(watchlists[0].id)
+      if (watchlists[0]) {
+        setEditId(watchlists[0].id)
+      }
     }
 
     async function createNew() {
@@ -98,7 +100,7 @@ function TestingWatch () {
 
                 <div><select onChange={(e) => setEditId(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
-                                <option value={watchlist.id} id={watchlist.id}>{watchlist.list_name}</option>
+                                <option value={watchlist.id} id={watchlist.id} key={watchlist.id}>{watchlist.list_name}</option>
                             )
             })} </select>
           <input onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
@@ -126,8 +128,8 @@ function TestingWatch () {
 
         {watchState ?
         <div className="testing-container">
-            <h1>List of Watchs</h1>
-            <ul>
+            <h2>List of Watchs</h2>
+            <div>
                 {allWatchs?.map(watch => {
                     for (let i = 0; i < sneaxs.length; i++) {
                         if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id)  {
@@ -152,12 +154,9 @@ function TestingWatch () {
                             )
                           }
                         }
-                    })}
-                    <div className='watchlist-bttn'>
-                        <button onClick={(e) => deleteList(e)}>delete this list</button>
-                    </div>
-
-            </ul>
+                      })}
+                      <button onClick={(e) => deleteList(e)}>delete this list</button>
+            </div>
         </div>
     : ''}
   </div>
