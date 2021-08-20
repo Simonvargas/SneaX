@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import Home from './components/HomePage/Home'
 import SneaxDetails from './components/SneaxDetails/SneaxDetails';
 import TestingWatch from './components/HomePage/TestingWatch';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,8 +52,8 @@ function App() {
         <Route path='/testingWatch' exact={true}>
           <TestingWatch/>
         </Route>
-        <Route>
-          {/* put 404 route */}
+        <Route path='/'>
+            <PageNotFound />
         </Route>
 
       </Switch>
