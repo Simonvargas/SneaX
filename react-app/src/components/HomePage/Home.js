@@ -44,7 +44,7 @@ function Home() {
   const [ wallet, setWallet ] = useState('')
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
-  const [ showGraph, setShowGraph ] = useState(false)
+  const [ showGraph, setShowGraph ] = useState(true)
 
   const [showModal, setShowModal] = useState(false);
 
@@ -243,7 +243,7 @@ function Home() {
     test?.map((share, index) => {
       if (test) {
         const sharep = share?.price_per_share * share.number_of_shares
-        data.push({name: `${share?.sneax.brand_name}`, uv: `${sharep}`, pv: 2400*sharep, amt:2400*sharep})
+        data.push({name: `${share.sneax?.brand_name}`, uv: `${sharep}`, pv: 2400, amt: 2400})
 
       }
     })
@@ -378,7 +378,7 @@ function Home() {
                 <h2 className='sneax-brand'>$200 2.00% Today</h2>
               </div>
               <div className='sneax-graph'>
-                <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
+                {/* <button onClick={() => setShowGraph(!showGraph)}>show graph</button> */}
                 {graphContent}
               </div>
               <div className='buying-power-container'>
