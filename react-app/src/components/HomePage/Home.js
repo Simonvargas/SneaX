@@ -13,7 +13,7 @@ import NavBar from '../Navigation/NavBar';
 
 // const faker = require('faker/locale/de')
 
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts'
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
 import './Dashboard.css'
 
@@ -54,6 +54,7 @@ function Home() {
     dispatch(sessionAction.loadCurrent(userId))
     dispatch(getList())
     setWallet(currentwallet)
+
 
     if (!userId) {
       return;
@@ -221,7 +222,8 @@ function Home() {
   }
 
   let graphContent = null
-  const data = [{name: 'page A', uv: 100, pv: 2400, amt: 2400}]
+  // const data = [{name: 'page A', uv: 100, pv: 2400, amt: 2400}]
+  const data = []
 
     // function dataPts() {
     //   sneaxs?.map((sneaker, index) => {
@@ -232,21 +234,32 @@ function Home() {
   function dataPts() {
     let test = shares
     test.pop()
+
     test?.map((share, index) => {
-      data.push({name: `${share.sneax.brand_name}`, uv: `${share.price_per_share}`, pv: 2400, amt:2400})
+      if (test) {
+        const sharep = share?.price_per_share * share.number_of_shares
+        data.push({name: `${share?.sneax.brand_name}`, uv: `${sharep}`, pv: 2400*sharep, amt:2400*sharep})
+
+      }
     })
   }
-  dataPts()
+  // dataPts()
 
   if (showGraph) {
+    dataPts()
     graphContent = (
       <>
-            <LineChart width={800} height={450} data={data}>
-              <Line type='monotone' dataKey='uv' stroke='#000000' />
+      <ResponsiveContainer width="100%" height="100%">
+            <LineChart  data={data}>
+              <Line type='monotone' dataKey='uv' stroke='#d123d2' activeDot={{ r: 8 }}/>
               <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" />
-              <YAxis  />
+              <XAxis dataKey="name" padding={{ left: 30, right: 30 }}/>
+              {/* <Line type='monotone' dataKey={'uv'*.6} stroke='#d123d2' activeDot={{ r: 8 }} /> */}
+              <YAxis />
+              <Tooltip />
             </LineChart>
+
+      </ResponsiveContainer>
 
       </>
     )
@@ -360,7 +373,6 @@ function Home() {
                 <h2 className='sneax-brand'>$200 2.00% Today</h2>
               </div>
               <div className='sneax-graph'>
-                <h1>PUT GRAPH HERE</h1>
                 <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
                 {graphContent}
               </div>

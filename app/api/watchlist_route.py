@@ -49,18 +49,9 @@ def delete_watchlist(id):
 def update_watchlist(id):
     res = Watchlist.query.get(id)
     form = WatchlistForm()
-    
+
     res.list_name = form.data['list_name']
     res.user_id = form.data['user_id']
     db.session.commit()
     return res.to_dict()
     # return {'error' : 'Invalid request'}
-
-
-
-
-
-
-
-
-

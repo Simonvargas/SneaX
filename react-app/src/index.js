@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
 import configureStore from './store';
-import * as sessionActions from './store/session';
 import {ModalProvider} from "./context/Modal"
 
 const store = configureStore();

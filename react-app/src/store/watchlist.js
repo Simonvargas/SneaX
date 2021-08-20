@@ -99,7 +99,6 @@ const watchlistReducer = (state = initialState, action) => {
             }
         case DELETE_LIST:{
            const newState = {...state}
-           delete newState[action.listId]
            return newState
         }
 

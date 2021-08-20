@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link , useHistory} from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
 import { allSneax } from '../../store/sneax';
 import { getShares } from '../../store/shares';
@@ -14,17 +14,15 @@ import { getList } from '../../store/watchlist'
 function SneaxDetails() {
   const [user, setUser] = useState({});
   const [sneaxId, setSneax] = useState([])
-  const [share, setShares] = useState([])
   const { userId, id }  = useParams();
-  const sneax = useSelector((state) => Object.values(state.sneax))
   const shares = useSelector((state) => Object.values(state.shares))
   const sessionUser = useSelector(state => state.session.user)
   const dispatch = useDispatch()
-  const [buy, setBuy] = useState(true)
-  const [sell, setSell] = useState(false)
+  // const [_buy, setBuy] = useState(true)
+  // const [_sell, setSell] = useState(false)
   const current = useSelector((state) => Object.values(state.session))
-  const [ totalPosition, setTotalPosition ] = useState('')
-  const [ sneakId, setSneakId ] = useState('')
+  const [ totalPosition, _setTotalPosition ] = useState('')
+  const [ sneakId, _setSneakId ] = useState('')
   const [ wallet, setWallet ] = useState('')
   const [ purchaseShares, setPurchaseShares ] = useState(0)
   const [watchlist, setWatchList ] = useState([])
@@ -33,6 +31,7 @@ function SneaxDetails() {
 
   const [showList, setShowList] = useState(false)
   const [listOption, setListOption] = useState('')
+
 
   const watchlists = Object.values(useSelector(state => state.watchlist))
   const watching = Object.values(useSelector(state => state.watch))
@@ -49,21 +48,22 @@ function SneaxDetails() {
       }
     })()
   }, [id])
-  function showSell() {
-    setBuy(false)
-    setSell(true)
-  }
+  // function showSell() {
+  //   setBuy(false)
+  //   setSell(true)
+  // }
 
-  function showBuy(){
-    setBuy(true)
-    setSell(false)
-  }
+  // function showBuy(){
+  //   setBuy(true)
+  //   setSell(false)
+  // }
 
   useEffect(() => {
       dispatch(allSneax())
       dispatch(getShares())
       setWallet(currentwallet)
       dispatch(getList())
+      // setListOption(watchlists[0].id)
     if (!userId) {
       return;
     }
@@ -120,10 +120,9 @@ function SneaxDetails() {
     watching.map(watch => {
       watchlist.push( watch.sneax_id )
     })
-    console.log(sneaxId.id)
-    console.log(watchlist)
+
     if (!watchlist.includes(sneaxId.id)) {
-      dispatch(watchAction.addOneWatch(watchlists[0].id, sneaxId.id))
+      dispatch(watchAction.addOneWatch(listOption, sneaxId.id))
       // setWatchBool(false)
       window.alert('added to watchlist!')
     }
@@ -171,7 +170,7 @@ function SneaxDetails() {
             </div>
             <div>
               <label>
-                <input className='input' value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
+                <input className='input' min="0" value={purchaseShares} onChange={((e) => setPurchaseShares(e.target.value))} type='number'></input>
               </label>
             </div>
           <div className='market-price'>
@@ -190,12 +189,12 @@ function SneaxDetails() {
 
         </div>
         <div className='addToListContainer'>
-          <button onClick={showLists} className='purchase-btn'>Add to Lists</button>
+          <button onClick={() => (showLists(), setListOption(watchlists[0].id))} className='purchase-btn'>Add to Lists</button>
           <div className='watchlist-items'>
 
-          {showList ? <div><select> {watchlists?.map(watchlist => {
+          {showList ? <div><select onChange={(e) => setListOption(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
-                                <option value={listOption} onChange={(e) => setListOption(watchlist.id)} id={watchlist.id}>{watchlist.list_name}</option>
+                                <option value={watchlist.id}  id={watchlist.id}>{watchlist.list_name}</option>
                             )
           })} </select> <button onClick={(e) => addToWatchList(e)}>add</button> </div> : '' }
                 </div>
