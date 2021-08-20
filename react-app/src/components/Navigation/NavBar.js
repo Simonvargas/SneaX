@@ -116,7 +116,7 @@ const NavBar = () => {
               <p>Contact Us</p>
               <p>Disclosures</p>
               </div>
-              <Link className={styles.links} to='/'><LogoutButton /></Link>
+              <LogoutButton />
 
               </div>
               </div>
