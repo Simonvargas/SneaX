@@ -84,7 +84,7 @@ const NavBar = () => {
           placeholder='Search for your favorite Sneax'
           type='text'
           className={styles.searchBar}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e) => setSearchInput((e.target.value).toLowerCase())}
           />
         <button className={styles.searchBtn}><i class="fab fa-searchengin"></i></button>
       </div>

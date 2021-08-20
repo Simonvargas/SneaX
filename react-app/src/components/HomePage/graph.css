@@ -1,6 +1,6 @@
 .line-chart-container {
     width: 350px;
-    height: 250px;
+    height: 450px;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
 }
@@ -16,6 +16,7 @@
     height: 12px;
     width: 12px;
     position: relative;
+    /* height: 200px; */
 }
 
 .olive {

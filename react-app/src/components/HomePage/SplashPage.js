@@ -42,7 +42,7 @@ function User() {
           </div>
       </div>
       <div className='splash-info-container'>
-          <img className='shoe-pic' src="https://i.imgur.com/YWIcguO.png"></img>
+          <img className='shoe-pic' src="https://i.imgur.com/YWIcguO.png"/>
       </div>
     </div>
     <div className='second-splash-container'>
