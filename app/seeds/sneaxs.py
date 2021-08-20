@@ -57,10 +57,63 @@ def seed_sneaxs():
         name='Nike Dunk High AMBUSH Deep Royal', market_price=404, image='https://images.stockx.com/360/Nike-Dunk-High-AMBUSH-Deep-Royal/Images/Nike-Dunk-High-AMBUSH-Deep-Royal/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1622142484&h=320&fm=webp', details='Adding to their collection of idiosyncratic Nike Dunks, Nike and AMBUSH bring a Deep Royal colorway to the unique silhouette. An exaggerated black Swoosh extends towards the heel and from there, bold AMBUSH branding projects off an elevated heel cap. Lastly, Deep Royal leather overlays are stacked on white leather panels to complete the design. The Nike Dunk High AMBUSH Deep Royal released in June of 2021 for $150.', brand_name='Nike')
     jeezy = Sneax(    # sample
         name='MSCHF x INRI x Nike Air Max 97 ‘Jesus Shoes’', market_price=4590, image='https://stockx.imgix.net/Nike-Air-Max-97-MSCHF-x-INRI-Jesus-Shoes-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&q=90&dpr=2&trim=color&updated_at=1603481985', details='The MSCHF x INRI x Nike Air Max 97 ‘Jesus Shoes’ allows the wearer to literally walk on water. A custom design conceived and engineered by Brooklyn-based creative agency MSCHF, the retro runner’s Max Air unit is injected with 60cc of holy water, sourced from the River Jordan and blessed by a priest in Brooklyn. The pristine upper, constructed from blue-tinged mesh with white leather overlays, features a gold crucifix lace jewel and MSCHF branding on the left heel tab. ‘INRI’ is printed on the opposite tab (short for Iesus Nazarenus Rex Iudaeorum, which was inscribed on the cross), while the lateral forefoot is marked with an allusion to Matthew 14:25, the biblical chapter and verse that references Jesus’ feat of walking on water.', brand_name='Nike')
-    # mag = Sneax(    # sample
-    #     name='name', market_price=0000, image='img', details='deet', brand_name='brand')
+    delta = Sneax(    # sample
+        name='Jordan Delta 2', market_price=125, image='https://images.stockx.com/images/Air-Jordan-Delta-2-Black-Infrared.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1629246684&pad=0&fm=webp', details='The Jordan Delta 2 offers a fresh, fearless take on the features you want: durability, comfort and an attitude that is Jordan to the core. We updated design lines and swapped out some components, but the idea is the same as the first Delta. The 2 still has that clashing combination of supportive and space age-like materials, with lots of different textures and heavy stitching to create a look that is both adventurous and iconic.', brand_name='Nike')
+    fyw = Sneax(    # sample
+        name='adidas Y-3 FYW S-97', market_price=223, image='https://images.stockx.com/images/adidas-Y-3-FYW-S-97-Off-Black-White.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1627415422&pad=0&fm=webp', details='Introduced in July 2019, the Y-3 FYW S-97 is a reimagined edition of the adidas Salvation sneaker. First seen in 1997, the Salvation is one of adidas’ original running silhouettes with Feet You Wear technology. The sneaker has been refreshed with a flexible Primeknit upper and adorned with the signature of Japanese fashion designer Yohji Yamamoto. Suede and leather detailing appear on the heel and forefoot. Below, the midsole features cut-outs to reveal the adidas Boost cushioning.', brand_name='adidas')
+    nbOne= Sneax(    # sample
+        name='New Balance 2002R', market_price=240, image='https://images.stockx.com/images/New-Balance-M2002-Protection-Pack-Rain-Cloud.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1624346652&pad=0&fm=webp', details='The 2002R reintroduces a technical running favorite from 2010, outfitting the original design with modern performance upgrades. Don’t call it retro though. A mesh and suede overlay upper construction is rendered with sleek curves and cutout segments for a futuristic take on a classic look. The performance of a Stability Web equipped and N-ergy shock absorbing outsole, ABZORB midsole and ABZORB SBS heel cushioning offer comfort and performance that can’t be pinned down with a date.', brand_name='New Balance')
+    nbTwo = Sneax(    # sample
+        name='New Balance 574', market_price=128, image='https://images.stockx.com/images/new-balance-574-tds-white-grey-ver2.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1623473292&pad=0&fm=webp', details='The 574 isn’t just any shoe. Crafted with updated materials, this women’s throwback sneaker is a symbol of ingenuity and originality — no matter how you wear it.', brand_name='New Balance')
+    pollen = Sneax(    # sample
+        name='Jordan 1 Retro High Pollen', market_price=251, image='https://images.stockx.com/360/Air-Jordan-1-Retro-High-Pollen/Images/Air-Jordan-1-Retro-High-Pollen/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1626802470&h=320&fm=webp', details='In a simple two-tone format, the upper of the Air Jordan 1 High Pollen is constructed of black tumbled leather with Pollen Yellow overlays and Swooshes. Matching woven tongue tags and a Jordan Wings logo on the collar add authentic 1980s detailing. The Air Jordan 1 High Pollen released in August of 2021 and retailed for $170.', brand_name='Air Jordan')
+    retro = Sneax(    # sample
+        name='Jordan 1 Retro High Travis Scott', market_price=2250, image='https://images.stockx.com/360/Air-Jordan-1-Retro-High-Travis-Scott/Images/Air-Jordan-1-Retro-High-Travis-Scott/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1608736403&h=320&fm=webp', details='Grab a pack of coffee beans to match the Jordan 1 Retro High Travis Scott. This AJ1 comes with a brown upper plus white accents, black Nike "Swoosh", sail midsole, and a brown sole. These sneakers released in May 2019 and retailed for $175. Mess the club up in these after buying them on StockX.', brand_name='Air Jordan')
+    xxxiii = Sneax(    # sample
+        name='Jordan XXXIII Travis Scott', market_price=280, image='https://images.stockx.com/360/Air-Jordan-XXXIII-Travis-Scott/Images/Air-Jordan-XXXIII-Travis-Scott/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1606344194&h=320&fm=webp', details='Before you change the song on Astroworld, cop the new Jordan XXXIII Travis Scott. This AJ33 come with a green upper, white Jordan Jumpman logo, white midsole plus green accents, and a green sole. These sneakers released in January 2019 and retailed for $175. After you stand in AstroThunder storm, go place a Bid on StockX now.', brand_name='Air Jordan')
+    retsix = Sneax(    # sample
+        name='Jordan 6 Retro Travis Scott (GS)', market_price=420, image='https://images.stockx.com/360/Air-Jordan-6-Retro-Travis-Scott-GS/Images/Air-Jordan-6-Retro-Travis-Scott-GS/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1606344162&h=320&fm=webp', details='MEDIUM OLIVE/BLACK-SAIL-UNIVERSITY', brand_name='Air Jordan')
+    clog = Sneax(    # sample
+        name='Crocs Classic Clog Diplo Take a Walk on the Weird Side', market_price=101, image='https://images.stockx.com/360/Crocs-Classic-Clog-Diplo-Take-a-Walk-on-the-Weird-Side/Images/Crocs-Classic-Clog-Diplo-Take-a-Walk-on-the-Weird-Side/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1624989940&h=320&fm=webp', details='Who would pay this much for this uglu shoe? You would! BUY BUY BUY! Only you have the power to make this particular sneax go up in market price! Think GME!', brand_name='Crocs')
+    louis = Sneax(    # sample
+        name='Louis Vuitton Trainer Green Mesh', market_price=2500, image='https://images.stockx.com/images/Louis-Vuitton-Trainer-Green-Mesh.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1627055922&pad=0&fm=webp', details='Yeah yeah, you know you need it. Buy it and see it on your feet! Or imagine it, cause these are not real! ', brand_name='Louis Vuitton')
+    trainer = Sneax(    # sample
+        name='LV Trainer White SS21', market_price=1900, image='https://images.stockx.com/360/LV-Trainer-White-SS21/Images/LV-Trainer-White-SS21/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1620059814&h=320&fm=webp', details='Louis louis louis you stay on my mind! Baby, baby these shoes of mine get me nowhere. Now, Shine!', brand_name='Louis Vuitton')
+    high = Sneax(    # sample
+        name='Dior B23 High Top Logo Oblique', market_price=1100, image='https://images.stockx.com/360/Dior-B23-High-Top-Logo-Oblique/Images/Dior-B23-High-Top-Logo-Oblique/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1613339404&h=320&fm=webp', details='Dior vs Louis? I choose Dior. Look at this mamasita! Ai chi wa wa! bada bing bada boom', brand_name='Dior')
+    b22 = Sneax(    # sample
+        name='Dior B22 White Green', market_price=1350, image='https://images.stockx.com/images/Dior-B22-White-Green-4.png?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1625240582&pad=0&fm=webp', details='I\'m getting tired. Think of your ow stupid text.', brand_name='Dior')
+    bluyell = Sneax(    # sample
+        name='B22 Blue Yellow', market_price=1700, image='https://images.stockx.com/images/B22-Blue-Yellow.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1607668576&pad=0&fm=webp', details='Hi grandma!', brand_name='Dior')
+    chanel = Sneax(    # sample
+        name='Chanel Low Top Trainer CC Triple Black Sued', market_price=2000, image='https://images.stockx.com/images/Chanel-Low-Top-Trainer-CC-Triple-Black-Suede.jpg?fit=fill&bg=FFFFFF&w=480&h=320&auto=compress&q=90&dpr=1&trim=color&updated_at=1615419182&pad=0&fm=webp', details='Chanel is class. And class, is money. Are you money? No, you are human, but if you have money, that\s even better! Cause that means you can waste it on this. Buy it and find out how difficult it is to look pretty in NYC and walk 1000 miles only to have some kid to throw up on your Gucci purse. Sick!', brand_name='Chanel')
+    sample = Sneax(    # sample
+        name='name', market_price=0000, image='image', details='deets', brand_name='brand')
+    navu = Sneax(    # sample
+        name='Chanel CC High Top Navy', market_price=240, image='https://images.stockx.com/360/Chanel-CC-High-Top-Navy/Images/Chanel-CC-High-Top-Navy/Lv2/img01.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1603481985&h=320&fm=webp', details='This is the last shoe of the day. The last shoe you need to purchase to stay afloat. That is why it is a high top to get you "High"-er. Start thinking smart! Thats why that girl left you after matching with you only to find out you\'re really only 5\'8 and a half. These shoes are the boost you need! 5\'11 is only a few bucks away!', brand_name='Chanel')
+    # sample = Sneax(    # sample
+    #     name='name', market_price=0000, image='image', details='deets', brand_name='brand')
+    # sample = Sneax(    # sample
+    #     name='name', market_price=0000, image='image', details='deets', brand_name='brand')
+    # sample = Sneax(    # sample
+    #     name='name', market_price=0000, image='image', details='deets', brand_name='brand')
+    # sample = Sneax(    # sample
+    #     name='name', market_price=0000, image='image', details='deets', brand_name='brand')
+
 
     db.session.add(yeezy)
+    db.session.add(pollen)
+    db.session.add(navu)
+    db.session.add(clog)
+    db.session.add(chanel)
+    db.session.add(b22)
+    db.session.add(bluyell)
+    db.session.add(high)
+    db.session.add(trainer)
+    db.session.add(louis)
+    db.session.add(retsix)
+    db.session.add(xxxiii)
+    db.session.add(retro)
     db.session.add(travvii)
     db.session.add(jeezy)
     db.session.add(dunk)
@@ -86,6 +139,11 @@ def seed_sneaxs():
     db.session.add(off)
     db.session.add(frag)
     db.session.add(maadg)
+    db.session.add(delta)
+    db.session.add(fyw)
+    db.session.add(nbTwo)
+    db.session.add(travis)
+    db.session.add(nbOne)
 
     db.session.commit()
 
