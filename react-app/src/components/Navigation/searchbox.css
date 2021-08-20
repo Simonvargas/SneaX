@@ -1,38 +1,31 @@
 .searchfield {
     overflow-y: scroll;
     width: 350px;
-    right: 40%;
-    left: 40%;
+    /* right: 40%;
+    left: 40%; */
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
     text-align: center;
     padding: 10px;
-    z-index: 1000;
     border: 1px solid black;
-}
-
-.searchfield {
-    /* z-index: 7; */
     position: absolute;
     text-align: left;
     overflow: scroll;
     height: 200px;
-    /* position: fixed; */
+    z-index: 7;
 }
+
 
 .searchfield-container {
     display: flex;
     border-bottom: 1px solid #E3E9ED;
 
-
 }
 
 .search-cover {
     display: flex;
-
-
 }
 
 .search-link{
