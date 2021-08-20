@@ -195,7 +195,7 @@ function SneaxDetails() {
                             return (
                                 <option value={watchlist.id}  id={watchlist.id}>{watchlist.list_name}</option>
                             )
-          })} </select> <button onClick={(e) => addToWatchList(e)}>add</button> </div> : '' }
+          })} </select> <button className='btn-add' onClick={(e) => addToWatchList(e)}>add</button> </div> : '' }
                 </div>
           </div>
       </div>
