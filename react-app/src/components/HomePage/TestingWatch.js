@@ -91,8 +91,8 @@ function TestingWatch () {
 
             {createList ?
             <div>
-              <input onChange={(e) => setListName(e.target.value)} placeholder='List name' />
-                <button onClick={() => createNew()}>Create</button>
+              <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='List name' />
+                <button className='test-btn'onClick={() => createNew()}>Create</button>
             </div>
             : ''}
             {updateList ?
@@ -103,8 +103,8 @@ function TestingWatch () {
                                 <option value={watchlist.id} id={watchlist.id} key={watchlist.id}>{watchlist.list_name}</option>
                             )
             })} </select>
-          <input onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
-          <button onClick={() => update()} >Update</button> </div>
+          <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
+          <button className='test-btn' onClick={() => update()} >Update</button> </div>
               </div> : ''}
 
             {/* </div> */}
