@@ -30,6 +30,7 @@
     background-color: #20bf55;
     background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
     transition: all 0.4s ease 0s;
+    cursor: pointer;
 }
 
 .btn2:hover {
@@ -160,6 +161,7 @@
     background-color: #3f0d12;
     background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
     transition: all 0.4s ease 0s;
+    cursor: pointer;
 }
 
 .searchBar:hover {
@@ -179,4 +181,3 @@
 .searchfield-container {
     border: 1px solid black;
 }
-
