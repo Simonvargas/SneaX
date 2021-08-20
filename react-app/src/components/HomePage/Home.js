@@ -234,7 +234,7 @@ function Home() {
   function dataPts() {
     let test = shares
     test.pop()
-    console.log(test)
+
     test?.map((share, index) => {
       if (test) {
         const sharep = share?.price_per_share * share.number_of_shares
@@ -250,7 +250,7 @@ function Home() {
     graphContent = (
       <>
       <ResponsiveContainer width="100%" height="100%">
-            <LineChart  data={data} >
+            <LineChart  data={data}>
               <Line type='monotone' dataKey='uv' stroke='#d123d2' activeDot={{ r: 8 }}/>
               <CartesianGrid stroke="#ccc" />
               <XAxis dataKey="name" padding={{ left: 30, right: 30 }}/>
