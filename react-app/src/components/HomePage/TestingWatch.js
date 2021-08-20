@@ -74,67 +74,89 @@ function TestingWatch () {
     return (
         <>
         <div className='watchlist-container'>
-            <h2>Watchlists</h2>
-            <div className='watchlist-add-edit'>
-            <button onClick={createAList}>Create WatchList</button>
-            <button onClick={updateAList}>Update WatchList</button>
+            <div className='shares'>
+                <h1>Watchlists</h1>
+                <div>
+                    <i class="fas fa-plus" title='Create A List' onClick={createAList}></i>
+                    <i class="far fa-edit" title='Update Watchlist 'onClick={updateAList}></i>
+                </div>
 
-            {createList? <div>
-              <input
-                onChange={(e) => setListName(e.target.value)}
-                placeholder='List name' />
-            <button
-            onClick={() => createNew()
-            }>Create</button>
-            </div> : ''}
-            {updateList? <div>
+            </div>
 
-              <div><select onChange={(e) => setEditId(e.target.value)}> {watchlists?.map(watchlist => {
+            {/* <div className='watchlist-add-edit'> */}
+            {/* <i class="fas fa-plus" onClick={createAList}>Create WatchList</i> */}
+            {/* <i class="far fa-edit" onClick={updateAList}>Update WatchList</i> */}
+
+            {createList ?
+            <div>
+              <input onChange={(e) => setListName(e.target.value)} placeholder='List name' />
+                <button onClick={() => createNew()}>Create</button>
+            </div>
+            : ''}
+            {updateList ?
+                <div>
+
+                <div><select onChange={(e) => setEditId(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
                                 <option value={watchlist.id} id={watchlist.id}>{watchlist.list_name}</option>
                             )
-          })} </select>
+            })} </select>
           <input onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
-          <button onClick={() => update()} >add</button> </div>
+          <button onClick={() => update()} >Update</button> </div>
               </div> : ''}
 
-            </div>
+            {/* </div> */}
             <>
-            <div className='testing-btns2'>
-            {watchlists?.map(watchlist => {
-                            return (
-                                <>
-                                <button onClick={(e) => (userWatchList(e), setListId(watchlist.id))} id={watchlist.id}>{watchlist.list_name}</button>
-                              </>
-                            )
+            <div className='watchlist-bttns-container'>
+                <div className='testing-btns2'>
+                {watchlists?.map(watchlist => {
+                    return (
+                        <div className='watchlist-bttn'>
+                            <button onClick={(e) => (
+                                userWatchList(e),
+                                setListId(watchlist.id))}
+                                id={watchlist.id}>{watchlist.list_name}
+                            </button>
+                        </div>
+                    )
                 })}
-                </div>
-                </>
+                    </div>
+            </div>
+            </>
 
         {watchState ?
         <div className="testing-container">
-            <h2>List of Watchs</h2>
+            <h1>List of Watchs</h1>
             <ul>
                 {allWatchs?.map(watch => {
                     for (let i = 0; i < sneaxs.length; i++) {
                         if (sneaxs[i].id === watch.sneax_id && watchNumber == watch.watchlist_id)  {
                             return (
                               <>
-                              <div className='watch-items'>
-                              <Link className='items-link' to={`/sneax/${sneaxs[i].id}`}>
-                                <div>
-                                <img src={sneaxs[i].image}></img>
-                                </div>
-                                {sneaxs[i].name}
-                                </Link>
-                                <button onClick={deleteWatch} id={watch.id} className='delete-btn-watch'>Delete</button>
+                                <div className='test-container-ignore'>
+                                    <Link className='items-link' to={`/sneax/${sneaxs[i].id}`}>
+                                        <div className='watch-items-container'>
+                                            <div className='watch-items-box'>
+                                                <img src={sneaxs[i].image}></img>
+                                            </div>
+                                            <div div className='watch-items-box'>
+                                                {sneaxs[i].name}
+                                            </div>
+                                        </div>
+                                    </Link>
+                                    <div className='delete-list-bttn'>
+                                        <i class="fas fa-trash-alt" tite='Delete Watch' onClick={deleteWatch} id={watch.id} ></i>
+                                    </div>
                                 </div>
                               </>
                             )
                           }
                         }
-                      })}
-                      <button onClick={(e) => deleteList(e)}>delete this list</button>
+                    })}
+                    <div className='watchlist-bttn'>
+                        <button onClick={(e) => deleteList(e)}>delete this list</button>
+                    </div>
+
             </ul>
         </div>
     : ''}

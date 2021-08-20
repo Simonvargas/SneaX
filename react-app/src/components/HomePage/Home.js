@@ -172,7 +172,9 @@ function Home() {
     shareContent = (
       <div className='dash-shares-form-container'>
             <form className='shares-form' onSubmit={(e) => tradeSubmit(e)} >
+
               <div className='form-divs'>
+              <h1>Buy More</h1>
               <label> Number Of Shares</label>
               <input type='number' value={sellQty} onChange={null}/>
               </div>
@@ -207,8 +209,11 @@ function Home() {
   } else if (openSell) {
     shareContent = (
       <div className='dash-shares-form-container'>
+
         <form className='shares-form' onSubmit={(e) => tradeSell(e)}>
+
           <div className='form-divs'>
+            <h1>Sell</h1>
             <label> Number Of Purchased Shares</label>
             <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
           </div>
