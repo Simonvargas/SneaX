@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
 import { getWatchs } from '../../store/watch';
 import { allSneax } from '../../store/sneax';
-import { getList } from '../../store/watchlist'
+import * as listAction from '../../store/watchlist'
 import { removeOneWatch } from '../../store/watch';
 
 // import { getList } from '../../store/watchlist';
@@ -25,6 +25,9 @@ function TestingWatch () {
     const [item, setDeleteItem] = useState(0)
     const [createList, setCreateList] = useState(false)
     const [updateList, setUpdateList] = useState(false)
+    const [listName, setListName] = useState('')
+    const [listId, setListId] = useState('')
+    const [editId, setEditId] = useState('')
 
     const history = useHistory()
     function userWatchList(e) {
@@ -32,26 +35,43 @@ function TestingWatch () {
         setWatchstate(true)
     }
 
-    function createAList() {
+    async function createAList() {
       setUpdateList(false)
       setCreateList(true)
+      setListName('')
+
     }
-    function updateAList() {
+    async function updateAList() {
       setCreateList(false)
       setUpdateList(true)
+      setListName('')
+      setEditId(watchlists[0].id)
+    }
+
+    async function createNew() {
+      await dispatch(listAction.createList(listName ,sessionUser.id))
+    }
+
+    async function update() {
+      console.log(editId)
+      // await dispatch(listAction.editList(listName ,sessionUser.id, ))
+    }
+
+    async function deleteList() {
+      await dispatch(listAction.removeList(listId))
+      history.go(0)
     }
 
     useEffect(() => {
         dispatch(allSneax());
         dispatch(getWatchs(sessionUser.id));
-        dispatch(getList())
+        dispatch(listAction.getList())
     }, [dispatch, sessionUser.id]);
 
     async function deleteWatch(e){
       await dispatch(removeOneWatch(Number(e.target.id)))
       history.go(0)
     }
-    console.log(item)
     return (
         <>
         <div className='watchlist-container'>
@@ -59,17 +79,24 @@ function TestingWatch () {
             <div className='watchlist-add-edit'>
             <button onClick={createAList}>Create WatchList</button>
             <button onClick={updateAList}>Update WatchList</button>
-            
-            {createList? <div><input placeholder='List name'></input><button>Create</button></div> : ''}
+
+            {createList? <div>
+              <input
+                onChange={(e) => setListName(e.target.value)}
+                placeholder='List name' />
+            <button
+            onClick={() => createNew()
+            }>Create</button>
+            </div> : ''}
             {updateList? <div>
-              
+
               <div><select> {watchlists?.map(watchlist => {
                             return (
-                                <option  id={watchlist.id}>{watchlist.list_name}</option>
+                                <option onChange={() => setEditId(watchlist.id)} id={watchlist.id}>{watchlist.list_name}</option>
                             )
-          })} </select> 
-          <input placeholder='New name'></input>
-          <button >add</button> </div>
+          })} </select>
+          <input onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
+          <button onClick={() => update()} >add</button> </div>
               </div> : ''}
 
             </div>
@@ -78,13 +105,13 @@ function TestingWatch () {
             {watchlists?.map(watchlist => {
                             return (
                                 <>
-                                <button onClick={(e) => userWatchList(e)} id={watchlist.id}>{watchlist.list_name}</button>
+                                <button onClick={(e) => (userWatchList(e), setListId(watchlist.id))} id={watchlist.id}>{watchlist.list_name}</button>
                               </>
                             )
                 })}
                 </div>
                 </>
-        
+
         {watchState ?
         <div className="testing-container">
             <h2>List of Watchs</h2>
@@ -97,7 +124,7 @@ function TestingWatch () {
                               <div className='watch-items'>
                               <Link className='items-link' to={`/sneax/${sneaxs[i].id}`}>
                                 <div>
-                                <img src={sneaxs[i].image}></img> 
+                                <img src={sneaxs[i].image}></img>
                                 </div>
                                 {sneaxs[i].name}
                                 </Link>
@@ -105,9 +132,10 @@ function TestingWatch () {
                                 </div>
                               </>
                             )
+                          }
                         }
-                    }
-                })}
+                      })}
+                      <button onClick={(e) => deleteList(e)}>delete this list</button>
             </ul>
         </div>
     : ''}
