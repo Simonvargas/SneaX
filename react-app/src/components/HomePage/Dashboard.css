@@ -447,6 +447,7 @@
     padding: 10px;
     width: 100%;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     border-top: 1px solid #E3E9ED;
     border-bottom: 1px solid #E3E9ED;
@@ -458,6 +459,10 @@
 
 .delete-list-bttn i {
     visibility: hidden;
+}
+
+.test-container-ignore {
+    overflow: scroll;
 }
 
 .test-container-ignore:hover .delete-list-bttn i {
@@ -480,12 +485,6 @@ img {
     width: 80px;
     float: left;
 }
-
-.watchlist-add-edit {
-    padding: 10px;
-    border-bottom: 1px solid #E3E9ED;
-}
-
 
 
 .testing-btns2 {

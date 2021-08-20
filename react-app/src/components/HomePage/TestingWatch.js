@@ -155,7 +155,9 @@ function TestingWatch () {
                           }
                         }
                       })}
-                      <button onClick={(e) => deleteList(e)}>delete this list</button>
+                      <div className='watchlist-bttn'>
+                        <button onClick={(e) => deleteList(e)}>delete this list</button>
+                    </div>
             </div>
         </div>
     : ''}
