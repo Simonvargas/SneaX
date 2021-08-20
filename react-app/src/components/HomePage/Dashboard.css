@@ -460,6 +460,10 @@
     visibility: hidden;
 }
 
+.test-container-ignore {
+    overflow: scroll;
+}
+
 .test-container-ignore:hover .delete-list-bttn i {
     visibility: visible;
 }
