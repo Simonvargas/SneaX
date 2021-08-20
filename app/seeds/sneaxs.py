@@ -18,7 +18,7 @@ def seed_sneaxs():
     travis = Sneax(    # sample
         name='Nike SB Dunk Low Travis Scott (Regular Box)', market_price=1569, image='https://images.stockx.com/360/Nike-SB-Dunk-Low-Travis-Scott/Images/Nike-SB-Dunk-Low-Travis-Scott/Lv2/img02.jpg?auto=compress&w=480&q=90&dpr=1&updated_at=1606325738&h=320&fm=webp', details='Travis Scott teamed up with Nike SB to release his first official skate shoe, the Nike SB Dunk Low Travis Scott (Regular Box), now available on StockX. This design follows a similar design aesthetic as seen on the Air Force 1 Low Travis Scott Cactus Jack, featuring an array of materials and prints. Unlike previous Travis Scott releases, these were not available on SNKRS and only available at select Nike SB stockists. This Nike SB Dunk Low is composed of suede upper with paisley canvas and plaid flannel overlays. As the paisley overlays wear off, an elephant print is revealed. Embroidered text around the collar, rope laces, and La Flame’s Cactus Jack logo on the puffy tongues completes this design. These sneakers released in February of 2020 and retailed for $150.', brand_name='Nike')
     # mag = Sneax(    # sample
-    #     name='name', market_price=0000, image='img', details='deet', brand_name='brand')
+    #     name='adidas Forum Low', market_price=0000, image='img', details='deet', brand_name='brand')
     # mag = Sneax(    # sample
     #     name='name', market_price=0000, image='img', details='deet', brand_name='brand')
 
