@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useSelector } from 'react-redux';
 import styles from './NavBar.module.css'
+import "./searchbox.css"
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -19,6 +20,38 @@ const NavBar = () => {
   }
 
   const kicks = filter(sneax, searchInput)
+
+  let searchbar = null
+  if (searchInput) {
+    searchbar = (
+      <>
+        {sessionUser ?
+        <div className="search-cover">
+            <div className='searchfield'>
+              {kicks.map(sneaker => (
+                <div className='searchfield-container'>
+                  <ul>
+                    <Link to={`/sneax/${sneaker.id}`}>
+                      <li>{sneaker.name}</li>
+                    </Link>
+                  </ul>
+                </div>
+              ))}
+        </div>
+          {/* {kicks.map(sneaker => (
+            <div className='searchfield-container'>
+              <ul>
+                <Link to={`/sneax/${sneaker.id}`}>
+                  <li>{sneaker.brand_name}</li>
+                </Link>
+              </ul>
+            </div>
+          ))} */}
+        </div>
+        : null}
+      </>
+    )
+  }
 
   return (
     <div>
@@ -39,7 +72,7 @@ const NavBar = () => {
       </div>
     </nav> :
 
-    <nav className={styles.navBar2}>
+<nav className={styles.navBar2}>
       <div className={styles.logo}>
       <Link to='/'>
         <img className={styles.photo} src='https://i.imgur.com/mu6iY5g.png'></img>
@@ -53,7 +86,7 @@ const NavBar = () => {
           type='text'
           className={styles.searchBar}
           onChange={(e) => setSearchInput(e.target.value)}
-        />
+          />
         <button className={styles.searchBtn}><i class="fab fa-searchengin"></i></button>
       </div>
       </form>
@@ -89,29 +122,10 @@ const NavBar = () => {
               </div>
               </div>
       </div>
+
     </nav> }
-    {/* {sessionUser ?
-    <div className='searchfield'>
-      {kicks.map(sneaker => (
-        <div className='searchfield-container'>
-          <ul>
-            <Link to={`/sneax/${sneaker.id}`}>
-              <li>{sneaker.name}</li>
-            </Link>
-          </ul>
-        </div>
-      ))} */}
-      {/* {kicks.map(sneaker => (
-        <div className='searchfield-container'>
-          <ul>
-            <Link to={`/sneax/${sneaker.id}`}>
-              <li>{sneaker.brand_name}</li>
-            </Link>
-          </ul>
-        </div>
-      ))} */}
-    {/* </div>
-    : null} */}
+    {searchbar}
+
     </div>
   );
 }

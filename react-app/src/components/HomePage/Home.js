@@ -367,7 +367,6 @@ function Home() {
                 <h2 className='sneax-brand'>$200 2.00% Today</h2>
               </div>
               <div className='sneax-graph'>
-                <h1>PUT GRAPH HERE</h1>
                 <button onClick={() => setShowGraph(!showGraph)}>show graph</button>
                 {graphContent}
               </div>
