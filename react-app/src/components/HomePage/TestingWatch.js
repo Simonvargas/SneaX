@@ -53,8 +53,7 @@ function TestingWatch () {
     }
 
     async function update() {
-      console.log(editId)
-      // await dispatch(listAction.editList(listName ,sessionUser.id, ))
+      await dispatch(listAction.editList(listName ,sessionUser.id, editId))
     }
 
     async function deleteList() {
@@ -90,9 +89,9 @@ function TestingWatch () {
             </div> : ''}
             {updateList? <div>
 
-              <div><select> {watchlists?.map(watchlist => {
+              <div><select onChange={(e) => setEditId(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
-                                <option onChange={() => setEditId(watchlist.id)} id={watchlist.id}>{watchlist.list_name}</option>
+                                <option value={watchlist.id} id={watchlist.id}>{watchlist.list_name}</option>
                             )
           })} </select>
           <input onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
