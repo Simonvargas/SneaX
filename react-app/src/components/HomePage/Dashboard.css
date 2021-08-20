@@ -395,6 +395,9 @@
 .testing-container {
     margin-top: 8px;
     width: 100%;
+    overflow: scroll;
+    position: sticky;
+
 }
 .testing-container h1{
     font-family: 'Rubik', sans-serif;
@@ -433,6 +436,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    overflow: scroll;
 }
 
 

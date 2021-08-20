@@ -7,7 +7,6 @@ import { allSneax } from '../../store/sneax';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import SplashPage from './SplashPage'
-import Dashboard from './Dashboard';
 import { getList, createList, removeList, editList  } from '../../store/watchlist'
 import TestingWatch from './TestingWatch';
 import { getWatchs, addOneWatch, removeOneWatch } from '../../store/watch';
