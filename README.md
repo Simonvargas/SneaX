@@ -1,8 +1,14 @@
-# Flask React Project
+# SneaX 
+<img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/react-app/src/components/Navigation/logo.png' alt='logo' width='200' />
+</br> SneaX is a financial application that allows user to invest in SneaX, which are sneakers. The user can purchase sneaxs and add them to their watchlist. This full stack application is inspired by Robinhood. 
+
+
+
+## Flask React Project
 
 This is the starter for the Flask React project.
 
-## Getting started
+### Getting started
 
 1. Clone this repository (only this branch)
 
@@ -54,7 +60,7 @@ This is the starter for the Flask React project.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
 
-## Deploy to Heroku
+### Deploy to Heroku
 
 1. Before you deploy, don't forget to run the following command in order to
 ensure that your production environment has all of your up-to-date
