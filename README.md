@@ -20,8 +20,18 @@ Here are the main technologies used to built this application.
 </br> Returning user can log in by filling out the log in form. 
    <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/loginMD.png' height= '150' width='200' alt='pic'>
 
-</br> Once logged in or signed up, user is redirected to the dashboard. 
+</br> Once logged in or signed up, user is redirected to the dashboard. In this page, user can view their investments. The graph represents the performance of the account. On the right side, user can view their shares they have purchased and their watchlist.
    <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/dashboardMD.png' height= '150' width='200' alt='pic'>
+</br> Close up of the watchlist. 
+   <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/watchlistMD.png' height= '150' width='200' alt='pic'>
+
+</br> User can purchase shares of SneaXs. The user can search up the SneaX on the search bar. 
+   <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/searchbarMD.png' height= '50' width='200' alt='pic'>
+</br> Once the users select the Sneax, it will take the user to the detail page of that SneaX. In the detail page, the left side shows the detail of the SneaX. User can purchase the SneaX by filling out the form on the right side. User can add it to the watchlist by clicking on add to watchlist. If SneaXs is already purchased, user can go back to the dashboard and update their purchased SneaX there. 
+   <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/sneaxdetailMD.png' height= '150' width='200' alt='pic'>
+
+
+   
 
 
 
