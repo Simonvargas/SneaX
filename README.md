@@ -1,6 +1,28 @@
 # SneaX 
 <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/react-app/src/components/Navigation/logo.png' alt='logo' width='200' />
-</br> SneaX is a financial application that allows user to invest in SneaX, which are sneakers. The user can purchase sneaxs and add them to their watchlist. This full stack application is inspired by Robinhood. 
+</br> SneaX is a financial application that allows user to invest in SneaX, which are sneakers. The user can purchase SneaXs and add them to their watchlist. This full stack application is inspired by Robinhood. 
+
+* live link:  <a href='https://sneaxs.herokuapp.com/'>SneaX</a>
+
+## Technologies 
+Here are the main technologies used to built this application.
+* Backend: Python, Flask, WTForms, SQLAlchemy, PostgreSQL
+* Frontend: Javascript, React/Redux, CSS3
+
+
+## Site Walkthrough 
+</br> This is the splash page.
+ <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/homepageMD.png' height= '150' width='200' alt='pic'>
+ 
+ </br> New user can sign up by filling out the sign up form. If user do not want to sign up, they can go to login and sign in as demo. 
+  <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/signupMD.png' height= '150' width='200' alt='pic'>
+
+</br> Returning user can log in by filling out the log in form. 
+   <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/loginMD.png' height= '150' width='200' alt='pic'>
+
+</br> Once logged in or signed up, user is redirected to the dashboard. 
+   <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/dashboardMD.png' height= '150' width='200' alt='pic'>
+
 
 
 
