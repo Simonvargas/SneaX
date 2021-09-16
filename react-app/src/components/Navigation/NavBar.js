@@ -92,7 +92,7 @@ const NavBar = () => {
           className={styles.searchBar}
           onChange={(e) => setSearchInput((e.target.value).toLowerCase())}
           />
-        <button className={styles.searchBtn}><i class="fab fa-searchengin"></i></button>
+        {/* <button className={styles.searchBtn}><i class="fab fa-searchengin"></i></button> */}
       </div>
       </form>
 
