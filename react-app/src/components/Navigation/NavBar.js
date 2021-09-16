@@ -19,9 +19,10 @@ const NavBar = () => {
     })
   }
 
-  // if (window.onclick()) {
-  //   console.log("hi")
-  // }
+  window.addEventListener('click', e => {
+    e.preventDefault()
+    setSearchInput('')
+  })
 
   const kicks = filter(sneax, searchInput)
 
