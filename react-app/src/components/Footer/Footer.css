@@ -1,3 +1,16 @@
 .footerContainer{
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.team-members{
+    display: flex;
+    flex-direction: row;
+}
+.team-name {
+    color: thistle;
+    font-size: large;
 }
