@@ -88,6 +88,7 @@ const NavBar = () => {
         <input
           placeholder='Search for your favorite Sneax'
           type='text'
+          value={searchInput}
           className={styles.searchBar}
           onChange={(e) => setSearchInput((e.target.value).toLowerCase())}
           />
