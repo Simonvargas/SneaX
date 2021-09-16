@@ -11,6 +11,8 @@ import Home from './components/HomePage/Home'
 import SneaxDetails from './components/SneaxDetails/SneaxDetails';
 import TestingWatch from './components/HomePage/TestingWatch';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Footer from './components/Footer/Footer';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +59,7 @@ function App() {
         </Route>
 
       </Switch>
+      <Footer/>
     </BrowserRouter>
   );
 }
