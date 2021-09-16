@@ -15,7 +15,7 @@
 
 .sneax-dash-info-box{
     width: 800px;
-    padding-right: 1%;
+    padding-right: 3%;
 }
 
 .sneax-shares-container {
@@ -92,7 +92,8 @@
     width: 440px;
     height: 419px;
     line-height: 20px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .shares {
