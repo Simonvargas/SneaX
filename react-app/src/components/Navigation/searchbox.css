@@ -1,43 +1,45 @@
 .searchfield {
     overflow-y: scroll;
-    width: 350px;
+    position:absolute;
+    top: 50px;
+    width: 400px;
     /* right: 40%;
     left: 40%; */
     margin-left: auto;
     margin-right: auto;
-    left: 0;
+    left: 40px;
     right: 0;
     text-align: center;
     padding: 10px;
     border: 1px solid black;
-    position: absolute;
     text-align: left;
     overflow: scroll;
-    height: 200px;
+    height: 400px;
     z-index: 7;
+    background-color: white;
 }
 
-
 .searchfield-container {
-    display: flex;
     border-bottom: 1px solid #E3E9ED;
+}
 
+.searchfield-container:hover {
+    background-color: rgba(221, 190, 190, 0.1);
 }
 
 .search-cover {
     display: flex;
 }
 
-.search-link{
+.search-link {
     text-decoration: none;
     color: black;
-    padding: 2px;
+    padding: 10px 2px;
     margin: 0;
 }
 
 .search-link:hover {
     color: grey;
-
 }
 
 

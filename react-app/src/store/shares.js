@@ -85,7 +85,7 @@ export const deleteShare = (id) => async dispatch => {
     return res
 }
 
-const initialState = {}
+const initialState = { shares:null }
 
 const sharesReducer = (state = initialState, action, id) => {
     switch (action.type) {

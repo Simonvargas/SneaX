@@ -19,9 +19,10 @@ const NavBar = () => {
     })
   }
 
-  // if (window.onclick()) {
-  //   console.log("hi")
-  // }
+  window.addEventListener('click', e => {
+    e.preventDefault()
+    setSearchInput('')
+  })
 
   const kicks = filter(sneax, searchInput)
 
@@ -33,12 +34,11 @@ const NavBar = () => {
         <div className="search-cover">
             <div className='searchfield'>
               {kicks.map(sneaker => (
-                <div className='searchfield-container'>
                   <Link className='search-link' to={`/sneax/${sneaker.id}`}>
-                    <p  className='search-link'>{sneaker.name}</p>
+                    <div className='searchfield-container'>
+                      <p  className='search-link'>{sneaker.name}</p>
+                    </div>
                   </Link>
-
-                </div>
               ))}
         </div>
           {/* {kicks.map(sneaker => (
@@ -87,10 +87,11 @@ const NavBar = () => {
         <input
           placeholder='Search for your favorite Sneax'
           type='text'
+          value={searchInput}
           className={styles.searchBar}
           onChange={(e) => setSearchInput((e.target.value).toLowerCase())}
           />
-        <button className={styles.searchBtn}><i class="fab fa-searchengin"></i></button>
+        {/* <button className={styles.searchBtn}><i class="fab fa-searchengin"></i></button> */}
       </div>
       </form>
 

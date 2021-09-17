@@ -5,29 +5,22 @@
 .sneax-dashboard-container {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
     background-color: white;
+    justify-content: center;
+    /* width: 1000px; */
     margin-top: 35px;
 }
 
 /* ***************DASH BOARD INFO***************** */
 
-.sneax-dash-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* width: auto; */
-    height: 100vh;
-    margin-left: 300px;
-}
-
 .sneax-dash-info-box{
     width: 800px;
-
+    padding-right: 3%;
 }
 
 .sneax-shares-container {
     display: flex;
+    float: right;
     flex-direction: column;
     background-color: white;
 }
@@ -99,7 +92,8 @@
     width: 440px;
     height: 419px;
     line-height: 20px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .shares {

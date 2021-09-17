@@ -310,6 +310,7 @@ function Home() {
       <>
       <NavBar />
       <div className="sneax-dashboard-container">
+{/* -------------------------------------------dash start------------------------------------------------------ */}
         <div className= 'sneax-shares-container'>
           <div className='dash-shares-container'>
             <div className='dash-shares-box'>
@@ -354,7 +355,6 @@ function Home() {
                                       setShareId(share.id))}>Trade
                                   </button>
                                 </div>
-
                                 <div hidden="true">
                                   {totalAccount += (share.number_of_shares * share.price_per_share)}.
                                 </div>
@@ -366,12 +366,8 @@ function Home() {
               </div>
               <TestingWatch />
           </div>
-
-
-
         </div>
-        <div clasName='sneax-dash-container'>
-          <div className='sneax-info-container'>
+        {/* -------------------------------------------dash split------------------------------------------------------ */}
             <div className='sneax-dash-info-box'>
               <div className='sneax-name-brand-box'>
                 <div className='name'>
@@ -391,8 +387,7 @@ function Home() {
                 <p>For more information, see our Privacy Policy.</p>
               </div>
             </div>
-          </div>
-        </div>
+
 {/* >>>>>>> simon */}
       </div>
 
