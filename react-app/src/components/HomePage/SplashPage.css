@@ -139,6 +139,7 @@
     grid-template-columns: 1fr 1fr;
     height: 400px;
     background-color: #bbf0f3;
+    padding: 10px;
     background-image: linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%);
 }
 
