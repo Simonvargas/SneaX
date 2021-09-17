@@ -97,18 +97,21 @@
     margin-top: 40px
 }
 
+.center-center {
+    width: 800px;
+}
+
 .footer {
     background-color: black;
-    width: 100%;
     height: auto;
     color: white;
-    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .footer-text {
     text-align: center;
-    position: relative;
-    left: 250px;
+    display: flex;
 }
 
 .third-splash-container {
@@ -132,32 +135,42 @@
 
 .fourth-splash-container {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     height: 400px;
     background-color: #bbf0f3;
     background-image: linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%);
 }
 
-.fourth-photo {
-    width: 650px;
-
+.fourth-splash-left {
+    height: 50px;
+    margin: 0 auto;
 }
 
+.fourth-photo {
+    width: 100%;
+}
 
 .fourth-photo-container {
-    float: right;
-    position: relative;
-    top: -270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .fourth-text-main {
-    position: relative;
-    right: -120px;
-    top: 50px;
+    margin-left: 20%;
+    margin-top: 5%;
+
 }
 
 .fourth-content {
     font-family: 'Rubik', sans-serif;
-    position: relative;
+    /* position: relative; */
     top: 25px;
     margin-left: 10px;
+}
+
+.sneax-message {
+    margin-top: 0;
 }
