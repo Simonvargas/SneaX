@@ -60,7 +60,7 @@ function TestingWatch () {
 
     async function deleteList() {
       await dispatch(listAction.removeList(listId))
-      // history.go(0)
+      history.go(0)
     }
 
     useEffect(() => {
@@ -71,7 +71,7 @@ function TestingWatch () {
 
     async function deleteWatch(e){
       await dispatch(removeOneWatch(Number(e.target.id)))
-      // history.go(0)
+      history.go(0)
     }
     return (
         <>
