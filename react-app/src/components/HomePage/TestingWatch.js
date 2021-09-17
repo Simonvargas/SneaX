@@ -15,7 +15,7 @@ import './Dashboard.css'
 function TestingWatch () {
     const dispatch = useDispatch ();
 
-    const watchlists = Object.values(useSelector(state => state.watchlist))
+    const watchlists = (useSelector(state => state.watchlist?.watchlist))
     const sessionUser = useSelector(state => state.session.user)
     const allWatchs = Object.values(useSelector(state => state.watch))
     const sneaxs = useSelector((state) => Object.values(state.sneax))
@@ -60,18 +60,18 @@ function TestingWatch () {
 
     async function deleteList() {
       await dispatch(listAction.removeList(listId))
-      history.go(0)
+      // history.go(0)
     }
 
     useEffect(() => {
         dispatch(allSneax());
         dispatch(getWatchs(sessionUser.id));
         dispatch(listAction.getList())
-    }, [dispatch, sessionUser.id]);
+    }, [dispatch, sessionUser.id, listId]);
 
     async function deleteWatch(e){
       await dispatch(removeOneWatch(Number(e.target.id)))
-      history.go(0)
+      // history.go(0)
     }
     return (
         <>
@@ -116,8 +116,8 @@ function TestingWatch () {
                         <div className='watchlist-bttn'>
                             <button onClick={(e) => (
                                 userWatchList(e),
-                                setListId(watchlist.id))}
-                                id={watchlist.id}>{watchlist.list_name}
+                                setListId(watchlist?.id))}
+                                id={watchlist?.id}>{watchlist?.list_name}
                             </button>
                         </div>
                     )
@@ -147,7 +147,7 @@ function TestingWatch () {
                                         </div>
                                     </Link>
                                     <div className='delete-list-bttn'>
-                                        <i class="fas fa-trash-alt" tite='Delete Watch' onClick={deleteWatch} id={watch.id} ></i>
+                                        <i class="fas fa-trash-alt" tite='Delete Watch' onClick={(e) => deleteWatch(e)} id={watch.id} ></i>
                                     </div>
                                 </div>
                               </>

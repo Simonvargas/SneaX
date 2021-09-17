@@ -90,6 +90,7 @@ function Home() {
 
   const tradeSubmit = async (e) => {
     e.preventDefault();
+    console.log('hi')
     let answer = window.confirm("Are you sure you want to make this change?")
     if (answer) {
       if (current[0].wallet > (purchaseShares * sharePrice)) {
@@ -114,6 +115,7 @@ function Home() {
 
     const tradeSell = async (e) => {
       e.preventDefault();
+      console.log('hi')
       let answer = window.confirm("Are you sure you want to make this sell?")
       if (answer) {
         if (sellQty >= purchaseShares) {
@@ -201,7 +203,7 @@ function Home() {
               </div  >
 
               <div className='form-divs'>
-                <button type='submit'>Purchase</button>
+                <button onClick={(e) => tradeSubmit(e)} type='button'>Purchase</button>
               </div>
             </form>
     </div>
@@ -218,7 +220,7 @@ function Home() {
             <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
           </div>
           <div className='form-divs'>
-            <button type='submit'>Sell</button>
+            <button onClick={(e) => tradeSell(e)} type='button'>Sell</button>
           </div>
         </form>
       {/* <button onClick={(e) => handleSell(e)}>Sell</button> */} {/* this deletes */}
