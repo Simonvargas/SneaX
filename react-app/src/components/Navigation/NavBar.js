@@ -34,12 +34,11 @@ const NavBar = () => {
         <div className="search-cover">
             <div className='searchfield'>
               {kicks.map(sneaker => (
-                <div className='searchfield-container'>
                   <Link className='search-link' to={`/sneax/${sneaker.id}`}>
-                    <p  className='search-link'>{sneaker.name}</p>
+                    <div className='searchfield-container'>
+                      <p  className='search-link'>{sneaker.name}</p>
+                    </div>
                   </Link>
-
-                </div>
               ))}
         </div>
           {/* {kicks.map(sneaker => (
