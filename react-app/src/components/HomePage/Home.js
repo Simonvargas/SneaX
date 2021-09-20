@@ -21,9 +21,6 @@ import './Dashboard.css'
 function Home() {
   const dispatch = useDispatch()
   const { userId }  = useParams();
-  // const history = useHistory()
-
-  // const sneaxs = useSelector((state) => Object.values(state.sneax))
   const sessionUser = useSelector(state => state.session.user)
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
@@ -40,8 +37,6 @@ function Home() {
   const [ shareId, setShareId ] = useState('')
   const [ marketPrice, setMarketPrice ] = useState('')
   const [ sneakId, setSneakId ] = useState('')
-  let [ totalAccount, setTotalAccount ] = useState(0)
-  // const [ wallet, setWallet ] = useState('')
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
   const [ showGraph, setShowGraph ] = useState(true)
@@ -54,12 +49,13 @@ function Home() {
     dispatch(sessionAction.authenticate())
     dispatch(getList())
 
-  }, [dispatch]);
+  }, []);
 
   let content = null
   let shareContent = null
   let main = null
   let posted;
+  let totalAccount = 0
 
 
   if (!user) {
@@ -70,7 +66,6 @@ function Home() {
   const reset = () => {
     setPurchaseShares('')
     dispatch(shareAction.getShares())
-    dispatch(sessionAction.loadCurrent(userId))
     dispatch(sessionAction.authenticate())
   }
 
@@ -166,21 +161,16 @@ function Home() {
               <div className='form-divs'>
               <h1>Buy More</h1>
               <label> Number Of Shares</label>
-              <input type='number' value={sellQty} onChange={null}/>
-              </div>
-
-              <div className='form-divs'>
-              <label> Sneax Id</label>
-              <input type='number' value={sellId} onChange={null} />
+              <div>{sellQty}</div>
               </div>
 
               <div className='form-divs'>
               <label> Total Position </label>
-              <input type='number' value={totalPosition} onChange={null} />
+              <div>{totalPosition}</div>
               </div>
 
               <div className='form-divs'>
-              <label> Number</label>
+              <label> Purchase quantity</label>
               <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
               </div  >
 
@@ -198,7 +188,7 @@ function Home() {
 
           <div className='form-divs'>
             <h1>Sell</h1>
-            <label> Number Of Purchased Shares</label>
+            <label> Sell quantity</label>
             <input type='number' value={purchaseShares} min='0' onChange={(e) => setPurchaseShares(e.target.value)} />
           </div>
           <div className='form-divs'>
@@ -247,6 +237,8 @@ function Home() {
       </>
     )
   }
+
+  {/* -------------------------------------------close mods------------------------------------------------------ */}
 
   function handleCancel() {
     if (openBuy || openSell) {
@@ -365,14 +357,7 @@ function Home() {
                 <p>For more information, see our Privacy Policy.</p>
               </div>
             </div>
-
-{/* >>>>>>> simon */}
       </div>
-
-      {/* {
-        wallet ? [<h2>Total buying power: {wallet}</h2>, <h2>Total investing: {totalAccount} </h2> ]: null
-          //   <h2>total account value: </h2>
-      } */}
       {content}
     </>
     )
