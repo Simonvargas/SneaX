@@ -63,7 +63,6 @@ function Home() {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
-
     })();
   }, [userId]);
 
@@ -85,32 +84,35 @@ function Home() {
 
   const reset = () => {
     setPurchaseShares('')
+    dispatch(shareAction.getShares())
+    dispatch(sessionAction.loadCurrent(userId))
+    setWallet(currentwallet)
   }
 
+  {/* -------------------------------------------edit purchase shares------------------------------------------------------ */}
 
   const tradeSubmit = async (e) => {
     e.preventDefault();
-    console.log('hi')
     let answer = window.confirm("Are you sure you want to make this change?")
     if (answer) {
       if (current[0].wallet > (purchaseShares * sharePrice)) {
         posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), shareId))
         await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
         window.alert("change complete")
-        history.push('/')
-        history.go(0)
+        reset()
       } else {
         window.alert('change canceled')
       }
     }
   }
 
+  {/* -------------------------------------------delete all shares if last------------------------------------------------------ */}
 
   const handleSell = async () => {
     posted = await dispatch(shareAction.deleteShare(shareId))
     await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
     alert("Remove successful")
-    history.go(0)
+    reset()
   }
 
     const tradeSell = async (e) => {
@@ -125,8 +127,7 @@ function Home() {
             posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), shareId))
             await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
             window.alert("Change complete")
-            history.push('/')
-            history.go(0)
+            reset()
           }
         } else {
           window.alert("You do not hold enough shares")
@@ -146,7 +147,7 @@ function Home() {
         posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
         await dispatch(sessionAction.updateUser(wallet -(purchaseShares * marketPrice), current[0].id))
         alert("Purchase completed")
-        history.go(0)
+        reset()
       }
     } else {
       alert("you too broke")
@@ -383,7 +384,7 @@ function Home() {
               </div>
               <div className='buying-power-container'>
                 <div><h1 className='dash-buying-power'>Buying Power</h1></div>
-                <div><h1 className='dash-wallet'>$ {wallet}</h1></div>
+                <div><h1 className='dash-wallet'>$ {sessionUser?.wallet}</h1></div>
               </div>
               <div className='random-dash'>
                 <p>For more information, see our Privacy Policy.</p>
