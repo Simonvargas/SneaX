@@ -2,10 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getWatchs } from '../../store/watch';
 import { allSneax } from '../../store/sneax';
 import * as listAction from '../../store/watchlist'
-import { removeOneWatch } from '../../store/watch';
+import { removeOneWatch, getWatchs } from '../../store/watch';
 
 import './Dashboard.css'
 
@@ -71,13 +70,13 @@ function TestingWatch () {
 
     useEffect(() => {
         dispatch(allSneax());
-        dispatch(getWatchs(sessionUser.id));
+        dispatch(getWatchs());
         dispatch(listAction.getList())
-    }, [dispatch, sessionUser.id, listAction]);
+    }, [dispatch, listAction]);
 
     async function deleteWatch(e){
       await dispatch(removeOneWatch(Number(e.target.id)))
-      dispatch(getWatchs(sessionUser?.id));
+      dispatch(getWatchs());
     }
     return (
         <>
