@@ -470,7 +470,6 @@
     align-items: center;
 }
 
-
 .items-link {
     text-decoration: none;
     color: black
@@ -510,6 +509,24 @@ img {
 }
 
 .watchlist-bttn button:hover {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+.watchlist-button:focus {
+    color: #ffffff !important;
+    background-color: #3f0d12;
+    background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);
+    transition: all 0.4s ease 0s;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 1px #9e9d9d;
+}
+
+.test-btn:focus {
     color: #ffffff !important;
     background-color: #3f0d12;
     background-image: linear-gradient(315deg, #3f0d12 0%, #a71d31 74%);

@@ -94,7 +94,7 @@ function TestingWatch () {
             {createList ?
             <div>
               <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='List name' />
-                <button className='test-btn'onClick={() => createNew()}>Create</button>
+                <button className='test-btn' onClick={() => createNew()}>Create</button>
             </div>
             : ''}
             {updateList ?
@@ -115,7 +115,7 @@ function TestingWatch () {
                 {watchlists?.map(watchlist => {
                     return (
                         <div className='watchlist-bttn'>
-                            <button onClick={(e) => (
+                            <button className='watchlist-button' onClick={(e) => (
                                 userWatchList(e),
                                 setListId(watchlist?.id))}
                                 id={watchlist?.id}>{watchlist?.list_name}
