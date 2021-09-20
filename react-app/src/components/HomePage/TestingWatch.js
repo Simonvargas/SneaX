@@ -2,13 +2,10 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import * as sessionActions from "../../store/session";
 import { getWatchs } from '../../store/watch';
 import { allSneax } from '../../store/sneax';
 import * as listAction from '../../store/watchlist'
 import { removeOneWatch } from '../../store/watch';
-
-// import { getList } from '../../store/watchlist';
 
 import './Dashboard.css'
 
@@ -22,7 +19,6 @@ function TestingWatch () {
 
     const [watchState, setWatchstate] = useState(false)
     const [watchNumber, setWatchNumber] = useState(0)
-    const [item, setDeleteItem] = useState(0)
     const [createList, setCreateList] = useState(false)
     const [updateList, setUpdateList] = useState(false)
     const [listName, setListName] = useState('')
@@ -70,8 +66,9 @@ function TestingWatch () {
     }, [dispatch, sessionUser.id, listId]);
 
     async function deleteWatch(e){
+      e.preventDefault()
       await dispatch(removeOneWatch(Number(e.target.id)))
-      history.go(0)
+      // dispatch(getWatchs(sessionUser.id));
     }
     return (
         <>
@@ -84,10 +81,6 @@ function TestingWatch () {
                 </div>
 
             </div>
-
-            {/* <div className='watchlist-add-edit'> */}
-            {/* <i class="fas fa-plus" onClick={createAList}>Create WatchList</i> */}
-            {/* <i class="far fa-edit" onClick={updateAList}>Update WatchList</i> */}
 
             {createList ?
             <div>
@@ -107,7 +100,6 @@ function TestingWatch () {
           <button className='test-btn' onClick={() => update()} >Update</button> </div>
               </div> : ''}
 
-            {/* </div> */}
             <>
             <div className='watchlist-bttns-container'>
                 <div className='testing-btns2'>
