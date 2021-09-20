@@ -48,27 +48,36 @@ function TestingWatch () {
 
     async function createNew() {
       await dispatch(listAction.createList(listName ,sessionUser.id))
+      reset()
     }
 
     async function update() {
       await dispatch(listAction.editList(listName ,sessionUser.id, editId))
+      reset()
     }
 
     async function deleteList() {
       await dispatch(listAction.removeList(listId))
-      history.go(0)
+      reset()
+    }
+
+    const reset = () => {
+      dispatch(listAction.getList())
+      setUpdateList(false)
+      setCreateList(false)
+      setListName('')
+
     }
 
     useEffect(() => {
         dispatch(allSneax());
         dispatch(getWatchs(sessionUser.id));
         dispatch(listAction.getList())
-    }, [dispatch, sessionUser.id, listId]);
+    }, [dispatch, sessionUser.id, listAction]);
 
     async function deleteWatch(e){
-      e.preventDefault()
       await dispatch(removeOneWatch(Number(e.target.id)))
-      // dispatch(getWatchs(sessionUser.id));
+      dispatch(getWatchs(sessionUser?.id));
     }
     return (
         <>

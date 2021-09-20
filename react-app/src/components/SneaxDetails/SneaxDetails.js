@@ -175,7 +175,7 @@ function SneaxDetails() {
 
           {showList ? <div><select onChange={(e) => setListOption(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
-                                <option value={watchlist.id}  id={watchlist.id}>{watchlist?.list_name}</option>
+                                <option value={watchlist?.id}  id={watchlist?.id}>{watchlist?.list_name}</option>
                             )
           })} </select> <button className='btn-add' onClick={(e) => addToWatchList(e)}>add</button> </div> : '' }
                 </div>
