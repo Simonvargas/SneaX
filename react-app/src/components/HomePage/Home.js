@@ -21,9 +21,9 @@ import './Dashboard.css'
 function Home() {
   const dispatch = useDispatch()
   const { userId }  = useParams();
-  const history = useHistory()
+  // const history = useHistory()
 
-  const sneaxs = useSelector((state) => Object.values(state.sneax))
+  // const sneaxs = useSelector((state) => Object.values(state.sneax))
   const sessionUser = useSelector(state => state.session.user)
   const shares = useSelector((state) => Object.values(state.shares))
   const current = useSelector((state) => Object.values(state.session))
@@ -41,7 +41,7 @@ function Home() {
   const [ marketPrice, setMarketPrice ] = useState('')
   const [ sneakId, setSneakId ] = useState('')
   let [ totalAccount, setTotalAccount ] = useState(0)
-  const [ wallet, setWallet ] = useState('')
+  // const [ wallet, setWallet ] = useState('')
   const [ openBuy, setOpenBuy ] = useState(false)
   const [ openSell, setOpenSell ] = useState(false)
   const [ showGraph, setShowGraph ] = useState(true)
@@ -51,25 +51,10 @@ function Home() {
   useEffect(() => {
     dispatch(allSneax())
     dispatch(shareAction.getShares())
-    dispatch(sessionAction.loadCurrent(userId))
+    dispatch(sessionAction.authenticate())
     dispatch(getList())
-    setWallet(currentwallet)
 
-
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
-
-  let currentwallet = 0
-  if (current[0]) {
-    currentwallet = current[0].wallet
-  }
+  }, [dispatch]);
 
   let content = null
   let shareContent = null
@@ -86,7 +71,7 @@ function Home() {
     setPurchaseShares('')
     dispatch(shareAction.getShares())
     dispatch(sessionAction.loadCurrent(userId))
-    setWallet(currentwallet)
+    dispatch(sessionAction.authenticate())
   }
 
   {/* -------------------------------------------edit purchase shares------------------------------------------------------ */}
@@ -97,7 +82,7 @@ function Home() {
     if (answer) {
       if (current[0].wallet > (purchaseShares * sharePrice)) {
         posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), shareId))
-        await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
+        await dispatch(sessionAction.updateUser(sessionUser?.wallet -(purchaseShares * sharePrice), current[0].id))
         window.alert("change complete")
         reset()
       } else {
@@ -110,7 +95,7 @@ function Home() {
 
   const handleSell = async () => {
     posted = await dispatch(shareAction.deleteShare(shareId))
-    await dispatch(sessionAction.updateUser((totalPosition + wallet), current[0].id))
+    await dispatch(sessionAction.updateUser((totalPosition + sessionUser.wallet), current[0].id))
     alert("Remove successful")
     reset()
   }
@@ -125,7 +110,7 @@ function Home() {
             handleSell()
           } else {
             posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), shareId))
-            await dispatch(sessionAction.updateUser(wallet + (purchaseShares * sharePrice), current[0].id))
+            await dispatch(sessionAction.updateUser(sessionUser.wallet + (purchaseShares * sharePrice), current[0].id))
             window.alert("Change complete")
             reset()
           }
@@ -145,7 +130,7 @@ function Home() {
       }
       else {
         posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
-        await dispatch(sessionAction.updateUser(wallet -(purchaseShares * marketPrice), current[0].id))
+        await dispatch(sessionAction.updateUser(sessionUser.wallet -(purchaseShares * marketPrice), current[0].id))
         alert("Purchase completed")
         reset()
       }
@@ -153,6 +138,8 @@ function Home() {
       alert("you too broke")
     }
   }
+
+  {/* -------------------------------------------toggle sell/buy mod mod------------------------------------------------------ */}
 
   if (showEdit) {
     content = (
@@ -191,12 +178,6 @@ function Home() {
               <label> Total Position </label>
               <input type='number' value={totalPosition} onChange={null} />
               </div>
-{/*
-              <div>
-              <label> number of shares
-                <input type='number' value={shareQty} onChange={null} />
-              </label>
-              </div> */}
 
               <div className='form-divs'>
               <label> Number</label>
@@ -224,21 +205,15 @@ function Home() {
             <button onClick={(e) => tradeSell(e)} type='button'>Sell</button>
           </div>
         </form>
-      {/* <button onClick={(e) => handleSell(e)}>Sell</button> */} {/* this deletes */}
     </div>
     )
   }
 
+  {/* -------------------------------------------graph------------------------------------------------------ */}
+
   let graphContent = null
   // const data = [{name: 'page A', uv: 100, pv: 2400, amt: 2400}]
   const data = []
-
-    // function dataPts() {
-    //   sneaxs?.map((sneaker, index) => {
-    //     data.push({name: `${sneaker.name}`, uv: `${sneaker.market_price}`, pv: 2400, amt:2400})
-    //   })
-    // }
-
   function dataPts() {
     let test = shares
     test.pop()
