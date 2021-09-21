@@ -13,7 +13,7 @@ import NavBar from '../Navigation/NavBar';
 
 // const faker = require('faker/locale/de')
 
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { LineChart, BarChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
 import './Dashboard.css'
 
@@ -226,7 +226,7 @@ function Home() {
             <LineChart  data={data}>
               <Line type='monotone' dataKey='uv' stroke='#d123d2' activeDot={{ r: 8 }}/>
               <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" padding={{ left: 30, right: 30 }}/>
+              <XAxis dataKey="name" padding={{ top: 100, right: 30, left: 30, bottom: 0}}/>
               {/* <Line type='monotone' dataKey={'uv'*.6} stroke='#d123d2' activeDot={{ r: 8 }} /> */}
               <YAxis />
               <Tooltip />
