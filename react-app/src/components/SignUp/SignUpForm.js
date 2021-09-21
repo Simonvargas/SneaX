@@ -6,6 +6,7 @@ import styles from './SignUp.module.css'
 import { Link } from 'react-router-dom';
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -16,7 +17,6 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ const SignUpForm = () => {
   return (
     <div className={styles.container}>
 
-    <form className={styles.signupForm}>
+    <form onSubmit={(e) => onSignUp(e)} className={styles.signupForm}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -82,8 +82,8 @@ const SignUpForm = () => {
         </Link>
         <h3>Walk in style</h3>
         <p>Sneax lets you invest in the shoes you love, commission-free.</p>
-        </div>
-        <div>
+      </div>
+      <div>
         <input
           placeholder='First Name'
           className={styles.input}
@@ -93,7 +93,6 @@ const SignUpForm = () => {
           onChange={updateFirst}
           value={first_name}
         />
-
       </div>
       <div>
         <input
@@ -171,7 +170,7 @@ const SignUpForm = () => {
           required={true}
         />
       </div>
-      <button type='button' onClick={(e) => onSignUp(e)} className={styles.btn}>Sign Up</button>
+      <button type='submit' className={styles.btn}>Sign Up</button>
       <div className={styles.disclaimerContainer}>
       <p className={styles.disclaimer}>All investments involve risk, including the possible loss of principal. Investors should consider their investment objectives and risks carefully before investing.
 Commission-free trading means $0 commission trading on self-directed individual cash or margin brokerage accounts that trade U.S. listed securities via mobile devices or web. Keep in mind, other fees such as trading (non-commission) fees, Gold subscription fees, wire transfer fees, and paper statement fees may apply to your brokerage account. Please see Robinhood Financial’s fee schedule to learn more.
@@ -183,21 +182,21 @@ Sneax Terms & Conditions  Disclosure Library  Contact Us  FAQ
     </form>
     <div className={styles.signContainer}>
         <div className={styles.signText}>
-        {/* <Link exact to="/">
-                <img alt='logo' src='https://i.imgur.com/HeZZnbz.png' className={styles.logo}></img>
-               </Link> */}
-        <div className={styles.textContainer}>
-        <div className={styles.textContainer2}>
-        <h3 className={styles.h3}>Commission-free Trading</h3>
-        <p className={styles.text}>At Sneax, we believe everyone should have easy access to luxury shoes. Break free from commission-fees and make unlimited commission-free trades in Sneaxs.</p>
-        </div>
-        <h3 className={styles.h3}>Account Protection</h3>
-        <p className={styles.text}>Sneax is dedicated to keeping your account information secured.</p>
-        <h3 className={styles.h3}>Cuztomized your portfolio</h3>
-        <p className={styles.text}>Set up customized lists of your preferred Sneaxs to stay on top of your asses as casually or relentlessly as you'd like. Controlling the flow of information is up to you</p>
-        </div>
+          {/* <Link exact to="/">
+                  <img alt='logo' src='https://i.imgur.com/HeZZnbz.png' className={styles.logo}></img>
+                </Link> */}
+          <div className={styles.textContainer}>
+            <div className={styles.textContainer2}>
+              <h3 className={styles.h3}>Commission-free Trading</h3>
+              <p className={styles.text}>At Sneax, we believe everyone should have easy access to luxury shoes. Break free from commission-fees and make unlimited commission-free trades in Sneaxs.</p>
             </div>
-            </div>
+            <h3 className={styles.h3}>Account Protection</h3>
+            <p className={styles.text}>Sneax is dedicated to keeping your account information secured.</p>
+            <h3 className={styles.h3}>Cuztomized your portfolio</h3>
+            <p className={styles.text}>Set up customized lists of your preferred Sneaxs to stay on top of your asses as casually or relentlessly as you'd like. Controlling the flow of information is up to you</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
