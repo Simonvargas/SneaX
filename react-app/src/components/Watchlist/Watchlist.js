@@ -6,9 +6,9 @@ import { allSneax } from '../../store/sneax';
 import * as listAction from '../../store/watchlist'
 import { removeOneWatch, getWatchs } from '../../store/watch';
 
-import './Dashboard.css'
+import './Watchlist.css'
 
-function TestingWatch () {
+function Watchlist () {
     const dispatch = useDispatch ();
 
     const watchlists = (useSelector(state => state.watchlist?.watchlist))
@@ -168,4 +168,4 @@ function TestingWatch () {
 
 }
 
-export default TestingWatch;
+export default Watchlist;

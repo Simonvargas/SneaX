@@ -7,7 +7,7 @@ import * as shareAction from '../../store/shares';
 import { allSneax } from '../../store/sneax';
 import { getList } from '../../store/watchlist'
 import { Modal } from '../../context/Modal';
-import TestingWatch from './TestingWatch';
+import Watchlist from '../Watchlist/Watchlist';
 import SplashPage from './SplashPage'
 import NavBar from '../Navigation/NavBar';
 
@@ -331,7 +331,7 @@ function Home() {
                         }
                 })}
               </div>
-              <TestingWatch />
+              <Watchlist />
           </div>
         </div>
         {/* -------------------------------------------dash split------------------------------------------------------ */}
