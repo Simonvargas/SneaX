@@ -46,26 +46,37 @@ function Watchlist () {
     }
 
     async function createNew() {
-      await dispatch(listAction.createList(listName ,sessionUser.id))
-      reset()
+      if (listName) {
+        await dispatch(listAction.createList(listName ,sessionUser.id))
+        reset()
+      } else {
+        window.alert('Please enter a desired list name.')
+      }
     }
 
     async function update() {
-      await dispatch(listAction.editList(listName ,sessionUser.id, editId))
-      reset()
+      if (listName) {
+        await dispatch(listAction.editList(listName ,sessionUser.id, editId))
+        reset()
+      } else {
+        window.alert('A list name must be provided!')
+      }
     }
 
     async function deleteList() {
-      await dispatch(listAction.removeList(listId))
-      reset()
+      const confirmation = window.confirm("Are you sure you want to delete this list?")
+      if (confirmation) {
+        await dispatch(listAction.removeList(listId))
+        reset()
+      }
     }
 
     const reset = () => {
       dispatch(listAction.getList())
+      dispatch(getWatchs());
       setUpdateList(false)
       setCreateList(false)
       setListName('')
-
     }
 
     useEffect(() => {
@@ -85,14 +96,14 @@ function Watchlist () {
                 <h1>Watchlists</h1>
                 <div>
                     <i class="fas fa-plus" title='Create A List' onClick={createAList}></i>
-                    <i class="far fa-edit" title='Update Watchlist 'onClick={updateAList}></i>
+                    <i class="far fa-edit" title='Update Watchlist' onClick={updateAList}></i>
                 </div>
 
             </div>
 
             {createList ?
             <div>
-              <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='List name' />
+              <input className='input2' required={true} onChange={(e) => setListName(e.target.value)} placeholder='List name' />
                 <button className='test-btn' onClick={() => createNew()}>Create</button>
             </div>
             : ''}
@@ -104,8 +115,8 @@ function Watchlist () {
                                 <option value={watchlist.id} id={watchlist.id} key={watchlist.id}>{watchlist.list_name}</option>
                             )
             })} </select>
-          <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
-          <button className='test-btn' onClick={() => update()} >Update</button> </div>
+              <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
+              <button className='test-btn' onClick={() => update()} >Update</button> </div>
               </div> : ''}
 
             <>
@@ -114,7 +125,8 @@ function Watchlist () {
                 {watchlists?.map(watchlist => {
                     return (
                         <div className='watchlist-bttn'>
-                            <button className='watchlist-button' onClick={(e) => (
+                            <button className='watchlist-button'
+                              onClick={(e) => (
                                 userWatchList(e),
                                 setListId(watchlist?.id))}
                                 id={watchlist?.id}>{watchlist?.list_name}
@@ -156,7 +168,7 @@ function Watchlist () {
                         }
                       })}
                       <div className='watchlist-bttn'>
-                        <button onClick={(e) => deleteList(e)}>delete this list</button>
+                        <button onClick={() => deleteList()}>delete this list</button>
                     </div>
             </div>
         </div>
