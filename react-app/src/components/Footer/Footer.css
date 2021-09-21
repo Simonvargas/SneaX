@@ -5,11 +5,13 @@
     align-items: center;
     align-content: center;
     background-color: black;
+    padding-bottom: 30px;
 
 }
 
 .Github{
-    margin-top: 5px;
+    margin-top: 25px;
+    margin-bottom: 15px;
 
 }
 
@@ -20,7 +22,7 @@
 .team-members{
     display: flex;
     flex-direction: row;
-    
+
 }
 .team-name {
     color: white;
