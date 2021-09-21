@@ -25,6 +25,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      window.alert('Passwords must match! Please try again.')
     }
   };
 
@@ -66,8 +68,8 @@ const SignUpForm = () => {
 
   return (
     <div className={styles.container}>
-      
-    <form onSubmit={onSignUp} className={styles.signupForm}>
+
+    <form className={styles.signupForm}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -87,10 +89,11 @@ const SignUpForm = () => {
           className={styles.input}
           type='text'
           name='first_name'
+          required={true}
           onChange={updateFirst}
           value={first_name}
-        ></input>
-        
+        />
+
       </div>
       <div>
         <input
@@ -98,6 +101,7 @@ const SignUpForm = () => {
           className={styles.input}
           type='text'
           name='last_name'
+          required={true}
           onChange={updateLast}
           value={last_name}
         ></input>
@@ -109,37 +113,42 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
-        ></input>
+          required={true}
+        />
       </div>
       <div>
         <input
         placeholder='Email'
         className={styles.input}
-          type='text'
+          type='email'
           name='email'
+          required={true}
           onChange={updateEmail}
           value={email}
-        ></input>
+        />
       </div>
-      <div>
+      <div className={styles.dob}>
+        <label className={styles.dob_label}>Date of Birth</label>
         <input
           placeholder="Date of Birth"
           className={styles.input}
           type='date'
           name='DOB'
+          required={true}
           onChange={updateDob}
           value={date_of_birth}
-        ></input>
+        />
       </div>
       <div>
         <input
           placeholder="wallet"
           className={styles.input}
-          type='tel'
+          type='number'
           name='wallet'
+          required={true}
           onChange={updateWallet}
           value={wallet}
-        ></input>
+        />
       </div>
       <div>
         <input
@@ -149,7 +158,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
-        ></input>
+        />
       </div>
       <div>
         <input
@@ -160,9 +169,9 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+        />
       </div>
-      <button type='submit' className={styles.btn}>Sign Up</button>
+      <button type='button' onClick={(e) => onSignUp(e)} className={styles.btn}>Sign Up</button>
       <div className={styles.disclaimerContainer}>
       <p className={styles.disclaimer}>All investments involve risk, including the possible loss of principal. Investors should consider their investment objectives and risks carefully before investing.
 Commission-free trading means $0 commission trading on self-directed individual cash or margin brokerage accounts that trade U.S. listed securities via mobile devices or web. Keep in mind, other fees such as trading (non-commission) fees, Gold subscription fees, wire transfer fees, and paper statement fees may apply to your brokerage account. Please see Robinhood Financial’s fee schedule to learn more.
