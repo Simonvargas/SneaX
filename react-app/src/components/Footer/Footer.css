@@ -52,3 +52,7 @@
     box-shadow: 2px 2px 15px hotpink;
     border-radius: 25px;
 }
+
+button:hover {
+    cursor: pointer;
+}

@@ -63,7 +63,7 @@ const Footer = () => {
                             <i className='fab fa-github fa-2x' />
                         </a>
                         <a className='footerLink' href='https://www.linkedin.com/in/vivian-ngoc-che/' target='_blank' rel='noreferrer'>
-                            <i className='fab fa-linkedin fa-2x glow'></i>
+                            <i className='fab fa-linkedin fa-2x'></i>
                         </a>
                     </div>
                 </div>
