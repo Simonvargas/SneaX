@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams, Link } from 'react-router-dom';
+import {  useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';

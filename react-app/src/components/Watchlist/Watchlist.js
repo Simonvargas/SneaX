@@ -73,7 +73,7 @@ function Watchlist () {
 
     const reset = () => {
       dispatch(listAction.getList())
-      dispatch(getWatchs());
+      // dispatch(getWatchs());
       setUpdateList(false)
       setCreateList(false)
       setListName('')
@@ -81,13 +81,12 @@ function Watchlist () {
 
     useEffect(() => {
         dispatch(allSneax());
-        dispatch(getWatchs());
+        // dispatch(getWatchs());
         dispatch(listAction.getList())
     }, [dispatch, listAction]);
 
     async function deleteWatch(e){
       await dispatch(removeOneWatch(Number(e.target.id)))
-      dispatch(getWatchs());
     }
     return (
         <>
@@ -98,6 +97,7 @@ function Watchlist () {
                     <i class="fas fa-plus" title='Create A List' onClick={createAList}></i>
                     <i class="far fa-edit" title='Update Watchlist' onClick={updateAList}></i>
                 </div>
+                <button onClick={() => dispatch(getWatchs())}>himom</button>
 
             </div>
 
