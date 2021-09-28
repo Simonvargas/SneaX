@@ -81,12 +81,18 @@ function Watchlist () {
 
     useEffect(() => {
         dispatch(allSneax());
-        // dispatch(getWatchs());
+        dispatch(getWatchs());
         dispatch(listAction.getList())
-    }, [dispatch, listAction]);
+    }, [dispatch, listAction, getWatchs]);
 
     async function deleteWatch(e){
-      await dispatch(removeOneWatch(Number(e.target.id)))
+      const confirm = window.confirm('Are you sure you want to remove this Sneax??')
+      if (confirm) {
+        await dispatch(removeOneWatch(Number(e.target.id)))
+        dispatch(getWatchs());
+        // history.go(0)
+      }
+
     }
     return (
         <>
@@ -97,7 +103,7 @@ function Watchlist () {
                     <i class="fas fa-plus" title='Create A List' onClick={createAList}></i>
                     <i class="far fa-edit" title='Update Watchlist' onClick={updateAList}></i>
                 </div>
-                <button onClick={() => dispatch(getWatchs())}>himom</button>
+                {/* <button onClick={() => dispatch(getWatchs())}>himom</button> */}
 
             </div>
 
