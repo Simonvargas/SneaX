@@ -107,20 +107,7 @@ const NavBar = () => {
 
               </div>
 
-              <div className={styles.account}>
-              <p>Free Sneax</p>
-              <p>Account</p>
-              <p>Banking</p>
-              <p>Recurring</p>
-              <p>History</p>
-              <p>Settings</p>
-              </div>
-
-              <div className={styles.settingDrop}>
-              <p>Help Center</p>
-              <p>Contact Us</p>
-              <p>Disclosures</p>
-              </div>
+             
               <LogoutButton />
 
               </div>
