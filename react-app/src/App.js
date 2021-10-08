@@ -12,6 +12,7 @@ import SneaxDetails from './components/SneaxDetails/SneaxDetails';
 import TestingWatch from './components/HomePage/TestingWatch';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Footer from './components/Footer/Footer';
+import NavBar from './components/Navigation/NavBar';
 
 
 function App() {

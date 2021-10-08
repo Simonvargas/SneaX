@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory  } from 'react-router-dom';
 import { login } from '../../store/session';
+import NavBar from '../Navigation/NavBar';
 import './LoginPage.css';
 
 const LoginForm = () => {
@@ -40,7 +41,9 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='login-page-container'>
+    <>
+    <NavBar />
+    <div className='login-page-container'>  
       <div className='login-pic-container'></div>
       <div className='login-form-page'>
         <div className='login-form'>
@@ -73,6 +76,7 @@ const LoginForm = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

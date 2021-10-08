@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import styles from './SignUp.module.css'
 import { Link } from 'react-router-dom';
+import NavBar from '../Navigation/NavBar';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -65,6 +66,8 @@ const SignUpForm = () => {
   }
 
   return (
+    <>
+    <NavBar />
     <div className={styles.container}>
       
     <form onSubmit={onSignUp} className={styles.signupForm}>
@@ -190,6 +193,7 @@ Sneax Terms & Conditions  Disclosure Library  Contact Us  FAQ
             </div>
             </div>
     </div>
+    </>
   );
 };
 
