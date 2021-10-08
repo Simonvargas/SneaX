@@ -1,37 +1,37 @@
-# SneaX 
+# SneaX
 <img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/react-app/src/components/Navigation/logo.png' alt='logo' width='200' />
-</br> SneaX is a financial application that allows user to invest in SneaX, which are sneakers. The user can purchase SneaXs and add them to their watchlist. This full stack application is inspired by Robinhood. 
+</br> SneaX is a financial application that allows user to invest in SneaX, which are sneakers. The user can purchase SneaXs and add them to their watchlist. This full stack application is inspired by Robinhood.
 
 * live link:  <a href='https://sneaxs.herokuapp.com/'>SneaX</a>
 
-## Technologies 
+## Technologies
 Here are the main technologies used to built this application.
 * Backend: Python, Flask, WTForms, SQLAlchemy, PostgreSQL
 * Frontend: Javascript, React/Redux, CSS3
 
 
-## Site Walkthrough 
+## Site Walkthrough
 </br> This is the splash page.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/homepageMD.png' height= '350' width='500' alt='pic'>
- 
- </br> New user can sign up by filling out the sign up form. If user do not want to sign up, they can go to login and sign in as demo. 
+
+ </br> New user can sign up by filling out the sign up form. If user do not want to sign up, they can go to login and sign in as demo.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/signupMD.png' height= '350' width='400' alt='pic'>
 
-</br> Returning user can log in by filling out the log in form. 
+</br> Returning user can log in by filling out the log in form.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/loginMD.png' height= '350' width='400' alt='pic'>
 
 </br> Once logged in or signed up, user is redirected to the dashboard. In this page, user can view their investments. The graph represents the performance of the account. On the right side, user can view their shares they have purchased and their watchlist.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/dashboardMD.png' height= '350' width='400' alt='pic'>
-</br> Close up of the watchlist. 
+</br> Close up of the watchlist.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/watchlistMD.png' height= '350' width='400' alt='pic'>
 
-</br> User can purchase shares of SneaXs. The user can search up the SneaX on the search bar. 
+</br> User can purchase shares of SneaXs. The user can search up the SneaX on the search bar.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/searchbarMD.png' height= '100' width='450' alt='pic'>
-</br> Once the users select the Sneax, it will take the user to the detail page of that SneaX. In the detail page, the left side shows the detail of the SneaX. User can purchase the SneaX by filling out the form on the right side. User can add it to the watchlist by clicking on add to watchlist. If SneaXs is already purchased, user can go back to the dashboard and update their purchased SneaX there. 
+</br> Once the users select the Sneax, it will take the user to the detail page of that SneaX. In the detail page, the left side shows the detail of the SneaX. User can purchase the SneaX by filling out the form on the right side. User can add it to the watchlist by clicking on add to watchlist. If SneaXs is already purchased, user can go back to the dashboard and update their purchased SneaX there.
 </br><img src='https://raw.githubusercontent.com/Simonvargas/SneaX/main/image/sneaxdetailMD.png' height= '350' width='400' alt='pic'>
 
 
-   
+
 
 
 
@@ -116,7 +116,7 @@ hurt to run it again.
 6. Login to the heroku container registry
 
    ```bash
-   heroku container:login
+   heroku container:logins
    ```
 
 7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.

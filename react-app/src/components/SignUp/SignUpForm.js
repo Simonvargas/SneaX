@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../Navigation/NavBar';
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -17,7 +18,6 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -26,6 +26,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      window.alert('Passwords must match! Please try again.')
     }
   };
 
@@ -69,8 +71,8 @@ const SignUpForm = () => {
     <>
     <NavBar />
     <div className={styles.container}>
-      
-    <form onSubmit={onSignUp} className={styles.signupForm}>
+
+    <form onSubmit={(e) => onSignUp(e)} className={styles.signupForm}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -83,17 +85,17 @@ const SignUpForm = () => {
         </Link>
         <h3>Walk in style</h3>
         <p>Sneax lets you invest in the shoes you love, commission-free.</p>
-        </div>
-        <div>
+      </div>
+      <div>
         <input
           placeholder='First Name'
           className={styles.input}
           type='text'
           name='first_name'
+          required={true}
           onChange={updateFirst}
           value={first_name}
-        ></input>
-        
+        />
       </div>
       <div>
         <input
@@ -101,6 +103,7 @@ const SignUpForm = () => {
           className={styles.input}
           type='text'
           name='last_name'
+          required={true}
           onChange={updateLast}
           value={last_name}
         ></input>
@@ -112,37 +115,42 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
-        ></input>
+          required={true}
+        />
       </div>
       <div>
         <input
         placeholder='Email'
         className={styles.input}
-          type='text'
+          type='email'
           name='email'
+          required={true}
           onChange={updateEmail}
           value={email}
-        ></input>
+        />
       </div>
-      <div>
+      <div className={styles.dob}>
+        <label className={styles.dob_label}>Date of Birth</label>
         <input
           placeholder="Date of Birth"
           className={styles.input}
           type='date'
           name='DOB'
+          required={true}
           onChange={updateDob}
           value={date_of_birth}
-        ></input>
+        />
       </div>
       <div>
         <input
           placeholder="wallet"
           className={styles.input}
-          type='tel'
+          type='number'
           name='wallet'
+          required={true}
           onChange={updateWallet}
           value={wallet}
-        ></input>
+        />
       </div>
       <div>
         <input
@@ -152,7 +160,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
-        ></input>
+        />
       </div>
       <div>
         <input
@@ -163,7 +171,7 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+        />
       </div>
       <button type='submit' className={styles.btn}>Sign Up</button>
       <div className={styles.disclaimerContainer}>
@@ -177,21 +185,21 @@ Sneax Terms & Conditions  Disclosure Library  Contact Us  FAQ
     </form>
     <div className={styles.signContainer}>
         <div className={styles.signText}>
-        {/* <Link exact to="/">
-                <img alt='logo' src='https://i.imgur.com/HeZZnbz.png' className={styles.logo}></img>
-               </Link> */}
-        <div className={styles.textContainer}>
-        <div className={styles.textContainer2}>
-        <h3 className={styles.h3}>Commission-free Trading</h3>
-        <p className={styles.text}>At Sneax, we believe everyone should have easy access to luxury shoes. Break free from commission-fees and make unlimited commission-free trades in Sneaxs.</p>
-        </div>
-        <h3 className={styles.h3}>Account Protection</h3>
-        <p className={styles.text}>Sneax is dedicated to keeping your account information secured.</p>
-        <h3 className={styles.h3}>Cuztomized your portfolio</h3>
-        <p className={styles.text}>Set up customized lists of your preferred Sneaxs to stay on top of your asses as casually or relentlessly as you'd like. Controlling the flow of information is up to you</p>
-        </div>
+          {/* <Link exact to="/">
+                  <img alt='logo' src='https://i.imgur.com/HeZZnbz.png' className={styles.logo}></img>
+                </Link> */}
+          <div className={styles.textContainer}>
+            <div className={styles.textContainer2}>
+              <h3 className={styles.h3}>Commission-free Trading</h3>
+              <p className={styles.text}>At Sneax, we believe everyone should have easy access to luxury shoes. Break free from commission-fees and make unlimited commission-free trades in Sneaxs.</p>
             </div>
-            </div>
+            <h3 className={styles.h3}>Account Protection</h3>
+            <p className={styles.text}>Sneax is dedicated to keeping your account information secured.</p>
+            <h3 className={styles.h3}>Cuztomized your portfolio</h3>
+            <p className={styles.text}>Set up customized lists of your preferred Sneaxs to stay on top of your asses as casually or relentlessly as you'd like. Controlling the flow of information is up to you</p>
+          </div>
+        </div>
+      </div>
     </div>
     </>
   );

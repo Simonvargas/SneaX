@@ -12,14 +12,13 @@ import * as watchAction from '../../store/watch';
 import { getList } from '../../store/watchlist'
 
 function SneaxDetails() {
+  const dispatch = useDispatch()
+
   const [user, setUser] = useState({});
   const [sneaxId, setSneax] = useState([])
   const { userId, id }  = useParams();
   const shares = useSelector((state) => Object.values(state.shares))
   const sessionUser = useSelector(state => state.session.user)
-  const dispatch = useDispatch()
-  // const [_buy, setBuy] = useState(true)
-  // const [_sell, setSell] = useState(false)
   const current = useSelector((state) => Object.values(state.session))
   const [ totalPosition, _setTotalPosition ] = useState('')
   const [ sneakId, _setSneakId ] = useState('')
@@ -33,8 +32,8 @@ function SneaxDetails() {
   const [listOption, setListOption] = useState('')
 
 
-  const watchlists = Object.values(useSelector(state => state.watchlist))
-  const watching = Object.values(useSelector(state => state.watch))
+  const watchlists = useSelector(state => state?.watchlist?.watchlist)
+  const watching = Object.values(useSelector(state => state?.watch))
 
   const numShares = shares?.map(share => share?.user_id === sessionUser?.id)
 
@@ -48,22 +47,13 @@ function SneaxDetails() {
       }
     })()
   }, [id])
-  // function showSell() {
-  //   setBuy(false)
-  //   setSell(true)
-  // }
-
-  // function showBuy(){
-  //   setBuy(true)
-  //   setSell(false)
-  // }
 
   useEffect(() => {
       dispatch(allSneax())
       dispatch(getShares())
       setWallet(currentwallet)
       dispatch(getList())
-      // setListOption(watchlists[0].id)
+
     if (!userId) {
       return;
     }
@@ -92,13 +82,6 @@ function SneaxDetails() {
       if (shares[shares.length -1].includes(sneaxId.id) ) {
         window.alert('Sneax owner, please edit through dashboard')
         window.alert('Purchase canceled')
-
-        // console.log("=========================================",sharePrice)
-        // console.log("=========================================",sellQty)
-        // console.log("=========================================",purchaseShares)
-        // posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), sneakId))
-        // await dispatch(sessionAction.updateUser(wallet -(purchaseShares * sharePrice), current[0].id))
-        // window.alert("change complete")
       }
       else {
         posted = await dispatch(shareAction.purchase(sneaxId.market_price, purchaseShares, sneaxId.id))
@@ -123,7 +106,6 @@ function SneaxDetails() {
 
     if (!watchlist.includes(sneaxId.id)) {
       dispatch(watchAction.addOneWatch(listOption, sneaxId.id))
-      // setWatchBool(false)
       window.alert('added to watchlist!')
     }
     setWatchList([])
@@ -193,7 +175,7 @@ function SneaxDetails() {
 
           {showList ? <div><select onChange={(e) => setListOption(e.target.value)}> {watchlists?.map(watchlist => {
                             return (
-                                <option value={watchlist.id}  id={watchlist.id}>{watchlist.list_name}</option>
+                                <option value={watchlist?.id}  id={watchlist?.id}>{watchlist?.list_name}</option>
                             )
           })} </select> <button className='btn-add' onClick={(e) => addToWatchList(e)}>add</button> </div> : '' }
                 </div>

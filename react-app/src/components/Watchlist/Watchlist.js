@@ -2,27 +2,22 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import * as sessionActions from "../../store/session";
-import { getWatchs } from '../../store/watch';
 import { allSneax } from '../../store/sneax';
 import * as listAction from '../../store/watchlist'
-import { removeOneWatch } from '../../store/watch';
+import { removeOneWatch, getWatchs } from '../../store/watch';
 
-// import { getList } from '../../store/watchlist';
+import './Watchlist.css'
 
-import './Dashboard.css'
-
-function TestingWatch () {
+function Watchlist () {
     const dispatch = useDispatch ();
 
-    const watchlists = Object.values(useSelector(state => state.watchlist))
+    const watchlists = (useSelector(state => state.watchlist?.watchlist))
     const sessionUser = useSelector(state => state.session.user)
     const allWatchs = Object.values(useSelector(state => state.watch))
     const sneaxs = useSelector((state) => Object.values(state.sneax))
 
     const [watchState, setWatchstate] = useState(false)
     const [watchNumber, setWatchNumber] = useState(0)
-    const [item, setDeleteItem] = useState(0)
     const [createList, setCreateList] = useState(false)
     const [updateList, setUpdateList] = useState(false)
     const [listName, setListName] = useState('')
@@ -51,27 +46,53 @@ function TestingWatch () {
     }
 
     async function createNew() {
-      await dispatch(listAction.createList(listName ,sessionUser.id))
+      if (listName) {
+        await dispatch(listAction.createList(listName ,sessionUser.id))
+        reset()
+      } else {
+        window.alert('Please enter a desired list name.')
+      }
     }
 
     async function update() {
-      await dispatch(listAction.editList(listName ,sessionUser.id, editId))
+      if (listName) {
+        await dispatch(listAction.editList(listName ,sessionUser.id, editId))
+        reset()
+      } else {
+        window.alert('A list name must be provided!')
+      }
     }
 
     async function deleteList() {
-      await dispatch(listAction.removeList(listId))
-      history.go(0)
+      const confirmation = window.confirm("Are you sure you want to delete this list?")
+      if (confirmation) {
+        await dispatch(listAction.removeList(listId))
+        reset()
+      }
+    }
+
+    const reset = () => {
+      dispatch(listAction.getList())
+      // dispatch(getWatchs());
+      setUpdateList(false)
+      setCreateList(false)
+      setListName('')
     }
 
     useEffect(() => {
         dispatch(allSneax());
-        dispatch(getWatchs(sessionUser.id));
+        dispatch(getWatchs());
         dispatch(listAction.getList())
-    }, [dispatch, sessionUser.id]);
+    }, [dispatch, listAction, getWatchs]);
 
     async function deleteWatch(e){
-      await dispatch(removeOneWatch(Number(e.target.id)))
-      history.go(0)
+      const confirm = window.confirm('Are you sure you want to remove this Sneax??')
+      if (confirm) {
+        await dispatch(removeOneWatch(Number(e.target.id)))
+        dispatch(getWatchs());
+        // history.go(0)
+      }
+
     }
     return (
         <>
@@ -80,19 +101,16 @@ function TestingWatch () {
                 <h1>Watchlists</h1>
                 <div>
                     <i class="fas fa-plus" title='Create A List' onClick={createAList}></i>
-                    <i class="far fa-edit" title='Update Watchlist 'onClick={updateAList}></i>
+                    <i class="far fa-edit" title='Update Watchlist' onClick={updateAList}></i>
                 </div>
+                {/* <button onClick={() => dispatch(getWatchs())}>himom</button> */}
 
             </div>
 
-            {/* <div className='watchlist-add-edit'> */}
-            {/* <i class="fas fa-plus" onClick={createAList}>Create WatchList</i> */}
-            {/* <i class="far fa-edit" onClick={updateAList}>Update WatchList</i> */}
-
             {createList ?
             <div>
-              <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='List name' />
-                <button className='test-btn'onClick={() => createNew()}>Create</button>
+              <input className='input2' required={true} onChange={(e) => setListName(e.target.value)} placeholder='List name' />
+                <button className='test-btn' onClick={() => createNew()}>Create</button>
             </div>
             : ''}
             {updateList ?
@@ -103,21 +121,21 @@ function TestingWatch () {
                                 <option value={watchlist.id} id={watchlist.id} key={watchlist.id}>{watchlist.list_name}</option>
                             )
             })} </select>
-          <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
-          <button className='test-btn' onClick={() => update()} >Update</button> </div>
+              <input className='input2' onChange={(e) => setListName(e.target.value)} placeholder='New name'></input>
+              <button className='test-btn' onClick={() => update()} >Update</button> </div>
               </div> : ''}
 
-            {/* </div> */}
             <>
             <div className='watchlist-bttns-container'>
                 <div className='testing-btns2'>
                 {watchlists?.map(watchlist => {
                     return (
                         <div className='watchlist-bttn'>
-                            <button onClick={(e) => (
+                            <button className='watchlist-button'
+                              onClick={(e) => (
                                 userWatchList(e),
-                                setListId(watchlist.id))}
-                                id={watchlist.id}>{watchlist.list_name}
+                                setListId(watchlist?.id))}
+                                id={watchlist?.id}>{watchlist?.list_name}
                             </button>
                         </div>
                     )
@@ -147,7 +165,7 @@ function TestingWatch () {
                                         </div>
                                     </Link>
                                     <div className='delete-list-bttn'>
-                                        <i class="fas fa-trash-alt" tite='Delete Watch' onClick={deleteWatch} id={watch.id} ></i>
+                                        <i class="fas fa-trash-alt" tite='Delete Watch' onClick={(e) => deleteWatch(e)} id={watch.id} ></i>
                                     </div>
                                 </div>
                               </>
@@ -156,7 +174,7 @@ function TestingWatch () {
                         }
                       })}
                       <div className='watchlist-bttn'>
-                        <button onClick={(e) => deleteList(e)}>delete this list</button>
+                        <button onClick={() => deleteList()}>delete this list</button>
                     </div>
             </div>
         </div>
@@ -168,4 +186,4 @@ function TestingWatch () {
 
 }
 
-export default TestingWatch;
+export default Watchlist;

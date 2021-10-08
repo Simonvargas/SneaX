@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import {  useParams, Link } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionAction from '../../store/session';
 import * as shareAction from '../../store/shares';
 import { allSneax } from '../../store/sneax';
 import { getList } from '../../store/watchlist'
 import { Modal } from '../../context/Modal';
-import Watchlist from '../Watchlist/Watchlist';
+import TestingWatch from './TestingWatch';
 import SplashPage from './SplashPage'
 import NavBar from '../Navigation/NavBar';
 
@@ -67,8 +67,6 @@ function Home() {
     setPurchaseShares('')
     dispatch(shareAction.getShares())
     dispatch(sessionAction.authenticate())
-    handleCancel()
-    setShowTrade(false)
   }
 
   {/* -------------------------------------------edit purchase shares------------------------------------------------------ */}
@@ -80,8 +78,8 @@ function Home() {
       if (current[0].wallet > (purchaseShares * sharePrice)) {
         posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) + Number(purchaseShares)), shareId))
         await dispatch(sessionAction.updateUser(sessionUser?.wallet -(purchaseShares * sharePrice), current[0].id))
-        reset()
         window.alert("change complete")
+        reset()
       } else {
         window.alert('change canceled')
       }
@@ -93,12 +91,13 @@ function Home() {
   const handleSell = async () => {
     posted = await dispatch(shareAction.deleteShare(shareId))
     await dispatch(sessionAction.updateUser((totalPosition + sessionUser.wallet), current[0].id))
-    reset()
     alert("Remove successful")
+    reset()
   }
 
     const tradeSell = async (e) => {
       e.preventDefault();
+      console.log('hi')
       let answer = window.confirm("Are you sure you want to make this sell?")
       if (answer) {
         if (sellQty >= purchaseShares) {
@@ -107,8 +106,8 @@ function Home() {
           } else {
             posted = await dispatch(shareAction.updateShare(sharePrice, (Number(sellQty) - Number(purchaseShares)), shareId))
             await dispatch(sessionAction.updateUser(sessionUser.wallet + (purchaseShares * sharePrice), current[0].id))
-            reset()
             window.alert("Change complete")
+            reset()
           }
         } else {
           window.alert("You do not hold enough shares")
@@ -127,15 +126,15 @@ function Home() {
       else {
         posted = await dispatch(shareAction.purchase(marketPrice, purchaseShares, sneakId))
         await dispatch(sessionAction.updateUser(sessionUser.wallet -(purchaseShares * marketPrice), current[0].id))
-        reset()
         alert("Purchase completed")
+        reset()
       }
     } else {
       alert("you too broke")
     }
   }
 
-  {/* -------------------------------------------toggle sell/buy mod ------------------------------------------------------ */}
+  {/* -------------------------------------------toggle sell/buy mod mod------------------------------------------------------ */}
 
   if (showEdit) {
     content = (
@@ -198,45 +197,6 @@ function Home() {
     )
   }
 
-  {/* -------------------------------------------graph------------------------------------------------------ */}
-
-  let graphContent = null
-  // const data = [{name: 'page A', uv: 100, pv: 2400, amt: 2400}]
-  const data = []
-  function dataPts() {
-    let test = shares
-    test.pop()
-
-    test?.map((share, index) => {
-      if (test) {
-        const sharep = share?.price_per_share * share.number_of_shares
-        data.push({name: `${share.sneax?.brand_name}`, uv: `${sharep}`, pv: 2400, amt: 2400})
-
-      }
-    })
-  }
-  // dataPts()
-
-  if (showGraph) {
-    dataPts()
-    graphContent = (
-      <>
-      <ResponsiveContainer width="100%" height="100%">
-            <LineChart  data={data}>
-              <Line type='monotone' dataKey='uv' stroke='#d123d2' activeDot={{ r: 8 }}/>
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" padding={{ top: 100, right: 30, left: 30, bottom: 0}}/>
-              {/* <Line type='monotone' dataKey={'uv'*.6} stroke='#d123d2' activeDot={{ r: 8 }} /> */}
-              <YAxis />
-              <Tooltip />
-            </LineChart>
-
-      </ResponsiveContainer>
-
-      </>
-    )
-  }
-
   {/* -------------------------------------------close mods------------------------------------------------------ */}
 
   function handleCancel() {
@@ -244,6 +204,7 @@ function Home() {
       setOpenBuy(false)
       setOpenSell(false)
     } else {
+      reset()
       setShowTrade(false)
     }
   }
@@ -256,10 +217,10 @@ function Home() {
               <div className='buy-sell-bttn-container'>
                 <div className='buy-sell-bttns-box'>
                   <div className='shares-buy-bttn'>
-                    <button onClick={() => (setOpenBuy(!openBuy), setOpenSell(false))}>Buy more</button>
+                    <button onClick={() => (reset(), setOpenBuy(!openBuy), setOpenSell(false))}>Buy more</button>
                   </div>
                   <div className='shares-sell-bttn'>
-                    <button onClick={() => (setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
+                    <button onClick={() => (reset(), setOpenSell(!openSell), setOpenBuy(false))}>Sell</button>
                   </div>
                   <div className='shares-cancel-bttn'>
                     <button onClick={() => handleCancel()}>Cancel</button>
@@ -273,98 +234,6 @@ function Home() {
     )
   }
 
-  if (sessionUser) {
-    main = (
-      <>
-      <NavBar />
-      <div className="sneax-dashboard-container">
-{/* -------------------------------------------dash start------------------------------------------------------ */}
-        <div className= 'sneax-shares-container'>
-          <div className='dash-shares-container'>
-            <div className='dash-shares-box'>
-              <div className='shares'>
-                <h1>Shares</h1>
-              </div>
-                {shares?.map(share => {
-                        if (Number(share.sneax_id)) {
-                          return (
-                              <div >
-                                <Link className="sneax-link" style={{ textDecoration: 'none' , color: 'black'}} to={`/sneax/${share.sneax_id}`}>
-                                  <div className='single-sneax-container'>
-                                    <div className='sneax-name-shares'>
-                                      <div className='dash-sneax-info'>
-                                        <p>{share.sneax.name}</p>
-                                      </div>
-                                      <div className='dash-sneax-info'>
-                                        <p>$ {share.price_per_share}</p>
-                                      </div>
-                                    </div>
-                                    <div className='sneax-name-shares'>
-                                      <div className='dash-sneax-info'>
-                                        <p>{share.number_of_shares} Shares</p>
-                                      </div>
-                                      <div className='dash-sneax-info'>
-                                        <p>Total Position: ${share.number_of_shares * share.price_per_share}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </Link>
-
-                                <div className='trade-bttn'>
-                                  <button onClick={() => (
-                                      setShowModal(true),
-                                      setShowEdit(false),
-                                      setShowTrade(!showTrade),
-                                      setSellId(share.sneax_id),
-                                      setSellQty(share.number_of_shares),
-                                      setTotalPosition(share.number_of_shares * share.price_per_share),
-                                      setShareQty(share.number_of_shares), setSharePrice(share.price_per_share),
-                                      setShareId(share.id))}>Trade
-                                  </button>
-                                </div>
-                                <div hidden="true">
-                                  {totalAccount += (share.number_of_shares * share.price_per_share)}.
-                                </div>
-                              </div>
-
-                          )
-                        }
-                })}
-              </div>
-              <Watchlist />
-          </div>
-        </div>
-        {/* -------------------------------------------dash split------------------------------------------------------ */}
-            <div className='sneax-dash-info-box'>
-              <div className='sneax-name-brand-box'>
-                <div className='name'>
-                  <h1 className="sneax-name">$ {totalAccount}</h1>
-                </div>
-                <h2 className='sneax-brand'>$200 2.00% Today</h2>
-              </div>
-              <div className='sneax-graph'>
-                {/* <button onClick={() => setShowGraph(!showGraph)}>show graph</button> */}
-                {graphContent}
-              </div>
-              <div className='buying-power-container'>
-                <div><h1 className='dash-buying-power'>Buying Power</h1></div>
-                <div><h1 className='dash-wallet'>$ {sessionUser?.wallet}</h1></div>
-              </div>
-              <div className='random-dash'>
-                <p>For more information, see our Privacy Policy.</p>
-              </div>
-            </div>
-      </div>
-      {content}
-    </>
-    )
-  } else {
-    main = (
-      <>
-        <SplashPage />
-      </>
-    )
-  }
 
   return (
     <>

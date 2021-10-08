@@ -1,27 +1,27 @@
-.footerContainer{
+.footerContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
     background-color: black;
-
+    padding-bottom: 30px;
 }
 
-.Github{
-    margin-top: 5px;
-
+.Github {
+    margin-top: 25px;
+    margin-bottom: 15px;
 }
 
-.footerLink{
+.footerLink {
     text-decoration: none;
 }
 
-.team-members{
+.team-members {
     display: flex;
     flex-direction: row;
-    
 }
+
 .team-name {
     color: white;
     font-size: large;
@@ -29,22 +29,30 @@
 }
 
 .paul {
-   margin-left: 100px;
-   margin-right: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .simon {
     margin-right: 100px;
-
 }
 
-.fa-github{
+.fa-github {
     margin-right: 20px;
 }
 
 .fa-github,
-.fa-linkedin{
+.fa-linkedin {
     color: white;
     font-size: 25px;
+}
 
+.fa-github:hover,
+.fa-linkedin:hover {
+    box-shadow: 2px 2px 15px hotpink;
+    border-radius: 25px;
+}
+
+button:hover {
+    cursor: pointer;
 }

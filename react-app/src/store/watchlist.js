@@ -76,7 +76,7 @@ export const removeList = (id) => async (dispatch) => {
 // reducer.
 
 const initialState = {
-
+    watchlist: null
 };
 
 const watchlistReducer = (state = initialState, action) => {
@@ -87,11 +87,11 @@ const watchlistReducer = (state = initialState, action) => {
                 [action.list.id]: action.list
             }
         case LOAD_LIST:
-            const all = {...state};
-            action.list.watchlist.forEach((oneList) => {
-                all[oneList.id] = oneList;
-            });
-            return all
+            // const all = {...state};
+            if (state) {
+                return {"watchlist": action.list.watchlist}
+            }
+
         case UPDATE_LIST:
             return {
                 ...state,
@@ -99,6 +99,7 @@ const watchlistReducer = (state = initialState, action) => {
             }
         case DELETE_LIST:{
            const newState = {...state}
+           newState.watchlist = newState.watchlist.filter(listId => listId !== action.listId)
            return newState
         }
 

@@ -9,7 +9,6 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/HomePage/Home'
 import SneaxDetails from './components/SneaxDetails/SneaxDetails';
-import TestingWatch from './components/HomePage/TestingWatch';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/Navigation/NavBar';
@@ -52,13 +51,9 @@ function App() {
         <ProtectedRoute path='/sneax/:id' exact={true}>
           <SneaxDetails />
         </ProtectedRoute>
-        <Route path='/testingWatch' exact={true}>
-          <TestingWatch/>
-        </Route>
         <Route path='/'>
             <PageNotFound />
         </Route>
-
       </Switch>
       <Footer/>
     </BrowserRouter>

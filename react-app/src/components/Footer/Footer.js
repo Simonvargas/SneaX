@@ -12,7 +12,7 @@ const Footer = () => {
                 </a>
             </div>
             <div className='team-members'>
-                
+
                 <div className='teammate jun'>
                     <div>
                     <h1 className='team-name'>Jun L.</h1>
@@ -23,7 +23,7 @@ const Footer = () => {
                         </a>
                         <a className='footerLink' href='https://www.linkedin.com/in/itisjun/' target='_blank' rel='noreferrer'>
                             <i className='fab fa-linkedin fa-2x'></i>
-                        </a> 
+                        </a>
                     </div>
                 </div>
                 <div className='teammate paul'>
@@ -36,7 +36,7 @@ const Footer = () => {
                         </a>
                         <a className='footerLink' href='https://www.linkedin.com/in/pchang1216/' target='_blank' rel='noreferrer'>
                             <i className='fab fa-linkedin fa-2x'></i>
-                        </a>                       
+                        </a>
                     </div>
 
                 </div>
@@ -50,8 +50,8 @@ const Footer = () => {
                         </a>
                         <a className='footerLink' href='https://www.linkedin.com/in/simon-vargas-aa0b6a14b/' target='_blank' rel='noreferrer'>
                             <i className='fab fa-linkedin fa-2x'></i>
-                        </a> 
-                    
+                        </a>
+
                     </div>
                 </div>
                 <div className='teammate vivian'>
@@ -64,7 +64,7 @@ const Footer = () => {
                         </a>
                         <a className='footerLink' href='https://www.linkedin.com/in/vivian-ngoc-che/' target='_blank' rel='noreferrer'>
                             <i className='fab fa-linkedin fa-2x'></i>
-                        </a> 
+                        </a>
                     </div>
                 </div>
 
