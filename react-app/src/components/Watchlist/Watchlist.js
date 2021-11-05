@@ -90,7 +90,7 @@ function Watchlist () {
       if (confirm) {
         await dispatch(removeOneWatch(Number(e.target.id)))
         dispatch(getWatchs());
-        // history.go(0)
+        history.go(0)
       }
 
     }

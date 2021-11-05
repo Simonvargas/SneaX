@@ -100,14 +100,14 @@ function SneaxDetails() {
 
   function addToWatchList(e) {
     e.preventDefault();
-    watching.map(watch => {
-      watchlist.push( watch.sneax_id )
-    })
+    // watching.map(watch => {
+    //   watchlist.push( watch.sneax_id )
+    // })
 
-    if (!watchlist.includes(sneaxId.id)) {
+    // if (!watchlist.includes(sneaxId.id)) {
       dispatch(watchAction.addOneWatch(listOption, sneaxId.id))
       window.alert('added to watchlist!')
-    }
+    // }
     setWatchList([])
   }
 
